@@ -4,6 +4,9 @@ import { Route, Switch } from "react-router-dom";
 import Header from "./pages/header.js";
 import Footer from "./pages/footer.js";
 import Main from "./pages/main.js";
+import LogIn from "./components/login.js";
+
+import { AuthState } from "./utils/context/Auth/AuthState.js";
 
 import app from "./stylesheets/App.module.scss";
 
@@ -12,7 +15,10 @@ function App() {
 		<div className={app.App}>
 			<Header />
 			<Switch>
-				<Route exact path="/" component={Main} />
+				<AuthState>
+					<Route exact path="/" component={Main} />
+					<Route path="/login" component={LogIn} />
+				</AuthState>
 			</Switch>
 			<Footer />
 		</div>
