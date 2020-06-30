@@ -56,10 +56,10 @@
 			outline: none;
 		}
 		&:hover {
-			background-color: rgb(102, 6, 6);
+			background-color: $btn-active;
 		}
 		&:active {
-			background-color: rgb(102, 6, 6);
+			background-color: $btn-active;
 			transform: translateY(4px);
 		}
 	}
