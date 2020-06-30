@@ -11,9 +11,6 @@
 		padding: 0.5rem;
 		text-decoration: none;
 	}
-	.nav {
-		@include flex(center, row);
-	}
 }
 .footer {
 	background-color: brown;

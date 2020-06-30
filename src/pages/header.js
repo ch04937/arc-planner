@@ -7,7 +7,7 @@ import styles from "../stylesheets/hf.module.scss";
 
 export default function Header() {
 	const token = localStorage.getItem("accessToken");
-
+	console.log("token", token);
 	function signOut() {
 		removeState();
 	}
@@ -16,16 +16,16 @@ export default function Header() {
 			<div>
 				<Link to="/">Ark Planner</Link>
 			</div>
-			{!token ? (
+			{token === !null ? (
 				<div>
-					<Link to="/login">Sign In</Link>
+					<Link to="/user">Profile</Link>
+					<Link to="/" onClick={signOut}>
+						Sign Out
+					</Link>
 				</div>
 			) : (
-				<div className={styles.nav}>
-					<div>
-						<Link to="/user">Profile</Link>
-					</div>
-					<div onClick={signOut}>Sign Out</div>
+				<div>
+					<Link to="/login">Sign In</Link>
 				</div>
 			)}
 		</div>

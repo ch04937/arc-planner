@@ -19,7 +19,7 @@ export default function LogIn() {
 				initialValues={{ username: "", password: "" }}
 				onSubmit={(values, actions) => {
 					signIn(values);
-					// actions.resetForm();
+					actions.resetForm();
 				}}
 			>
 				{({ errors, touched, validateForm }) => (
