@@ -6,7 +6,7 @@ import { Loader, Icon } from "semantic-ui-react";
 import { AuthContext } from "../utils/context/Auth/AuthState";
 import { validateUsername, validatePassword } from "../utils/validateAuth";
 
-import styles from "../stylesheets/app.module.scss";
+import styles from "../stylesheets/App.module.scss";
 
 export default function LogIn() {
 	const { isLoading, signIn } = useContext(AuthContext);
@@ -24,7 +24,6 @@ export default function LogIn() {
 			>
 				{({ errors, touched, validateForm }) => (
 					<Form className={styles.form}>
-						<br />
 						{errors.username && touched.username && (
 							<div className={styles.validate}>
 								{errors.username}
@@ -36,7 +35,6 @@ export default function LogIn() {
 							name="username"
 							validate={validateUsername}
 						/>
-						<br />
 						{errors.password && touched.password && (
 							<div className={styles.validate}>
 								{errors.password}
@@ -58,14 +56,12 @@ export default function LogIn() {
 								}
 							/>
 						</div>
-						<br />
 						<button type="submit" onClick={() => validateForm()}>
 							{!isLoading ? "Sign In" : <Loader />}
 						</button>
 					</Form>
 				)}
 			</Formik>
-			<br />
 			<Link to="/register">Dont have an account?</Link>
 		</div>
 	);

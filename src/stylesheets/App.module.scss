@@ -22,32 +22,44 @@
 	width: 450px;
 	.password {
 		@include flex(center, row);
+		border: 2px solid black;
+		border-radius: 4px;
+		padding: 0 5px 0 0;
 		.icon {
 			margin: auto 0 auto 5px;
 		}
 		input {
+			margin: 0;
+			border: none;
 			width: 100%;
+			&:focus {
+				outline: none;
+			}
 		}
 	}
 	input {
 		padding: 10px 20px;
 		margin: 8px 0;
+		border-radius: 4px;
 	}
 	button {
-		background-color: #313131;
+		background-color: brown;
 		color: whitesmoke;
 		padding: 1rem;
 		border: none;
 		border-radius: 4px;
 		width: fit-content;
-		margin: 0px auto;
+		margin: 1rem auto;
 		box-shadow: 0 5px #666;
-	}
-	button:hover {
-		background-color: black;
-	}
-	button:active {
-		background-color: black;
-		transform: translateY(4px);
+		&:focus {
+			outline: none;
+		}
+		&:hover {
+			background-color: rgb(102, 6, 6);
+		}
+		&:active {
+			background-color: rgb(102, 6, 6);
+			transform: translateY(4px);
+		}
 	}
 }
