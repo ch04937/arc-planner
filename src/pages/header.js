@@ -7,7 +7,6 @@ import styles from "../stylesheets/hf.module.scss";
 
 export default function Header() {
 	const token = localStorage.getItem("accessToken");
-	console.log("token", token);
 	function signOut() {
 		removeState();
 	}
