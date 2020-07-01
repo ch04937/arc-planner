@@ -16,9 +16,9 @@ const setIsLoading = (state, action) => {
 	};
 };
 const setSignInSuccess = (state, action) => {
+	window.localStorage.setItem("accessToken", action.payload.accessToken);
 	return {
 		...state,
-		accessToken: action.payload.accessToken,
 		userProfile: action.payload.profile,
 		isLoading: false,
 	};

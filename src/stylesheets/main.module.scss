@@ -1,23 +1,27 @@
 @import "./mixins.scss";
 
 .home {
-	@include flex(center, row);
-	margin-top: 2rem;
-	a {
-		background-color: $btn-color;
-		color: whitesmoke;
-		padding: 1rem;
-		border: none;
-		border-radius: 4px;
-		width: fit-content;
-		margin: 0px auto;
-		box-shadow: 0 5px #666;
-		&:hover {
-			background-color: $btn-active;
-		}
-		&:active {
-			background-color: $btn-active;
-			transform: translateY(4px);
+	@include flex(center, column);
+	text-align: center;
+	.btn {
+		margin-top: 3rem;
+		display: flex;
+		a {
+			background-color: $btn-color;
+			color: whitesmoke;
+			padding: 1rem;
+			border: none;
+			border-radius: 4px;
+			width: fit-content;
+			margin: 0px auto;
+			box-shadow: 0 5px #666;
+			&:hover {
+				background-color: $btn-active;
+			}
+			&:active {
+				background-color: $btn-active;
+				transform: translateY(4px);
+			}
 		}
 	}
 }

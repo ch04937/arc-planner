@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Loader, Icon } from "semantic-ui-react";
@@ -8,8 +8,8 @@ import { validateUsername, validatePassword } from "../utils/validateAuth";
 
 import styles from "../stylesheets/App.module.scss";
 
-export default function LogIn() {
-	const { isLoading, signIn } = useContext(AuthContext);
+export default function LogIn({ history }) {
+	const { isLoading, signIn, userProfile } = useContext(AuthContext);
 	const [canSeePassword, setCanSeePassword] = useState(false);
 
 	return (

@@ -22,7 +22,6 @@ export const AuthState = (props) => {
 	const initialState = {
 		error: "",
 		isLoading: false,
-		accessToken: null,
 		userProfile: null,
 	};
 
@@ -74,7 +73,6 @@ export const AuthState = (props) => {
 		<AuthContext.Provider
 			value={{
 				error: state.error,
-				accessToken: state.accessToken,
 				isLoading: state.isLoading,
 				userProfile: state.userProfile,
 				signIn,
