@@ -9,8 +9,14 @@ import { validateUsername, validatePassword } from "../utils/validateAuth";
 import styles from "../stylesheets/App.module.scss";
 
 export default function LogIn({ history }) {
-	const { isLoading, signIn, userProfile } = useContext(AuthContext);
+	const { isLoading, signIn, accessToken } = useContext(AuthContext);
 	const [canSeePassword, setCanSeePassword] = useState(false);
+
+	useEffect(() => {
+		if (accessToken) {
+			history.push("/user");
+		}
+	}, [accessToken]);
 
 	return (
 		<div className={styles.wrapper}>

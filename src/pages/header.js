@@ -1,26 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { removeState } from "../utils/localStorage";
+import { AuthContext } from "../utils/context/Auth/AuthState";
 
 import styles from "../stylesheets/hf.module.scss";
 
 export default function Header() {
-	const token = localStorage.getItem("accessToken");
-	function signOut() {
-		removeState();
-	}
+	const { accessToken, signOut } = useContext(AuthContext);
+
 	return (
 		<div className={styles.header}>
 			<div>
 				<Link to="/">Ark Planner</Link>
 			</div>
-			{token === !null ? (
-				<div>
+			{accessToken ? (
+				<div className={styles.nav}>
 					<Link to="/user">Profile</Link>
-					<Link to="/" onClick={signOut}>
-						Sign Out
-					</Link>
+					<div onClick={() => signOut()}>Sign Out</div>
 				</div>
 			) : (
 				<div>

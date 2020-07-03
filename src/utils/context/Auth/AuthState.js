@@ -14,7 +14,7 @@ import authReducer from "./reducer";
 
 import { client } from "../../axiosWithAuth";
 
-import { loadState, saveState, removeState } from "../../localStorage";
+import { loadState, saveState, logOut } from "../../localStorage";
 
 export const AuthContext = createContext();
 
@@ -23,6 +23,7 @@ export const AuthState = (props) => {
 		error: "",
 		isLoading: false,
 		userProfile: null,
+		accessToken: null,
 	};
 
 	const localState = loadState("accessToken");
@@ -63,7 +64,7 @@ export const AuthState = (props) => {
 	const signOut = () => {
 		try {
 			dispatch({ type: SIGNOUT_SUCCESS });
-			removeState();
+			logOut();
 		} catch (error) {
 			dispatch({ type: SIGNOUT_FAILURE, payload: error.message });
 		}
@@ -73,6 +74,7 @@ export const AuthState = (props) => {
 		<AuthContext.Provider
 			value={{
 				error: state.error,
+				accessToken: state.accessToken,
 				isLoading: state.isLoading,
 				userProfile: state.userProfile,
 				signIn,

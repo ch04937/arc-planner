@@ -16,9 +16,9 @@ import app from "./stylesheets/App.module.scss";
 function App() {
 	return (
 		<div className={app.App}>
-			<Header />
 			<Switch>
 				<AuthState>
+					<Header />
 					<Route exact path="/" component={Main} />
 					<Route path="/login" component={LogIn} />
 					<Route path="/register" component={Register} />

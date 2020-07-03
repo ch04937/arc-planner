@@ -16,9 +16,9 @@ const setIsLoading = (state, action) => {
 	};
 };
 const setSignInSuccess = (state, action) => {
-	window.localStorage.setItem("accessToken", action.payload.accessToken);
 	return {
 		...state,
+		accessToken: action.payload.accessToken,
 		userProfile: action.payload.profile,
 		isLoading: false,
 	};
@@ -51,12 +51,10 @@ const setSignUpFailure = (state, action) => {
 const setSignOutSuccess = (state, action) => {
 	return {
 		...state,
+		error: null,
 		isLoading: false,
-		signInError: null,
-		signUpError: null,
-		signOutError: null,
-		accessToken: null,
 		userProfile: null,
+		accessToken: null,
 	};
 };
 const setSignOutFailure = (state, action) => {

@@ -4,23 +4,34 @@ export const loadState = (state) => {
 		if (serializedState === null) {
 			return undefined;
 		}
+
 		return JSON.parse(serializedState);
-	} catch (e) {
+	} catch (error) {
 		return undefined;
 	}
 };
+
 export const saveState = (stateName, stateDetail) => {
 	try {
 		const serializedState = JSON.stringify(stateDetail);
 		localStorage.setItem(stateName, serializedState);
-	} catch (e) {
-		console.log(`error occurs while saving state: ${e}`);
+	} catch (error) {
+		console.log(`Error occurs while saving state: ${error}`);
 	}
 };
-export const removeState = () => {
+export const logOut = ({ props }) => {
+	console.log("props", props);
 	try {
 		localStorage.clear();
+		props.history.push("/");
 	} catch (e) {
 		console.log(`error occurs while clearing state: ${e}`);
 	}
+};
+
+export const isLoggedIn = () => {
+	if (localStorage.getItem("accessToken") !== null) {
+		return true;
+	}
+	return false;
 };
