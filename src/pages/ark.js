@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import { AuthContext } from "../utils/context/Auth/AuthState";
 
 export default function Profile() {
-	return <div>This will the users Profile page</div>;
+	const { userProfile } = useContext(AuthContext);
+	console.log("userProfile", userProfile);
+	return <div></div>;
 }

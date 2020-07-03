@@ -19,11 +19,10 @@ export const saveState = (stateName, stateDetail) => {
 		console.log(`Error occurs while saving state: ${error}`);
 	}
 };
-export const logOut = ({ props }) => {
-	console.log("props", props);
+export const logOut = ({ history }) => {
 	try {
 		localStorage.clear();
-		props.history.push("/");
+		history.push("/");
 	} catch (e) {
 		console.log(`error occurs while clearing state: ${e}`);
 	}

@@ -9,7 +9,7 @@ import Profile from "./pages/ark";
 import Register from "./components/register.js";
 
 import { AuthState } from "./utils/context/Auth/AuthState.js";
-import PrivateRoute from "./utils/privateRoute";
+import { PrivateRoute } from "./utils/privateRoute";
 
 import app from "./stylesheets/App.module.scss";
 
@@ -22,7 +22,7 @@ function App() {
 					<Route exact path="/" component={Main} />
 					<Route path="/login" component={LogIn} />
 					<Route path="/register" component={Register} />
-					<PrivateRoute path="/ark" component={Profile} />
+					<PrivateRoute path="/user" component={Profile} />
 				</AuthState>
 			</Switch>
 			<Footer />

@@ -7,7 +7,6 @@ import styles from "../stylesheets/main.module.scss";
 
 export default function Main({ history }) {
 	const { accessToken } = useContext(AuthContext);
-
 	useEffect(() => {
 		if (accessToken) {
 			history.push("/user");
