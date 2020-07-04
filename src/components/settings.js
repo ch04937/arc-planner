@@ -7,7 +7,7 @@ import styles from "../stylesheets/hf.module.scss";
 
 export default function Settings() {
 	const { signOut } = useContext(AuthContext);
-	const [isOpen, setIsOpen] = useState(true);
+	const [isOpen, setIsOpen] = useState(false);
 	const toggle = () => {
 		setIsOpen((isOpen) => !isOpen);
 	};
@@ -20,11 +20,14 @@ export default function Settings() {
 			<div className={styles.content_wrapper}>
 				{isOpen && (
 					<>
-						<div className={styles.content}>
+						<div className={styles.content} onClick={toggle}>
 							<Link to="/user">Profile</Link>
 						</div>
 						<div
-							onClick={() => signOut()}
+							onClick={() => {
+								toggle();
+								signOut();
+							}}
 							className={styles.content}
 						>
 							Sign Out

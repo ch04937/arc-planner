@@ -6,12 +6,14 @@
 	border-radius: 4px;
 	&:hover {
 		background: $btn-active;
+		padding: 7px 0;
 	}
 	.content_wrapper {
 		background: brown;
 		text-align: left;
 		width: 100px;
 		position: absolute;
+		top: 3.5rem;
 		overflow: hidden;
 		.content {
 			padding: 0.5rem 0;
@@ -34,10 +36,16 @@
 		padding: 0.5rem;
 		text-decoration: none;
 	}
-	// .nav {
-	// 	display: flex;
-	// 	align-items: baseline;
-	// }
+	.nav {
+		display: flex;
+		align-items: baseline;
+		a {
+			border-radius: 4px;
+			&:hover {
+				background: $btn-active;
+			}
+		}
+	}
 }
 .footer {
 	background-color: brown;

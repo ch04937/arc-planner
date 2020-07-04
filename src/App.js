@@ -5,8 +5,9 @@ import Header from "./pages/header.js";
 import Footer from "./pages/footer.js";
 import Main from "./pages/main.js";
 import LogIn from "./components/login.js";
-import Profile from "./pages/ark";
+import Profile from "./pages/profile";
 import Register from "./components/register.js";
+import Dashboard from "./pages/dashboard.js";
 
 import { AuthState } from "./utils/context/Auth/AuthState.js";
 import { PrivateRoute } from "./utils/privateRoute";
@@ -22,6 +23,7 @@ function App() {
 					<Route exact path="/" component={Main} />
 					<Route path="/login" component={LogIn} />
 					<Route path="/register" component={Register} />
+					<PrivateRoute path="/dashboard" component={Dashboard} />
 					<PrivateRoute path="/user" component={Profile} />
 				</AuthState>
 			</Switch>

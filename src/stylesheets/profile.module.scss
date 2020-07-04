@@ -1,0 +1,16 @@
+@import "./mixins.scss";
+.wrapper {
+	@include flex(space-around, column);
+	.cards {
+		@include flex(space-around, initial);
+		flex-wrap: wrap;
+		.card {
+			margin: 1rem 0;
+			padding: 10px;
+			border: 1px solid white;
+			border-radius: 4px;
+			background: $btn-hover;
+			color: white;
+		}
+	}
+}

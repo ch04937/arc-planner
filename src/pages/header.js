@@ -17,6 +17,7 @@ export default function Header() {
 			</div>
 			{accessToken ? (
 				<div className={styles.nav}>
+					<Link to="/dashboard">Dashboard</Link>
 					<Settings />
 				</div>
 			) : (

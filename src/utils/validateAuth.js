@@ -46,3 +46,21 @@ export const validateConfirmPassword = (pass, value) => {
 	}
 	return error;
 };
+
+export function validateField(value) {
+	let error;
+	if (!value) {
+		error = "*This is a Required Field";
+	}
+	return error;
+}
+export function validateNumber(value) {
+	let error;
+	if (!value) {
+		error = "*This is a Required Field";
+	}
+	if (value < 0 || value > 25) {
+		error = "*Building Level is 1-25";
+	}
+	return error;
+}
