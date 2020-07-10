@@ -1,8 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
+import ProfileImg from "../components/profileimg";
 
 import styles from "../stylesheets/profile.module.scss";
 
 export default function Profile() {
+	// function submitFile() {
+	// 	// img === null ? console.log("img is null", img) : console.log(img);
+	// }
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.title}>
@@ -10,10 +14,7 @@ export default function Profile() {
 			</div>
 			<div className={styles.profile}>
 				<div className={styles.banner}>
-					<p>SOMETHING HERE</p>
-					<p>SOMETHING HERE</p>
-					<p>SOMETHING HERE</p>
-					<p>SOMETHING HERE</p>
+					<ProfileImg />
 				</div>
 				<div className={styles.content}>
 					<p>CONTENT</p>

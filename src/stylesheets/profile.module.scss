@@ -38,15 +38,21 @@
 	}
 }
 
-// .cards {
-// 	@include flex(space-around, initial);
-// 	flex-wrap: wrap;
-// 	.card {
-// 		margin: 1rem 0;
-// 		padding: 10px;
-// 		border: 1px solid white;
-// 		border-radius: 4px;
-// 		background: $btn-hover;
-// 		color: white;
-// 	}
-// }
+.imgs {
+	margin: 2rem 1rem;
+	text-align: center;
+	img {
+		width: 200px;
+		height: 200px;
+		border-radius: 100%;
+	}
+	.btn {
+		margin: 2rem auto;
+		width: 100px;
+		border-radius: 4px;
+		padding: 1rem;
+		background: $left-gradiant;
+		color: $btns-bg;
+		font-weight: 900;
+	}
+}
