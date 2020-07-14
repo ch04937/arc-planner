@@ -14,7 +14,6 @@ export default function ProfileContent() {
 	}
 	return (
 		<div>
-			{" "}
 			<div className={styles.card}>
 				{userProfile && userProfile.governorName ? (
 					<>

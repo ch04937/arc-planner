@@ -10,6 +10,7 @@ import Register from "./components/register.js";
 import Dashboard from "./pages/dashboard.js";
 
 import { AuthState } from "./utils/context/Auth/AuthState.js";
+import { ArkState } from "./utils/context/Ark/ArkState.js";
 import { PrivateRoute } from "./utils/privateRoute";
 
 import app from "./stylesheets/App.module.scss";
@@ -19,12 +20,14 @@ function App() {
 		<div className={app.App}>
 			<Switch>
 				<AuthState>
-					<Header />
-					<Route exact path="/" component={Main} />
-					<Route path="/login" component={LogIn} />
-					<Route path="/register" component={Register} />
-					<PrivateRoute path="/dashboard" component={Dashboard} />
-					<PrivateRoute path="/user" component={Profile} />
+					<ArkState>
+						<Header />
+						<Route exact path="/" component={Main} />
+						<Route path="/login" component={LogIn} />
+						<Route path="/register" component={Register} />
+						<PrivateRoute path="/dashboard" component={Dashboard} />
+						<PrivateRoute path="/user" component={Profile} />
+					</ArkState>
 				</AuthState>
 			</Switch>
 			<Footer />

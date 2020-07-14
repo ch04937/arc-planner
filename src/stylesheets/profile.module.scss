@@ -44,7 +44,6 @@
 	img {
 		width: 200px;
 		height: 200px;
-		border-radius: 100%;
 	}
 	.btn {
 		margin: 2rem auto;
@@ -54,5 +53,6 @@
 		background: $left-gradiant;
 		color: $btns-bg;
 		font-weight: 900;
+		cursor: pointer;
 	}
 }

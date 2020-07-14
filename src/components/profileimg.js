@@ -1,8 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
+
+import { ArkContext } from "../utils/context/Ark/ArkState";
 
 import styles from "../stylesheets/profile.module.scss";
 
 export default function ProfileImg() {
+	const { addImg } = useContext(ArkContext);
 	const [toggle, setToggle] = useState(false);
 
 	const uploadedImage = useRef(null);
@@ -20,6 +23,15 @@ export default function ProfileImg() {
 			reader.readAsDataURL(file);
 		}
 	}
+	function saveFile() {
+		addImg(uploadedImage.current.file);
+
+		setToggle(false);
+	}
+	function changeUpload() {
+		imageUpLoader.current.click();
+		setToggle(true);
+	}
 	return (
 		<div className={styles.imgs}>
 			<input
@@ -30,16 +42,16 @@ export default function ProfileImg() {
 				ref={imageUpLoader}
 				style={{ display: "none" }}
 			/>
-			<img ref={uploadedImage} />
-			<div
-				className={styles.btn}
-				onClick={() => {
-					imageUpLoader.current.click();
-					setToggle(!toggle);
-				}}
-			>
-				{toggle === true ? "SAVE" : "EDIT"}
-			</div>
+			<img ref={uploadedImage} alt="" />
+			{toggle === true ? (
+				<div className={styles.btn} onClick={saveFile}>
+					<p>SAVE</p>
+				</div>
+			) : (
+				<div className={styles.btn} onClick={changeUpload}>
+					<p>Edit</p>
+				</div>
+			)}
 		</div>
 	);
 }
