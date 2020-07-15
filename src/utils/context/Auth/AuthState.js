@@ -15,6 +15,7 @@ import authReducer from "./reducer";
 import { client } from "../../axiosWithAuth";
 
 import { loadState, saveState, logOut } from "../../localStorage";
+import { validateEmail } from "../../validateAuth";
 
 export const AuthContext = createContext();
 
@@ -52,13 +53,16 @@ export const AuthState = (props) => {
 			dispatch({ type: SIGNUP_FAILURE, payload: error });
 		}
 	};
-	const signIn = async (credential) => {
-		dispatch({ type: IS_LOADING, payload: true });
+	const signIn = async (values) => {
+		const credential = {
+			userId: values.username,
+			password: values.password,
+		};
 		try {
 			const response = await client().post("/user/login", credential);
 			dispatch({ type: SIGNIN_SUCCESS, payload: response.data });
-		} catch (error) {
-			dispatch({ type: SIGNIN_FAILURE, payload: error });
+		} catch (e) {
+			dispatch({ type: SIGNIN_FAILURE, payload: e });
 		}
 	};
 	const signOut = () => {

@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import ProfileImg from "../components/profileimg";
+
+import { ArkContext } from "../utils/context/Ark/ArkState";
 
 import styles from "../stylesheets/profile.module.scss";
 
 export default function Profile() {
+	const { profile, getProfile } = useContext(ArkContext);
 	// function submitFile() {
 	// 	// img === null ? console.log("img is null", img) : console.log(img);
-	// }
+	// // }
+	// useEffect(() => {
+	// 	getProfile();
+	// }, [profile]);
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.title}>
