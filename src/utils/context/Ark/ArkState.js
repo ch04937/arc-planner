@@ -25,8 +25,7 @@ export const ArkState = (props) => {
 		dispatch({ type: IS_LOADING, payload: true });
 		try {
 			const res = await axiosWithAuth().get(`/profile`);
-			// dispatch({ type: GET_PROFILE_SUCCESS, payload: res.data });
-			console.log("res", res);
+			dispatch({ type: GET_PROFILE_SUCCESS, payload: res.data });
 		} catch (e) {
 			console.log("error", e);
 			dispatch({ type: GET_PROFILE_ERROR, payload: e.response });
@@ -34,7 +33,12 @@ export const ArkState = (props) => {
 	};
 	return (
 		<ArkContext.Provider
-			value={{ ark: state.ark, isLoading: state.isLoading, getProfile }}
+			value={{
+				ark: state.ark,
+				isLoading: state.isLoading,
+				profile: state.profile,
+				getProfile,
+			}}
 		>
 			{props.children}
 		</ArkContext.Provider>

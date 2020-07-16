@@ -10,9 +10,9 @@ export default function Profile() {
 	// function submitFile() {
 	// 	// img === null ? console.log("img is null", img) : console.log(img);
 	// // }
-	// useEffect(() => {
-	// 	getProfile();
-	// }, [profile]);
+	useEffect(() => {
+		getProfile();
+	}, []);
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.title}>
@@ -23,11 +23,8 @@ export default function Profile() {
 					<ProfileImg />
 				</div>
 				<div className={styles.content}>
-					<p>CONTENT</p>
-					<p>CONTENT</p>
-					<p>CONTENT</p>
-					<p>CONTENT</p>
-					<p>CONTENT</p>
+					<p>GOVERNOR NAME:</p>
+					{profile && profile.inGameName}
 				</div>
 			</div>
 			<div className={styles.buttons}>

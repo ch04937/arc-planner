@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect } from "react";
+import React, { createContext, useReducer } from "react";
 
 import {
 	IS_LOADING,
@@ -14,29 +14,19 @@ import authReducer from "./reducer";
 
 import { client } from "../../axiosWithAuth";
 
-import { loadState, saveState, logOut } from "../../localStorage";
-import { validateEmail } from "../../validateAuth";
+import { logOut } from "../../localStorage";
 
 export const AuthContext = createContext();
 
 export const AuthState = (props) => {
 	const initialState = {
-		error: "",
+		error: null,
 		isLoading: false,
 		userProfile: null,
 		accessToken: null,
 	};
 
-	const localState = loadState("accessToken");
-
-	const [state, dispatch] = useReducer(
-		authReducer,
-		localState || initialState
-	);
-
-	useEffect(() => {
-		saveState("accessToken", state);
-	}, [state]);
+	const [state, dispatch] = useReducer(authReducer, initialState);
 
 	const register = async (values) => {
 		dispatch({ type: IS_LOADING, payload: true });

@@ -6,7 +6,6 @@ import {
 	SIGNUP_FAILURE,
 	SIGNOUT_SUCCESS,
 	SIGNOUT_FAILURE,
-	SET_CURRENT_USER,
 } from "../types";
 
 const setIsLoading = (state, action) => {
@@ -16,6 +15,8 @@ const setIsLoading = (state, action) => {
 	};
 };
 const setSignInSuccess = (state, action) => {
+	localStorage.setItem("accessToken", action.payload.accessToken);
+	localStorage.setItem("refreshToken", action.payload.refreshToken);
 	return {
 		...state,
 		accessToken: action.payload.accessToken,
@@ -32,6 +33,8 @@ const setSignInFailure = (state, action) => {
 	};
 };
 const setSignUpSuccess = (state, action) => {
+	localStorage.setItem("accessToken", action.payload.accessToken);
+	localStorage.setItem("refreshToken", action.payload.refreshToken);
 	return {
 		...state,
 		accessToken: action.payload.accessToken,
@@ -63,12 +66,6 @@ const setSignOutFailure = (state, action) => {
 		signOutError: action.payload,
 	};
 };
-const setCurrentUser = (state, action) => {
-	return {
-		...state,
-		currentUser: action.payload,
-	};
-};
 const authReducer = (state, action) => {
 	switch (action.type) {
 		case IS_LOADING:
@@ -85,8 +82,6 @@ const authReducer = (state, action) => {
 			return setSignOutSuccess(state, action);
 		case SIGNOUT_FAILURE:
 			return setSignOutFailure(state, action);
-		case SET_CURRENT_USER:
-			return setCurrentUser(state, action);
 		default:
 			return state;
 	}

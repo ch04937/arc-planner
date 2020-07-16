@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Loader, Icon } from "semantic-ui-react";
@@ -13,11 +13,17 @@ import {
 
 import styles from "../stylesheets/App.module.scss";
 
-export default function Register() {
+export default function Register({ history }) {
 	const { isLoading, register } = useContext(AuthContext);
 	const [canSeePassword, setCanSeePassword] = useState(false);
 	const [canSeeConfirmPassword, setcanSeeConfirmPassword] = useState(false);
+	const token = localStorage.getItem("accessToken");
 
+	useEffect(() => {
+		if (token) {
+			history.push("/user");
+		}
+	}, []);
 	return (
 		<div className={styles.wrapper}>
 			<h1>Register</h1>
