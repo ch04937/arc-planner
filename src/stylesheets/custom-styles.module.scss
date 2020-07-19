@@ -1,0 +1,17 @@
+@import "./mixins.scss";
+
+.wrapper {
+	@include flex(space-around, column);
+}
+
+.btn {
+	text-align: center;
+	margin: 2rem auto;
+	width: 100px;
+	border-radius: 4px;
+	padding: 1rem;
+	background: $left-gradiant;
+	color: $btns-bg;
+	font-weight: 900;
+	cursor: pointer;
+}

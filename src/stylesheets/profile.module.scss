@@ -10,7 +10,6 @@
 	}
 	.profile {
 		width: 100%;
-		height: 400px;
 		background: $card-bg;
 		padding: 2rem;
 		@include flex(space-around, row);
@@ -26,6 +25,15 @@
 			border-bottom-right-radius: 4px;
 			width: 100%;
 			background-image: linear-gradient($left-gradiant, $right-gradiant);
+			@include flex(space-around, row);
+			.troops {
+				width: 100%;
+				.tier {
+					width: 100%;
+					padding: 5px 0;
+					@include flex(space-between, row);
+				}
+			}
 		}
 	}
 	.buttons {
@@ -41,20 +49,14 @@
 }
 
 .imgs {
-	margin: 2rem 1rem;
-	text-align: center;
+	margin: 1rem 2rem;
 	img {
-		width: 200px;
-		height: 200px;
+		width: 10rem;
+		height: 10rem;
 	}
-	.btn {
-		margin: 2rem auto;
-		width: 100px;
-		border-radius: 4px;
-		padding: 1rem;
-		background: $left-gradiant;
-		color: $btns-bg;
-		font-weight: 900;
-		cursor: pointer;
-	}
+}
+.gov {
+	color: $txt;
+	width: fit-content;
+	padding-left: 1rem;
 }

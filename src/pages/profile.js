@@ -1,15 +1,15 @@
 import React, { useContext, useEffect } from "react";
-import ProfileImg from "../components/profileimg";
+
+import ProfileImg from "../components/profile/profileimg";
+import ProfileTroops from "../components/profile/profileTroops";
 
 import { ArkContext } from "../utils/context/Ark/ArkState";
 
 import styles from "../stylesheets/profile.module.scss";
 
 export default function Profile() {
-	const { profile, getProfile } = useContext(ArkContext);
-	// function submitFile() {
-	// 	// img === null ? console.log("img is null", img) : console.log(img);
-	// // }
+	const { getProfile } = useContext(ArkContext);
+
 	useEffect(() => {
 		getProfile();
 	}, []);
@@ -23,8 +23,7 @@ export default function Profile() {
 					<ProfileImg />
 				</div>
 				<div className={styles.content}>
-					<p>GOVERNOR NAME:</p>
-					{profile && profile.inGameName}
+					<ProfileTroops />
 				</div>
 			</div>
 			<div className={styles.buttons}>

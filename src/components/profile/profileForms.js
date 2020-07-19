@@ -2,10 +2,10 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import { Icon } from "semantic-ui-react";
 
-import { AuthContext } from "../utils/context/Auth/AuthState";
-import { validateField, validateNumber } from "../utils/validateAuth";
+import { AuthContext } from "../../utils/context/Auth/AuthState";
+import { validateField, validateNumber } from "../../utils/validateAuth";
 
-import form from "../stylesheets/App.module.scss";
+import form from "../../stylesheets/App.module.scss";
 
 export default function ProfileContent() {
 	const { userProfile } = useContext(AuthContext);
