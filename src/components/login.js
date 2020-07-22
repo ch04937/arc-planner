@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Loader, Icon } from "semantic-ui-react";
@@ -6,18 +6,17 @@ import { Loader, Icon } from "semantic-ui-react";
 import { AuthContext } from "../utils/context/Auth/AuthState";
 import { validateUsername, validatePassword } from "../utils/validateAuth";
 
-import styles from "../stylesheets/App.module.scss";
+import styles from "../stylesheets/app.module.scss";
 
 export default function LogIn({ history }) {
 	const { isLoading, signIn } = useContext(AuthContext);
 	const [canSeePassword, setCanSeePassword] = useState(false);
 	const token = localStorage.getItem("accessToken");
 
-	useEffect(() => {
-		if (token) {
-			history.push("/user");
-		}
-	}, []);
+	if (token) {
+		console.log("token", token);
+		history.push("/user");
+	}
 
 	return (
 		<div className={styles.wrapper}>

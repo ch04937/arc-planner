@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Loader, Icon } from "semantic-ui-react";
@@ -11,7 +11,7 @@ import {
 	validateConfirmPassword,
 } from "../utils/validateAuth";
 
-import styles from "../stylesheets/App.module.scss";
+import styles from "../stylesheets/app.module.scss";
 
 export default function Register({ history }) {
 	const { isLoading, register } = useContext(AuthContext);
@@ -19,11 +19,9 @@ export default function Register({ history }) {
 	const [canSeeConfirmPassword, setcanSeeConfirmPassword] = useState(false);
 	const token = localStorage.getItem("accessToken");
 
-	useEffect(() => {
-		if (token) {
-			history.push("/user");
-		}
-	}, []);
+	if (token) {
+		history.push("/user");
+	}
 	return (
 		<div className={styles.wrapper}>
 			<h1>Register</h1>

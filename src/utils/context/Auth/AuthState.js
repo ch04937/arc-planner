@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useEffect, useState } from "react";
 
 import {
 	IS_LOADING,
@@ -23,9 +23,7 @@ export const AuthState = (props) => {
 		error: null,
 		isLoading: false,
 		userProfile: null,
-		accessToken: null,
 	};
-
 	const [state, dispatch] = useReducer(authReducer, initialState);
 
 	const register = async (values) => {

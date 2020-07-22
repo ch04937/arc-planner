@@ -1,17 +1,15 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-
-import { AuthContext } from "../utils/context/Auth/AuthState";
 
 import styles from "../stylesheets/main.module.scss";
 
 export default function Main({ history }) {
-	const { accessToken } = useContext(AuthContext);
-	useEffect(() => {
-		if (accessToken) {
-			history.push("/user");
-		}
-	}, [accessToken]);
+	const rfToken = localStorage.getItem("refreshToken");
+
+	if (rfToken) {
+		history.push("/user");
+	}
+
 	return (
 		<div className={styles.home}>
 			<div className={styles.title}>

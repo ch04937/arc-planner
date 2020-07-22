@@ -13,7 +13,7 @@ import { AuthState } from "./utils/context/Auth/AuthState.js";
 import { ArkState } from "./utils/context/Ark/ArkState.js";
 import { PrivateRoute } from "./utils/privateRoute";
 
-import app from "./stylesheets/App.module.scss";
+import app from "./stylesheets/app.module.scss";
 
 function App() {
 	return (

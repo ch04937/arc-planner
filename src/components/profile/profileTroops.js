@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { ArkContext } from "../../utils/context/Ark/ArkState";
 
 import styles from "../../stylesheets/profile.module.scss";
+import TroopBtns from "./troopBtns";
 
 export default function ProfileTroops() {
 	const { profile } = useContext(ArkContext);
@@ -12,6 +13,7 @@ export default function ProfileTroops() {
 				<div className={styles.tier}>
 					<p>TIER 3 ARCHER:</p>
 					{profile && profile.t3arch}
+					<TroopBtns />
 				</div>
 				<div className={styles.tier}>
 					<p>TIER 3 INFANTRIES:</p>
