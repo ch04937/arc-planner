@@ -3,6 +3,14 @@
 	justify-content: $content;
 	flex-direction: $direction;
 }
+
+@mixin btn() {
+	text-align: center;
+	border-radius: 4px;
+	margin: auto;
+	cursor: pointer;
+}
+
 $btn-color: brown;
 $btn-active: rgb(102, 6, 6);
 $btn-hover: rgb(77, 6, 6);

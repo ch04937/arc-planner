@@ -4,14 +4,51 @@
 	@include flex(space-around, column);
 }
 
+.center {
+	@include flex(space-around, row);
+}
+
+.sets {
+	@include flex(space-around, row);
+	margin: auto;
+	width: 100%;
+	.set {
+		margin: 0 5px;
+	}
+}
 .btn {
-	text-align: center;
+	@include btn();
 	margin: 2rem auto;
 	width: 100px;
-	border-radius: 4px;
-	padding: 1rem;
 	background: $left-gradiant;
 	color: $btns-bg;
+	padding: 10% 0;
 	font-weight: 900;
-	cursor: pointer;
+}
+
+.red_btn {
+	@include btn();
+	width: 35px;
+	background: rgb(255, 0, 0);
+	&:hover {
+		background: rgb(185, 2, 2);
+	}
+}
+
+.green_btn {
+	@include btn();
+	width: 35px;
+	background: rgb(4, 185, 4);
+	&:hover {
+		background: rgb(4, 153, 4);
+	}
+}
+
+.save_btn {
+	@include btn();
+	background: $btns-bg;
+	color: $txt;
+	&:hover {
+		background: $card-bg;
+	}
 }
