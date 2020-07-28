@@ -47,6 +47,18 @@
 		@include flex(space-between, row);
 		.t_content {
 			width: 100%;
+			.count {
+				display: flex;
+				justify-content: space-evenly;
+				.positive {
+					color: #186018;
+					font-weight: bolder;
+				}
+				.negative {
+					color: #f20000;
+					font-weight: bolder;
+				}
+			}
 		}
 	}
 }

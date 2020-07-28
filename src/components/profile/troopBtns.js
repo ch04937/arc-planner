@@ -8,8 +8,7 @@ import styles from "../../stylesheets/profile.module.scss";
 export default function TroopBtns({ type, count }) {
 	const [isPositive, setIsPositive] = useState(true);
 	const [hasChanged, setHasChanged] = useState(false);
-
-	let addedTroops = 0;
+	let [addedTroops, setAddedTroops] = useState(0);
 
 	const { profile } = useContext(ArkContext);
 
@@ -18,24 +17,34 @@ export default function TroopBtns({ type, count }) {
 	}
 	function saveTroops(params) {
 		setHasChanged(false);
+		setAddedTroops(0);
 		console.log("type", type);
 		console.log("params", params);
 	}
 
 	function updateCount(count) {
 		setHasChanged(true);
-		addedTroops += count;
-		console.log("addedTroops", addedTroops);
+		isPositive
+			? setAddedTroops((addedTroops += count))
+			: setAddedTroops((addedTroops -= count));
 	}
 	return (
 		<div className={custom.center}>
 			<div className={styles.t_content}>
-				{count}
-				{hasChanged ? (
-					<>{isPositive ? " + " + addedTroops : "-"}</>
-				) : (
-					""
-				)}
+				<div className={styles.count}>
+					{count}
+					{hasChanged ? (
+						<>
+							{isPositive ? (
+								<div className={styles.positive}>+{addedTroops}</div>
+							) : (
+								<div className={styles.negative}>-{addedTroops}</div>
+							)}
+						</>
+					) : (
+						""
+					)}
+				</div>
 			</div>
 			<div
 				onClick={togglePositive}
@@ -63,9 +72,13 @@ export default function TroopBtns({ type, count }) {
 					1000
 				</div>
 			</div>
-			<button className={custom.save_btn} onClick={() => saveTroops()}>
-				Save
-			</button>
+			{hasChanged ? (
+				<button className={custom.save_btn} onClick={() => saveTroops()}>
+					Save
+				</button>
+			) : (
+				""
+			)}
 		</div>
 	);
 }
