@@ -1,18 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 
 import ProfileImg from "../components/profile/profileimg";
 import ProfileTroops from "../components/profile/profileTroops";
 
-import { ArkContext } from "../utils/context/Ark/ArkState";
-
 import styles from "../stylesheets/profile.module.scss";
 
 export default function Profile() {
-	const { getProfile } = useContext(ArkContext);
-
-	useEffect(() => {
-		getProfile();
-	}, []);
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.title}>

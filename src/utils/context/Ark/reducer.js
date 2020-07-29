@@ -1,4 +1,10 @@
-import { IS_LOADING, GET_PROFILE_SUCCESS, GET_PROFILE_ERROR } from "../types";
+import {
+	IS_LOADING,
+	GET_PROFILE_SUCCESS,
+	GET_PROFILE_ERROR,
+	UPDATE_TROOPS_SUCCESS,
+	UPDATE_TROOPS_ERROR,
+} from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
 	return {
@@ -21,6 +27,20 @@ const getProfileError = (state, action) => {
 		is_loading: false,
 	};
 };
+const updateTroops = (state, action) => {
+	return {
+		...state,
+		is_loading: false,
+		profile: action.payload,
+	};
+};
+const updateTroopsError = (state, action) => {
+	return {
+		...state,
+		error: action.payload,
+		is_loading: false,
+	};
+};
 
 // cases
 export const reducer = (state, action) => {
@@ -31,6 +51,10 @@ export const reducer = (state, action) => {
 			return getProfile(state, action);
 		case GET_PROFILE_ERROR:
 			return getProfileError(state, action);
+		case UPDATE_TROOPS_SUCCESS:
+			return updateTroops(state, action);
+		case UPDATE_TROOPS_ERROR:
+			return updateTroopsError(state, action);
 		default:
 			return state;
 	}

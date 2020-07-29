@@ -1,6 +1,12 @@
 import React, { createContext, useReducer, useEffect } from "react";
 
-import { IS_LOADING, GET_PROFILE_SUCCESS, GET_PROFILE_ERROR } from "../types";
+import {
+	IS_LOADING,
+	GET_PROFILE_SUCCESS,
+	GET_PROFILE_ERROR,
+	UPDATE_TROOPS_SUCCESS,
+	UPDATE_TROOPS_ERROR,
+} from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
 
@@ -31,6 +37,16 @@ export const ArkState = (props) => {
 			dispatch({ type: GET_PROFILE_ERROR, payload: e.response });
 		}
 	};
+	const updateTroops = async (type, count) => {
+		dispatch({ type: IS_LOADING, payload: true });
+		try {
+			const res = await axiosWithAuth().put(`/profile/change?${type}=${count}`);
+			dispatch({ type: UPDATE_TROOPS_SUCCESS, payload: res.data });
+		} catch (e) {
+			console.log("error", e);
+			dispatch({ type: UPDATE_TROOPS_ERROR, payload: e.response });
+		}
+	};
 	return (
 		<ArkContext.Provider
 			value={{
@@ -38,6 +54,7 @@ export const ArkState = (props) => {
 				isLoading: state.isLoading,
 				profile: state.profile,
 				getProfile,
+				updateTroops,
 			}}
 		>
 			{props.children}

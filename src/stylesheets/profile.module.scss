@@ -47,6 +47,9 @@
 		@include flex(space-between, row);
 		.t_content {
 			width: 100%;
+			padding-right: 2rem;
+			@include flex(space-between, row);
+
 			.count {
 				display: flex;
 				justify-content: space-evenly;
@@ -57,6 +60,18 @@
 				.negative {
 					color: #f20000;
 					font-weight: bolder;
+				}
+			}
+			input {
+				background: $card-bg;
+				color: $txt;
+				box-sizing: border-box;
+				text-align: center;
+				border: none;
+				border-bottom: 1px solid black;
+				border-radius: 4px;
+				&:focus {
+					outline: none;
 				}
 			}
 		}
