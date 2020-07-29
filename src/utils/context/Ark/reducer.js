@@ -4,6 +4,8 @@ import {
 	GET_PROFILE_ERROR,
 	UPDATE_TROOPS_SUCCESS,
 	UPDATE_TROOPS_ERROR,
+	UPDATE_PROFILE_SUCCESS,
+	UPDATE_PROFILE_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -41,7 +43,20 @@ const updateTroopsError = (state, action) => {
 		is_loading: false,
 	};
 };
-
+const updateProfile = (state, action) => {
+	return {
+		...state,
+		is_loading: false,
+		profile: action.payload,
+	};
+};
+const updateProfileError = (state, action) => {
+	return {
+		...state,
+		error: action.payload,
+		is_loading: false,
+	};
+};
 // cases
 export const reducer = (state, action) => {
 	switch (action.type) {
@@ -55,6 +70,10 @@ export const reducer = (state, action) => {
 			return updateTroops(state, action);
 		case UPDATE_TROOPS_ERROR:
 			return updateTroopsError(state, action);
+		case UPDATE_PROFILE_SUCCESS:
+			return updateProfile(state, action);
+		case UPDATE_PROFILE_ERROR:
+			return updateProfileError(state, action);
 		default:
 			return state;
 	}

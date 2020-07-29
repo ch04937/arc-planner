@@ -54,24 +54,14 @@
 				display: flex;
 				justify-content: space-evenly;
 				.positive {
+					text-align: center;
 					color: #186018;
 					font-weight: bolder;
 				}
 				.negative {
+					text-align: center;
 					color: #f20000;
 					font-weight: bolder;
-				}
-			}
-			input {
-				background: $card-bg;
-				color: $txt;
-				box-sizing: border-box;
-				text-align: center;
-				border: none;
-				border-bottom: 1px solid black;
-				border-radius: 4px;
-				&:focus {
-					outline: none;
 				}
 			}
 		}
@@ -87,6 +77,9 @@
 }
 .gov {
 	color: $txt;
-	width: fit-content;
 	padding-left: 1rem;
+}
+.bar {
+	margin-top: 2rem;
+	text-align: center;
 }

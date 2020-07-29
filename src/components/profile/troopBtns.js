@@ -39,6 +39,7 @@ export default function TroopBtns({ type, counts }) {
 			<div className={styles.t_content}>
 				<div className={styles.count}>
 					<input
+						className={custom.input}
 						key={profile[type]}
 						type="text"
 						defaultValue={counts}
@@ -53,7 +54,7 @@ export default function TroopBtns({ type, counts }) {
 							)}
 						</>
 					) : (
-						""
+						<div className={custom.box}></div>
 					)}
 				</div>
 			</div>
@@ -87,7 +88,7 @@ export default function TroopBtns({ type, counts }) {
 						Save
 					</button>
 				) : (
-					""
+					<div className={custom.box}></div>
 				)}
 			</div>
 		</>

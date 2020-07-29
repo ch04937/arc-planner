@@ -6,6 +6,8 @@ import {
 	GET_PROFILE_ERROR,
 	UPDATE_TROOPS_SUCCESS,
 	UPDATE_TROOPS_ERROR,
+	UPDATE_PROFILE_SUCCESS,
+	UPDATE_PROFILE_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -47,6 +49,16 @@ export const ArkState = (props) => {
 			dispatch({ type: UPDATE_TROOPS_ERROR, payload: e.response });
 		}
 	};
+	const updateProfile = async (data) => {
+		dispatch({ type: IS_LOADING, payload: true });
+		try {
+			const res = await axiosWithAuth().put(`/profile/ncc`, data);
+			dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: res.data });
+		} catch (e) {
+			console.log("error", e);
+			dispatch({ type: UPDATE_PROFILE_ERROR, payload: e.response });
+		}
+	};
 	return (
 		<ArkContext.Provider
 			value={{
@@ -55,6 +67,7 @@ export const ArkState = (props) => {
 				profile: state.profile,
 				getProfile,
 				updateTroops,
+				updateProfile,
 			}}
 		>
 			{props.children}
