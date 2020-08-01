@@ -6,6 +6,10 @@ import {
 	UPDATE_TROOPS_ERROR,
 	UPDATE_PROFILE_SUCCESS,
 	UPDATE_PROFILE_ERROR,
+	IMG_SUCCESS,
+	IMG_ERROR,
+	GET_IMG_SUCCESS,
+	GET_IMG_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -57,6 +61,34 @@ const updateProfileError = (state, action) => {
 		is_loading: false,
 	};
 };
+const addImg = (state, action) => {
+	return {
+		...state,
+		is_loading: false,
+		profile: action.payload,
+	};
+};
+const addImgError = (state, action) => {
+	return {
+		...state,
+		error: action.payload,
+		is_loading: false,
+	};
+};
+const getImg = (state, action) => {
+	return {
+		...state,
+		is_loading: false,
+		profilePicture: action.payload,
+	};
+};
+const getImgError = (state, action) => {
+	return {
+		...state,
+		error: action.payload,
+		is_loading: false,
+	};
+};
 // cases
 export const reducer = (state, action) => {
 	switch (action.type) {
@@ -74,6 +106,14 @@ export const reducer = (state, action) => {
 			return updateProfile(state, action);
 		case UPDATE_PROFILE_ERROR:
 			return updateProfileError(state, action);
+		case IMG_SUCCESS:
+			return addImg(state, action);
+		case IMG_ERROR:
+			return addImgError(state, action);
+		case GET_IMG_SUCCESS:
+			return getImg(state, action);
+		case GET_IMG_ERROR:
+			return getImgError(state, action);
 		default:
 			return state;
 	}

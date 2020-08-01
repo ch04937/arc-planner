@@ -10,6 +10,18 @@
 	margin: auto;
 	cursor: pointer;
 }
+@mixin input() {
+	background: $card-bg;
+	color: $txt;
+	box-sizing: border-box;
+	text-align: center;
+	border: none;
+	border-bottom: 1px solid black;
+	border-radius: 4px;
+	&:focus {
+		outline: none;
+	}
+}
 
 $btn-color: brown;
 $btn-active: rgb(102, 6, 6);

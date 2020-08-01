@@ -23,6 +23,7 @@ export const AuthState = (props) => {
 		error: null,
 		isLoading: false,
 		userProfile: null,
+		userProfilePic: [],
 	};
 	const [state, dispatch] = useReducer(authReducer, initialState);
 

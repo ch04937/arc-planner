@@ -19,7 +19,6 @@ const setSignInSuccess = (state, action) => {
 	localStorage.setItem("refreshToken", action.payload.refreshToken);
 	return {
 		...state,
-		accessToken: action.payload.accessToken,
 		userProfile: action.payload.profile,
 		isLoading: false,
 	};

@@ -8,6 +8,10 @@ import {
 	UPDATE_TROOPS_ERROR,
 	UPDATE_PROFILE_SUCCESS,
 	UPDATE_PROFILE_ERROR,
+	GET_IMG_SUCCESS,
+	GET_IMG_ERROR,
+	IMG_SUCCESS,
+	IMG_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -18,7 +22,7 @@ export const ArkContext = createContext();
 
 export const ArkState = (props) => {
 	// create and initial state
-	const initialState = { isLoading: false, profile: [] };
+	const initialState = { isLoading: false, profile: [], profilePicture: [] };
 	// get updated state from localStorage
 	const localState = loadState("ark");
 
@@ -59,15 +63,39 @@ export const ArkState = (props) => {
 			dispatch({ type: UPDATE_PROFILE_ERROR, payload: e.response });
 		}
 	};
+	const getImg = async () => {
+		dispatch({ type: IS_LOADING, payload: true });
+		try {
+			const res = await axiosWithAuth().get(`profile/profilePicture`);
+			dispatch({ type: GET_IMG_SUCCESS, payload: res.data });
+		} catch (e) {
+			console.log("error", e);
+			dispatch({ type: GET_IMG_ERROR, payload: e.response });
+		}
+	};
+	const addImg = async (file) => {
+		dispatch({ type: IS_LOADING, payload: true });
+		try {
+			const res = await axiosWithAuth().put(`profile/img`, file);
+			console.log("res", res.data.success);
+			dispatch({ type: IMG_SUCCESS, payload: res.data });
+		} catch (e) {
+			console.log("error", e);
+			dispatch({ type: IMG_ERROR, payload: e.response });
+		}
+	};
 	return (
 		<ArkContext.Provider
 			value={{
 				ark: state.ark,
 				isLoading: state.isLoading,
 				profile: state.profile,
+				profilePicture: state.profilePicture,
 				getProfile,
 				updateTroops,
 				updateProfile,
+				getImg,
+				addImg,
 			}}
 		>
 			{props.children}

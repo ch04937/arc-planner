@@ -31,20 +31,12 @@ export default function LogIn({ history }) {
 				{({ errors, touched, validateForm }) => (
 					<Form className={styles.form}>
 						{errors.username && touched.username && (
-							<div className={styles.validate}>
-								{errors.username}
-							</div>
+							<div className={styles.validate}>{errors.username}</div>
 						)}
 						<label>Username </label>
-						<Field
-							type="text"
-							name="username"
-							validate={validateUsername}
-						/>
+						<Field type="text" name="username" validate={validateUsername} />
 						{errors.password && touched.password && (
-							<div className={styles.validate}>
-								{errors.password}
-							</div>
+							<div className={styles.validate}>{errors.password}</div>
 						)}
 						<label>Password </label>
 						<div className={styles.password}>
@@ -57,9 +49,7 @@ export default function LogIn({ history }) {
 								size="big"
 								className={styles.icon}
 								name={canSeePassword ? "eye slash" : "eye"}
-								onClick={() =>
-									setCanSeePassword(!canSeePassword)
-								}
+								onClick={() => setCanSeePassword(!canSeePassword)}
 							/>
 						</div>
 						<button type="submit" onClick={() => validateForm()}>

@@ -24,6 +24,10 @@
 	color: $btns-bg;
 	padding: 10% 0;
 	font-weight: 900;
+	&:hover {
+		color: $txt;
+		background: $card-bg;
+	}
 }
 
 .red_btn {
@@ -46,23 +50,28 @@
 
 .save_btn {
 	@include btn();
-	background: $btns-bg;
-	color: $txt;
-	&:hover {
-		background: $card-bg;
-	}
-}
-.input {
 	background: $card-bg;
 	color: $txt;
-	box-sizing: border-box;
-	text-align: center;
 	border: none;
-	border-bottom: 1px solid black;
-	border-radius: 4px;
+	&:hover {
+		background: $left-gradiant;
+	}
 	&:focus {
 		outline: none;
 	}
+}
+.input {
+	@include input();
+}
+.inputSave {
+	@include input();
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	border: 1px solid black;
+	position: relative;
+
+	cursor: pointer;
 }
 
 .box {

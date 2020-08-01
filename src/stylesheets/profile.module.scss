@@ -42,7 +42,7 @@
 .t_wrapper {
 	width: 100%;
 	.t_troops {
-		padding: 0.51rem 2rem;
+		padding: 0.51rem 1.2rem 0 0;
 		width: 100%;
 		@include flex(space-between, row);
 		.t_content {
@@ -69,15 +69,27 @@
 }
 
 .imgs {
-	margin: 1rem 2rem;
+	margin: auto;
+	padding-top: 2rem;
+	display: flex;
+	align-items: flex-end;
 	img {
+		cursor: pointer;
 		width: 10rem;
 		height: 10rem;
+	}
+	.save {
+		color: $txt;
+		font-weight: 600;
+		cursor: pointer;
+		border-radius: 50%;
+		background-color: $card-bg;
+		padding: 4px;
 	}
 }
 .gov {
 	color: $txt;
-	padding-left: 1rem;
+	margin-left: 2rem;
 }
 .bar {
 	margin-top: 2rem;

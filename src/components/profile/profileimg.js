@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState, useContext, useEffect } from "react";
 
 import { ArkContext } from "../../utils/context/Ark/ArkState";
 
@@ -6,42 +6,30 @@ import styles from "../../stylesheets/profile.module.scss";
 import custom from "../../stylesheets/custom-styles.module.scss";
 
 export default function ProfileImg() {
-	const { addImg, profile, updateProfile } = useContext(ArkContext);
+	const { addImg, profile, profilePicture, updateProfile, getImg } = useContext(
+		ArkContext
+	);
 
-	const [toggle, setToggle] = useState(false);
 	const [inputChanged, setInputChange] = useState(false);
+	const [imgToggle, setImgToggle] = useState(false);
 	const [data, setData] = useState({
 		inGameName: profile.inGameName,
 		city: profile.city,
 		castle: profile.city,
 	});
 
+	useEffect(() => {
+		getImg();
+		console.log("profilePicture", profilePicture);
+	}, []);
+
 	const uploadedImage = useRef(null);
 	const imageUpLoader = useRef(null);
 
-	function fileSelect(e) {
-		const [file] = e.target.files;
-		if (file) {
-			const reader = new FileReader();
-			const { current } = uploadedImage;
-			current.file = file;
-			reader.onload = (e) => {
-				current.src = e.target.result;
-			};
-			reader.readAsDataURL(file);
-		}
-	}
-	function saveFile() {
-		addImg(uploadedImage.current.file);
-		setToggle(false);
-	}
-	function changeUpload() {
+	function imgClick() {
 		imageUpLoader.current.click();
-		setToggle(true);
 	}
-	// function submitFile() {
-	// 	// img === null ? console.log("img is null", img) : console.log(img);
-	// // }
+
 	function inputChange(e) {
 		const { name, value } = e.target;
 		setInputChange(true);
@@ -54,18 +42,53 @@ export default function ProfileImg() {
 		updateProfile(data);
 	}
 
+	function handleChange(e) {
+		setImgToggle(true);
+		const [file] = e.target.files;
+		if (file) {
+			const reader = new FileReader();
+			const { current } = uploadedImage;
+			current.file = file;
+			reader.onload = (e) => {
+				current.src = e.target.result;
+			};
+			reader.readAsDataURL(file);
+		}
+	}
+
+	function handleSubmit(e) {
+		e.preventDefault();
+		let formData = new FormData();
+		formData.append("avatars", uploadedImage.current.file);
+		addImg(formData);
+		// setImgToggle(false);
+	}
+
 	return (
 		<div className={custom.wrapper}>
 			<div className={styles.imgs}>
-				<input
-					type="file"
-					accept="image/*"
-					multiple={false}
-					onChange={fileSelect}
-					ref={imageUpLoader}
-					style={{ display: "none" }}
-				/>
-				<img ref={uploadedImage} alt="" />
+				<form encType="multipart/form-data" onSubmit={handleSubmit}>
+					<input
+						type="file"
+						name="avatars"
+						onChange={handleChange}
+						ref={imageUpLoader}
+						style={{ display: "none" }}
+					/>
+					{imgToggle ? (
+						<>
+							<img ref={uploadedImage} alt="" onClick={imgClick} />
+							<button type="submit" className={custom.inputSave} />
+						</>
+					) : (
+						<img
+							ref={uploadedImage}
+							src={`${process.env.REACT_APP_DEV_BASE_URL}/static/${profilePicture.filename}`}
+							alt={profilePicture.originalname}
+							onClick={imgClick}
+						/>
+					)}
+				</form>
 			</div>
 			<div className={styles.gov}>
 				<div>
@@ -106,9 +129,6 @@ export default function ProfileImg() {
 				</div>
 			) : (
 				""
-				// <div className={custom.btn} onClick={changeUpload}>
-				// 	<p>Edit</p>
-				// </div>
 			)}
 		</div>
 	);
