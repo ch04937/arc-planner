@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import TroopBtns from "./troopBtns";
 
@@ -8,8 +8,12 @@ import styles from "../../stylesheets/profile.module.scss";
 
 export default function ProfileTroops() {
 	const { profile, getProfile } = useContext(ArkContext);
+	const t3 = profile.t3arch + profile.t3inf + profile.t3cav;
+	const t4 = profile.t4arch + profile.t4inf + profile.t4cav;
+	const t5 = profile.t5arch + profile.t5inf + profile.t5cav;
 
 	useEffect(() => {
+		console.log("t3% : ", (t3 * 100) / (t3 + t4 + t5));
 		getProfile();
 	}, []);
 	return (
@@ -69,9 +73,30 @@ export default function ProfileTroops() {
 				</div>
 			</div>
 			<div className={styles.bar}>
-				{profile.t3inf + profile.t4inf + profile.t5inf} /
-				{profile.t3cav + profile.t4cav + profile.t5cav} /
-				{profile.t3arch + profile.t4arch + profile.t5arch}
+				<div
+					style={{
+						width: `${(t3 * 100) / (t3 + t4 + t5)}%` || "100px",
+						background: "#2962ff",
+					}}
+				>
+					{profile.t3inf + profile.t3cav + profile.t3arch} t3
+				</div>
+				<div
+					style={{
+						width: `${(t4 * 100) / (t3 + t4 + t5)}%` || "0px",
+						background: "#8A2BE2",
+					}}
+				>
+					{profile.t4inf + profile.t4cav + profile.t4arch} t4
+				</div>
+				<div
+					style={{
+						width: `${(t5 * 100) / (t3 + t4 + t5)}%` || "0px",
+						background: "#FFA500",
+					}}
+				>
+					{profile.t5inf + profile.t5cav + profile.t5arch} t5
+				</div>
 			</div>
 		</div>
 	);

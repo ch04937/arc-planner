@@ -20,7 +20,6 @@ export default function ProfileImg() {
 
 	useEffect(() => {
 		getImg();
-		console.log("profilePicture", profilePicture);
 	}, []);
 
 	const uploadedImage = useRef(null);
@@ -60,7 +59,7 @@ export default function ProfileImg() {
 		e.preventDefault();
 		let formData = new FormData();
 		formData.append("avatars", uploadedImage.current.file);
-		addImg(formData);
+		addImg(formData, profilePicture.imgId);
 		// setImgToggle(false);
 	}
 
@@ -75,18 +74,21 @@ export default function ProfileImg() {
 						ref={imageUpLoader}
 						style={{ display: "none" }}
 					/>
+
+					<img
+						src={`${
+							process.env.REACT_APP_DEV_BASE_URL
+						}/static/${profilePicture.path.slice(6)}`}
+						ref={uploadedImage}
+						alt={profilePicture.originalname}
+						onClick={imgClick}
+					/>
 					{imgToggle ? (
 						<>
-							<img ref={uploadedImage} alt="" onClick={imgClick} />
 							<button type="submit" className={custom.inputSave} />
 						</>
 					) : (
-						<img
-							ref={uploadedImage}
-							src={`${process.env.REACT_APP_DEV_BASE_URL}/static/${profilePicture.filename}`}
-							alt={profilePicture.originalname}
-							onClick={imgClick}
-						/>
+						""
 					)}
 				</form>
 			</div>

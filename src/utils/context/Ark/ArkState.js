@@ -73,11 +73,10 @@ export const ArkState = (props) => {
 			dispatch({ type: GET_IMG_ERROR, payload: e.response });
 		}
 	};
-	const addImg = async (file) => {
+	const addImg = async (file, imgId) => {
 		dispatch({ type: IS_LOADING, payload: true });
 		try {
-			const res = await axiosWithAuth().put(`profile/img`, file);
-			console.log("res", res.data.success);
+			const res = await axiosWithAuth().put(`profile/img/${imgId}`, file);
 			dispatch({ type: IMG_SUCCESS, payload: res.data });
 		} catch (e) {
 			console.log("error", e);
