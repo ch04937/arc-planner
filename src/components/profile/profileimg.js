@@ -1,13 +1,13 @@
 import React, { useRef, useState, useContext, useEffect } from "react";
 
-import { ArkContext } from "../../utils/context/Ark/ArkState";
+import { PlayerContext } from "../../utils/context/Player/PlayerState";
 
 import styles from "../../stylesheets/profile.module.scss";
 import custom from "../../stylesheets/custom-styles.module.scss";
 
 export default function ProfileImg() {
 	const { addImg, profile, profilePicture, updateProfile, getImg } = useContext(
-		ArkContext
+		PlayerContext
 	);
 
 	const [inputChanged, setInputChange] = useState(false);
@@ -39,6 +39,7 @@ export default function ProfileImg() {
 	}
 	function saveData() {
 		updateProfile(data);
+		setInputChange(false);
 	}
 
 	function handleChange(e) {
@@ -60,7 +61,7 @@ export default function ProfileImg() {
 		let formData = new FormData();
 		formData.append("avatars", uploadedImage.current.file);
 		addImg(formData, profilePicture.imgId);
-		// setImgToggle(false);
+		setImgToggle(false);
 	}
 
 	return (

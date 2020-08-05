@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 
 import TroopBtns from "./troopBtns";
 
-import { ArkContext } from "../../utils/context/Ark/ArkState";
+import { PlayerContext } from "../../utils/context/Player/PlayerState";
 
 import styles from "../../stylesheets/profile.module.scss";
 
 export default function ProfileTroops() {
-	const { profile, getProfile } = useContext(ArkContext);
+	const { profile, getProfile } = useContext(PlayerContext);
 	const t3 = profile.t3arch + profile.t3inf + profile.t3cav;
 	const t4 = profile.t4arch + profile.t4inf + profile.t4cav;
 	const t5 = profile.t5arch + profile.t5inf + profile.t5cav;

@@ -5,7 +5,9 @@
 	margin: auto;
 	position: relative;
 	min-height: 100vh;
-	padding-bottom: 3rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 .wrapper {
 	text-align: center;

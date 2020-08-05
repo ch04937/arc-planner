@@ -12,15 +12,17 @@ import {
 	GET_IMG_ERROR,
 	IMG_SUCCESS,
 	IMG_ERROR,
+	GET_ALLIANCE_SUCCESS,
+	GET_ALLIANCE_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
 
 import { loadState, saveState } from "../../localStorage";
 
-export const ArkContext = createContext();
+export const PlayerContext = createContext();
 
-export const ArkState = (props) => {
+export const PlayerState = (props) => {
 	// create and initial state
 	const initialState = { isLoading: false, profile: [], profilePicture: [] };
 	// get updated state from localStorage
@@ -83,8 +85,19 @@ export const ArkState = (props) => {
 			dispatch({ type: IMG_ERROR, payload: e.response });
 		}
 	};
+	const getAlliance = async () => {
+		dispatch({ type: IS_LOADING, payload: true });
+		try {
+			const res = await axiosWithAuth().get(`alliance/`);
+			console.log("res", res);
+			// // dispatch({ type: GET_ALLIANCE_SUCCESS, payload: res.data });
+		} catch (e) {
+			console.log("error", e);
+			dispatch({ type: GET_ALLIANCE_ERROR, payload: e.response });
+		}
+	};
 	return (
-		<ArkContext.Provider
+		<PlayerContext.Provider
 			value={{
 				ark: state.ark,
 				isLoading: state.isLoading,
@@ -95,9 +108,10 @@ export const ArkState = (props) => {
 				updateProfile,
 				getImg,
 				addImg,
+				getAlliance,
 			}}
 		>
 			{props.children}
-		</ArkContext.Provider>
+		</PlayerContext.Provider>
 	);
 };

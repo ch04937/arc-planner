@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 
-import { ArkContext } from "../../utils/context/Ark/ArkState";
+import { PlayerContext } from "../../utils/context/Player/PlayerState";
 
 import custom from "../../stylesheets/custom-styles.module.scss";
 import styles from "../../stylesheets/profile.module.scss";
@@ -11,7 +11,7 @@ export default function TroopBtns({ type, counts }) {
 	let [addedTroops, setAddedTroops] = useState(0);
 	const [inputTroops, setInputTroops] = useState(0);
 
-	const { profile, updateTroops } = useContext(ArkContext);
+	const { profile, updateTroops } = useContext(PlayerContext);
 
 	function togglePositive() {
 		setIsPositive(!isPositive);

@@ -10,6 +10,8 @@ import {
 	IMG_ERROR,
 	GET_IMG_SUCCESS,
 	GET_IMG_ERROR,
+	GET_ALLIANCE_SUCCESS,
+	GET_ALLIANCE_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -89,6 +91,20 @@ const getImgError = (state, action) => {
 		is_loading: false,
 	};
 };
+const getAlliance = (state, action) => {
+	return {
+		...state,
+		is_loading: false,
+		alliance: action.payload,
+	};
+};
+const getAllianceError = (state, action) => {
+	return {
+		...state,
+		error: action.payload,
+		is_loading: false,
+	};
+};
 // cases
 export const reducer = (state, action) => {
 	switch (action.type) {
@@ -114,6 +130,10 @@ export const reducer = (state, action) => {
 			return getImg(state, action);
 		case GET_IMG_ERROR:
 			return getImgError(state, action);
+		case GET_ALLIANCE_SUCCESS:
+			return getAlliance(state, action);
+		case GET_ALLIANCE_ERROR:
+			return getAllianceError(state, action);
 		default:
 			return state;
 	}
