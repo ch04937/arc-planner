@@ -9,18 +9,17 @@ import { validateUsername, validatePassword } from "../utils/validateAuth";
 import styles from "../stylesheets/app.module.scss";
 
 export default function LogIn({ history }) {
-	const { isLoading, signIn } = useContext(AuthContext);
+	const { isLoading, signIn, signInError } = useContext(AuthContext);
 	const [canSeePassword, setCanSeePassword] = useState(false);
 	const token = localStorage.getItem("accessToken");
-
 	if (token) {
-		console.log("token", token);
 		history.push("/user");
 	}
 
 	return (
 		<div className={styles.wrapper}>
 			<h1>Login</h1>
+			{signInError ? <p className={styles.validate}>{signInError}</p> : ""}
 			<Formik
 				initialValues={{ username: "", password: "" }}
 				onSubmit={(values, actions) => {

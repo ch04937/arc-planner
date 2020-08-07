@@ -18,7 +18,7 @@ import {
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
 
-import { loadState, saveState } from "../../localStorage";
+import { loadState, saveState, logOut } from "../../localStorage";
 
 export const PlayerContext = createContext();
 
@@ -41,8 +41,9 @@ export const PlayerState = (props) => {
 			const res = await axiosWithAuth().get(`/profile`);
 			dispatch({ type: GET_PROFILE_SUCCESS, payload: res.data });
 		} catch (e) {
-			console.log("error", e);
-			dispatch({ type: GET_PROFILE_ERROR, payload: e.response });
+			e.response.status === 401
+				? logOut()
+				: dispatch({ type: GET_ALLIANCE_ERROR, payload: e.response });
 		}
 	};
 	const updateTroops = async (type, count) => {
@@ -92,8 +93,10 @@ export const PlayerState = (props) => {
 			console.log("res", res);
 			// // dispatch({ type: GET_ALLIANCE_SUCCESS, payload: res.data });
 		} catch (e) {
-			console.log("error", e);
-			dispatch({ type: GET_ALLIANCE_ERROR, payload: e.response });
+			console.log("error", e.response.status);
+			e.response.status === 401
+				? logOut()
+				: dispatch({ type: GET_ALLIANCE_ERROR, payload: e.response });
 		}
 	};
 	return (

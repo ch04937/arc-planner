@@ -77,9 +77,9 @@ export default function ProfileImg() {
 					/>
 
 					<img
-						src={`${
-							process.env.REACT_APP_DEV_BASE_URL
-						}/static/${profilePicture.path.slice(6)}`}
+						src={`${process.env.REACT_APP_BASE_URL}/static/${
+							profilePicture.path && profilePicture.path.slice(6)
+						}`}
 						ref={uploadedImage}
 						alt={profilePicture.originalname}
 						onClick={imgClick}

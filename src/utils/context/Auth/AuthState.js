@@ -20,8 +20,10 @@ export const AuthContext = createContext();
 
 export const AuthState = (props) => {
 	const initialState = {
-		error: null,
 		isLoading: false,
+		signInError: null,
+		accessToken: null,
+		refreshToken: null,
 		userProfile: null,
 		userProfilePic: [],
 	};
@@ -48,10 +50,11 @@ export const AuthState = (props) => {
 			password: values.password,
 		};
 		try {
-			const response = await client().post("/user/login", credential);
-			dispatch({ type: SIGNIN_SUCCESS, payload: response.data });
+			const res = await client().post("/user/login", credential);
+			console.log("res", res);
+			dispatch({ type: SIGNIN_SUCCESS, payload: res.data });
 		} catch (e) {
-			dispatch({ type: SIGNIN_FAILURE, payload: e });
+			dispatch({ type: SIGNIN_FAILURE, payload: e.response.data.message });
 		}
 	};
 	const signOut = () => {
@@ -67,8 +70,9 @@ export const AuthState = (props) => {
 		<AuthContext.Provider
 			value={{
 				error: state.error,
-				accessToken: state.accessToken,
 				isLoading: state.isLoading,
+				signInError: state.signInError,
+				accessToken: state.accessToken,
 				userProfile: state.userProfile,
 				signIn,
 				register,

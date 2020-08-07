@@ -15,30 +15,30 @@ const setIsLoading = (state, action) => {
 	};
 };
 const setSignInSuccess = (state, action) => {
-	localStorage.setItem("accessToken", action.payload.accessToken);
-	localStorage.setItem("refreshToken", action.payload.refreshToken);
 	return {
 		...state,
-		userProfile: action.payload.profile,
 		isLoading: false,
+		signInError: null,
+		accessToken: action.payload.accessToken,
+		refreshToken: action.payload.refreshToken,
+		userProfile: action.payload.profile,
 	};
 };
 
 const setSignInFailure = (state, action) => {
 	return {
 		...state,
-		signInError: action.payload,
 		isLoading: false,
+		signInError: action.payload,
 	};
 };
 const setSignUpSuccess = (state, action) => {
-	localStorage.setItem("accessToken", action.payload.accessToken);
-	localStorage.setItem("refreshToken", action.payload.refreshToken);
 	return {
 		...state,
-		accessToken: action.payload.accessToken,
-		userProfile: action.payload.profile,
 		isLoading: false,
+		accessToken: action.payload.accessToken,
+		refreshToken: action.payload.refreshToken,
+		userProfile: action.payload.profile,
 	};
 };
 
