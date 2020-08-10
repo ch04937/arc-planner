@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const url = process.env.REACT_APP_BASE_URL;
+
 export const axiosWithAuth = () => {
 	const token = localStorage.getItem("refreshToken");
 
@@ -8,7 +10,7 @@ export const axiosWithAuth = () => {
 			Authorization: token,
 			contentType: "application/json",
 		},
-		baseURL: "http://localhost:4000/",
+		baseURL: url,
 	});
 };
 
@@ -17,6 +19,6 @@ export const client = () => {
 		headers: {
 			contentType: "application/json",
 		},
-		baseURL: "http://localhost:4000/",
+		baseURL: url,
 	});
 };

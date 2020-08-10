@@ -8,13 +8,14 @@ import {
 	SIGNOUT_FAILURE,
 } from "../types";
 
-const setIsLoading = (state, action) => {
+const isLoading = (state, action) => {
 	return {
 		...state,
 		isLoading: action.payload,
 	};
 };
-const setSignInSuccess = (state, action) => {
+const signInSuccess = (state, action) => {
+	localStorage.setItem("refreshToken", action.payload.refreshToken);
 	return {
 		...state,
 		isLoading: false,
@@ -25,14 +26,15 @@ const setSignInSuccess = (state, action) => {
 	};
 };
 
-const setSignInFailure = (state, action) => {
+const signInFailure = (state, action) => {
 	return {
 		...state,
 		isLoading: false,
 		signInError: action.payload,
 	};
 };
-const setSignUpSuccess = (state, action) => {
+const signUpSuccess = (state, action) => {
+	localStorage.setItem("refreshToken", action.payload.refreshToken);
 	return {
 		...state,
 		isLoading: false,
@@ -42,7 +44,7 @@ const setSignUpSuccess = (state, action) => {
 	};
 };
 
-const setSignUpFailure = (state, action) => {
+const signUpFailure = (state, action) => {
 	return {
 		...state,
 		signUpError: action.payload,
@@ -50,7 +52,7 @@ const setSignUpFailure = (state, action) => {
 	};
 };
 
-const setSignOutSuccess = (state, action) => {
+const signOutSuccess = (state, action) => {
 	return {
 		...state,
 		error: null,
@@ -59,7 +61,7 @@ const setSignOutSuccess = (state, action) => {
 		accessToken: null,
 	};
 };
-const setSignOutFailure = (state, action) => {
+const signOutFailure = (state, action) => {
 	return {
 		...state,
 		signOutError: action.payload,
@@ -68,19 +70,19 @@ const setSignOutFailure = (state, action) => {
 const authReducer = (state, action) => {
 	switch (action.type) {
 		case IS_LOADING:
-			return setIsLoading(state, action);
+			return isLoading(state, action);
 		case SIGNIN_SUCCESS:
-			return setSignInSuccess(state, action);
+			return signInSuccess(state, action);
 		case SIGNIN_FAILURE:
-			return setSignInFailure(state, action);
+			return signInFailure(state, action);
 		case SIGNUP_SUCCESS:
-			return setSignUpSuccess(state, action);
+			return signUpSuccess(state, action);
 		case SIGNUP_FAILURE:
-			return setSignUpFailure(state, action);
+			return signUpFailure(state, action);
 		case SIGNOUT_SUCCESS:
-			return setSignOutSuccess(state, action);
+			return signOutSuccess(state, action);
 		case SIGNOUT_FAILURE:
-			return setSignOutFailure(state, action);
+			return signOutFailure(state, action);
 		default:
 			return state;
 	}

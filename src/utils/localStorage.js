@@ -24,17 +24,15 @@ export const saveState = (stateName, stateDetail) => {
 };
 export const logOut = () => {
 	try {
-		console.log("history");
 		localStorage.clear();
 	} catch (e) {
 		console.log(`error occurs while clearing state: ${e}`);
 	}
 };
 export const checkAuth = () => {
-	const token = localStorage.getItem("accessToken");
 	const refreshToken = localStorage.getItem("refreshToken");
 	// check weather given tokens are in local storage
-	if (!token || !refreshToken) {
+	if (!refreshToken) {
 		return false;
 	}
 	try {
@@ -42,6 +40,7 @@ export const checkAuth = () => {
 		const { exp, username } = decode(refreshToken);
 		// check if its expired
 		if (exp < new Date().getTime() / 1000) {
+			logOut();
 			return false;
 		}
 		// if (new Date().getTime() / 1000 + 86400 > exp) {

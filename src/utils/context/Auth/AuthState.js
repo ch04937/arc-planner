@@ -37,8 +37,8 @@ export const AuthState = (props) => {
 			password: values.password,
 		};
 		try {
-			const response = await client().post("/user/register", credential);
-			dispatch({ type: SIGNUP_SUCCESS, payload: response.data });
+			const res = await client().post("/user/register", credential);
+			dispatch({ type: SIGNUP_SUCCESS, payload: res.data });
 		} catch (error) {
 			console.log(error);
 			dispatch({ type: SIGNUP_FAILURE, payload: error });
@@ -51,9 +51,9 @@ export const AuthState = (props) => {
 		};
 		try {
 			const res = await client().post("/user/login", credential);
-			console.log("res", res);
 			dispatch({ type: SIGNIN_SUCCESS, payload: res.data });
 		} catch (e) {
+			console.log("e", e);
 			dispatch({ type: SIGNIN_FAILURE, payload: e.response.data.message });
 		}
 	};

@@ -1,79 +1,92 @@
 @import "./mixins.scss";
 
 .wrapper {
-	@include flex(space-around, column);
+  @include flex(space-around, column);
 }
 
 .center {
-	@include flex(space-around, row);
+  @include flex(space-around, column);
+  text-align: center;
 }
 
 .sets {
-	@include flex(space-around, row);
-	margin: auto;
-	width: 100%;
-	.set {
-		margin: 0 5px;
-	}
+  @include flex(space-around, row);
+  margin: auto;
+  width: 100%;
+  .set {
+    margin: 0 5px;
+  }
 }
 .btn {
-	@include btn();
-	margin: 2rem auto;
-	width: 100px;
-	background: $left-gradiant;
-	color: $btns-bg;
-	padding: 10% 0;
-	font-weight: 900;
-	&:hover {
-		color: $txt;
-		background: $card-bg;
-	}
+  @include btn();
+  width: 100px;
+  background: $left-gradiant;
+  color: $btns-bg;
+  padding: 10px 0;
+  margin: 1rem auto;
+  font-weight: 900;
+  &:hover {
+    color: $txt;
+    background: $card-bg;
+  }
 }
 
 .red_btn {
-	@include btn();
-	width: 35px;
-	background: rgb(255, 0, 0);
-	&:hover {
-		background: rgb(185, 2, 2);
-	}
+  @include btn();
+  width: 35px;
+  background: rgb(255, 0, 0);
+  &:hover {
+    background: rgb(185, 2, 2);
+  }
 }
 
 .green_btn {
-	@include btn();
-	width: 35px;
-	background: rgb(4, 185, 4);
-	&:hover {
-		background: rgb(4, 153, 4);
-	}
+  @include btn();
+  width: 35px;
+  background: rgb(4, 185, 4);
+  &:hover {
+    background: rgb(4, 153, 4);
+  }
 }
 
 .save_btn {
-	@include btn();
-	background: $card-bg;
-	color: $txt;
-	border: none;
-	&:hover {
-		background: $left-gradiant;
-	}
-	&:focus {
-		outline: none;
-	}
+  @include btn();
+  background: $card-bg;
+  color: $txt;
+  border: none;
+  &:hover {
+    background: $left-gradiant;
+  }
+  &:focus {
+    outline: none;
+  }
 }
 .input {
-	@include input();
+  @include input();
 }
 .inputSave {
-	@include input();
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	border: 1px solid black;
-	position: relative;
+  @include input();
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid black;
+  position: relative;
 
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .box {
-	width: 45px;
+  width: 45px;
+}
+
+.form {
+  .content {
+    flex-wrap: wrap;
+    text-align: center;
+    input {
+      padding: 10px 20px;
+      margin: 8px 0;
+      border-radius: 4px;
+    }
+  }
 }

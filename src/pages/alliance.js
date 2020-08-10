@@ -1,16 +1,36 @@
 import React, { useEffect, useContext } from "react";
 
 import { PlayerContext } from "../utils/context/Player/PlayerState";
-import { AuthContext } from "../utils/context/Auth/AuthState";
+
+import custom from "../stylesheets/custom-styles.module.scss";
+import CreateAlliance from "../components/alliance/createAlliance";
 
 export default function Alliance() {
-	const { getAlliance } = useContext(PlayerContext);
-	const { userProfile } = useContext(AuthContext);
+  const { getAlliance, alliance } = useContext(PlayerContext);
+  useEffect(() => {
+    getAlliance();
+  }, []);
 
-	useEffect(() => {
-		console.log("here");
-		getAlliance();
-	}, []);
-	// console.log("profile", userProfile);
-	return <div>Alliance</div>;
+  console.log("alliance", alliance);
+  return (
+    <div className={custom.center}>
+      <CreateAlliance />
+      {alliance.length === 0 ? (
+        <>
+          <p>No alliance currently in the kingdom</p>
+        </>
+      ) : (
+        <div>
+          {alliance &&
+            alliance.map((data) => (
+              <div key={data.uuid}>
+                <p>{data.kingdomNumber}</p>
+                <p>{data.allianceTag}</p>
+                <p>{data.allianceName}</p>
+              </div>
+            ))}
+        </div>
+      )}
+    </div>
+  );
 }
