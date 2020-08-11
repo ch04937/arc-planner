@@ -16,6 +16,8 @@ import {
   GET_ALLIANCE_ERROR,
   CREATE_ALLIANCE_SUCCESS,
   CREATE_ALLIANCE_ERROR,
+  GET_USER_PROFILE_SUCCESS,
+  GET_USER_PROFILE_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -31,11 +33,22 @@ export const PlayerState = (props) => {
     alliance: [],
     profile: [],
     profilePicture: [],
+    userProfile: [],
   };
 
   // use reducer on local state or start fresh with initial state
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const getUserProfile = async () => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().get(`/user`);
+      dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: GET_USER_PROFILE_ERROR, payload: e.response });
+    }
+  };
   const getProfile = async () => {
     dispatch({ type: IS_LOADING, payload: true });
     try {
@@ -117,7 +130,9 @@ export const PlayerState = (props) => {
         alliance: state.alliance,
         profile: state.profile,
         profilePicture: state.profilePicture,
+        userProfile: state.userProfile,
         getProfile,
+        getUserProfile,
         updateTroops,
         updateProfile,
         getImg,

@@ -2,6 +2,27 @@
 
 .wrapper {
   @include flex(space-around, column);
+  background: $title-bg;
+  border-radius: 10px;
+  padding-bottom: 1rem;
+  text-align: center;
+  color: $txt;
+  .header {
+    color: $title-txt;
+  }
+  .body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: row;
+    background: $card-bg;
+    .content {
+      @include flex(space-around, row);
+      background: $right-gradiant;
+      width: 100%;
+      padding: 1rem 0;
+      border-radius: 4px;
+    }
+  }
 }
 
 .center {
@@ -79,14 +100,17 @@
   width: 45px;
 }
 
-.form {
-  .content {
-    flex-wrap: wrap;
-    text-align: center;
-    input {
-      padding: 10px 20px;
-      margin: 8px 0;
-      border-radius: 4px;
-    }
+.row {
+  @include flex(space-around, row);
+  align-items: center;
+  text-align: left;
+  padding: 0 3rem;
+  border-radius: 4px;
+  background: $right-gradiant;
+  margin: 5px 0;
+  p {
+    margin: auto;
+    padding: 8px 0;
+    width: 100%;
   }
 }

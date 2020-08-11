@@ -1,103 +1,76 @@
 @import "./mixins.scss";
 
-.wrapper {
-	background: $title-bg;
-	border-radius: 10px;
-	padding-bottom: 1rem;
-	.title {
-		color: $title-txt;
-		text-align: center;
-	}
-	.profile {
-		width: 100%;
-		background: $card-bg;
-		padding: 2rem;
-		@include flex(space-around, row);
-		.banner {
-			border-top-left-radius: 4px;
-			border-bottom-left-radius: 4px;
-			background-image: linear-gradient($left-gradiant, $right-gradiant);
-		}
-		.content {
-			padding: 15px 0;
-			color: $txt;
-			border-top-right-radius: 4px;
-			border-bottom-right-radius: 4px;
-			width: 100%;
-			background-image: linear-gradient($left-gradiant, $right-gradiant);
-			@include flex(space-around, row);
-		}
-	}
-	.buttons {
-		background: $card-bg;
-		padding: 0 2rem 1rem 2rem;
-		.btns {
-			@include flex(space-around, row);
-			background: $btns-bg;
-			border-radius: 4px;
-			a {
-				text-decoration: none;
-				color: $txt;
-			}
-		}
-	}
+.buttons {
+  background: $card-bg;
+  padding: 0 2rem 1rem 2rem;
+  .btns {
+    @include flex(space-around, row);
+    background: $btns-bg;
+    border-radius: 4px;
+    padding: 1rem;
+    a {
+      text-decoration: none;
+      color: $txt;
+    }
+  }
 }
 .t_wrapper {
-	width: 100%;
-	.t_troops {
-		padding: 0.51rem 1.2rem 0 0;
-		width: 100%;
-		@include flex(space-between, row);
-		.t_content {
-			width: 100%;
-			padding-right: 2rem;
-			@include flex(space-between, row);
+  width: 100%;
+  .t_troops {
+    padding: 0.51rem 1.2rem 0 0;
+    width: 100%;
+    @include flex(space-between, row);
+    .t_content {
+      width: 100%;
+      padding-right: 2rem;
+      @include flex(space-between, row);
 
-			.count {
-				display: flex;
-				justify-content: space-evenly;
-				.positive {
-					text-align: center;
-					color: #186018;
-					font-weight: bolder;
-				}
-				.negative {
-					text-align: center;
-					color: #f20000;
-					font-weight: bolder;
-				}
-			}
-		}
-	}
+      .count {
+        display: flex;
+        justify-content: space-evenly;
+        .positive {
+          text-align: center;
+          color: #186018;
+          font-weight: bolder;
+        }
+        .negative {
+          text-align: center;
+          color: #f20000;
+          font-weight: bolder;
+        }
+      }
+    }
+  }
 }
 
 .imgs {
-	margin: auto;
-	padding-top: 2rem;
-	display: flex;
-	align-items: flex-end;
-	img {
-		cursor: pointer;
-		width: 10rem;
-		height: 10rem;
-	}
-	.save {
-		color: $txt;
-		font-weight: 600;
-		cursor: pointer;
-		border-radius: 50%;
-		background-color: $card-bg;
-		padding: 4px;
-	}
+  margin: auto;
+  padding-top: 2rem;
+  display: flex;
+  align-items: flex-end;
+  img {
+    cursor: pointer;
+    width: 10rem;
+    height: 10rem;
+  }
+  .save {
+    color: $txt;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: $card-bg;
+    padding: 4px;
+  }
 }
 .gov {
-	color: $txt;
-	margin-left: 2rem;
+  color: $txt;
+  margin-left: 2rem;
 }
 .bar {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	margin: 2rem 0 0 0;
-	text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 2rem 0;
+  padding-right: 3rem;
+  text-align: center;
 }

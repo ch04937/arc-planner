@@ -65,7 +65,7 @@ export default function ProfileImg() {
   }
 
   return (
-    <div className={custom.wrapper}>
+    <div className={custom.center}>
       <div className={styles.imgs}>
         <form encType="multipart/form-data" onSubmit={handleSubmit}>
           <input
