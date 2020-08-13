@@ -14,6 +14,10 @@ import {
   GET_ALLIANCE_ERROR,
   GET_USER_PROFILE_SUCCESS,
   GET_USER_PROFILE_ERROR,
+  GET_APPLICATIONS_SUCCESS,
+  GET_APPLICATIONS_ERROR,
+  SEND_APPLICATION_SUCCESS,
+  SEND_APPLICATION_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -121,6 +125,34 @@ const getAllianceError = (state, action) => {
     is_loading: false,
   };
 };
+const getApplication = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    applications: action.payload,
+  };
+};
+const getApplicationError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
+const sendApplication = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    applications: action.payload,
+  };
+};
+const sendApplicationError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
 // cases
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -154,6 +186,14 @@ export const reducer = (state, action) => {
       return getAlliance(state, action);
     case GET_ALLIANCE_ERROR:
       return getAllianceError(state, action);
+    case GET_APPLICATIONS_SUCCESS:
+      return getApplication(state, action);
+    case GET_APPLICATIONS_ERROR:
+      return getApplicationError(state, action);
+    case SEND_APPLICATION_SUCCESS:
+      return sendApplication(state, action);
+    case SEND_APPLICATION_ERROR:
+      return sendApplicationError(state, action);
     default:
       return state;
   }

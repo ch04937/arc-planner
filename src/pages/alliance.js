@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 
 import Navbar from "./navbar";
 
@@ -10,20 +10,27 @@ import CreateAlliance from "../components/alliance/createAlliance";
 
 export default function Alliance() {
   const {
-    getAlliance,
-    alliance,
-    userProfile,
-    getUserProfile,
     isLoading,
+    alliance,
+    applications,
+    userProfile,
+    getAlliance,
+    getUserProfile,
+    getApplications,
+    sendApplication,
+    cancelApplication,
   } = useContext(PlayerContext);
-
   useEffect(() => {
     getAlliance();
     getUserProfile();
-  }, []);
-  console.log("userProfile", userProfile);
-
-  console.log("alliance", alliance);
+    getApplications();
+  }, [applications.length]);
+  function applicationSent(e) {
+    sendApplication(e);
+  }
+  function applicationCancel(e) {
+    cancelApplication(e);
+  }
   return (
     <div className={custom.wrapper}>
       {userProfile.isMember ? (
@@ -33,22 +40,39 @@ export default function Alliance() {
           <div className={custom.header}>
             <h1>Alliance List</h1>
           </div>
-          <div className={custom.body} style={{ flexDirection: "column" }}>
-            <h4>Your not currently a member of an alliance</h4>
-            {/* <p>search bar</p> */}
-            <CreateAlliance />
-            {alliance &&
-              alliance.map((data, idx) => (
-                <div key={data.uuid} className={custom.row}>
-                  <p>{idx + 1}.</p>
-                  <p>{data.kingdomNumber}</p>
-                  <p>{data.allianceTag}</p>
-                  <p>{data.allianceName}</p>
-                  <div>
-                    <p>APPLY</p>
-                  </div>
-                </div>
-              ))}
+          <div className={custom.body}>
+            <div className={custom.content} style={{ flexDirection: "column" }}>
+              <h4>Your not currently a member of an alliance</h4>
+              {/* <p>search bar</p> */}
+              <CreateAlliance />
+              <div className={custom.scrollable}>
+                {alliance &&
+                  alliance.map((data, idx) => (
+                    <div key={data.uuid} className={custom.row}>
+                      <p>{idx + 1}.</p>
+                      <p>{data.kingdomNumber}</p>
+                      <p>{data.allianceTag}</p>
+                      <p>{data.allianceName}</p>
+
+                      {applications.includes(data.uuid) ? (
+                        <button
+                          className={custom.cancel_btn}
+                          onClick={() => applicationSent(data.uuid)}
+                        >
+                          Cancel
+                        </button>
+                      ) : (
+                        <button
+                          className={custom.save_btn}
+                          onClick={() => applicationCancel(data.uuid)}
+                        >
+                          Apply
+                        </button>
+                      )}
+                    </div>
+                  ))}
+              </div>
+            </div>
           </div>
         </>
       )}

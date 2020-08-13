@@ -1,26 +1,26 @@
 @mixin flex($content, $direction) {
-	display: flex;
-	justify-content: $content;
-	flex-direction: $direction;
+  display: flex;
+  justify-content: $content;
+  flex-direction: $direction;
 }
 
 @mixin btn() {
-	text-align: center;
-	border-radius: 4px;
-	margin: auto;
-	cursor: pointer;
+  text-align: center;
+  border-radius: 4px;
+  margin: auto;
+  cursor: pointer;
 }
 @mixin input() {
-	background: $card-bg;
-	color: $txt;
-	box-sizing: border-box;
-	text-align: center;
-	border: none;
-	border-bottom: 1px solid black;
-	border-radius: 4px;
-	&:focus {
-		outline: none;
-	}
+  background: $card-bg;
+  color: $txt;
+  box-sizing: border-box;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid black;
+  border-radius: 4px;
+  &:focus {
+    outline: none;
+  }
 }
 
 $btn-color: brown;
@@ -33,6 +33,7 @@ $title-txt: #878379;
 
 // content
 $card-bg: #005e81;
+$hover-gradiant: #7bb1c7;
 $left-gradiant: #3aa4cd;
 $right-gradiant: #117fb6;
 $txt: #ebf8fb;

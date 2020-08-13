@@ -82,6 +82,21 @@
     outline: none;
   }
 }
+.cancel_btn {
+  @include btn();
+  background: red;
+  color: $txt;
+  border: none;
+  &:hover {
+    background: darkred;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+.apply_btn {
+  @include btn();
+}
 .input {
   @include input();
 }
@@ -106,11 +121,18 @@
   text-align: left;
   padding: 0 3rem;
   border-radius: 4px;
-  background: $right-gradiant;
-  margin: 5px 0;
+  background: $left-gradiant;
+  margin: 3px 2rem;
   p {
     margin: auto;
     padding: 8px 0;
     width: 100%;
   }
+  &:hover {
+    background: $hover-gradiant;
+  }
+}
+.scrollable {
+  max-height: 500px;
+  overflow-y: scroll;
 }

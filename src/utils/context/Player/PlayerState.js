@@ -18,6 +18,10 @@ import {
   CREATE_ALLIANCE_ERROR,
   GET_USER_PROFILE_SUCCESS,
   GET_USER_PROFILE_ERROR,
+  GET_APPLICATIONS_SUCCESS,
+  GET_APPLICATIONS_ERROR,
+  SEND_APPLICATION_SUCCESS,
+  SEND_APPLICATION_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -34,6 +38,7 @@ export const PlayerState = (props) => {
     profile: [],
     profilePicture: [],
     userProfile: [],
+    applications: [],
   };
 
   // use reducer on local state or start fresh with initial state
@@ -122,12 +127,35 @@ export const PlayerState = (props) => {
       dispatch({ type: CREATE_ALLIANCE_ERROR, payload: e.response });
     }
   };
+  const getApplications = async () => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().get(`alliance/applications`);
+      dispatch({ type: GET_APPLICATIONS_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: GET_APPLICATIONS_ERROR, payload: e.response });
+    }
+  };
+  const sendApplication = async (allianceId) => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().post(
+        `/alliance/applications/${allianceId}`
+      );
+      dispatch({ type: SEND_APPLICATION_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: SEND_APPLICATION_ERROR, payload: e.response });
+    }
+  };
   return (
     <PlayerContext.Provider
       value={{
         ark: state.ark,
         isLoading: state.isLoading,
         alliance: state.alliance,
+        applications: state.applications,
         profile: state.profile,
         profilePicture: state.profilePicture,
         userProfile: state.userProfile,
@@ -139,6 +167,8 @@ export const PlayerState = (props) => {
         addImg,
         getAlliance,
         createAlliance,
+        getApplications,
+        sendApplication,
       }}
     >
       {props.children}
