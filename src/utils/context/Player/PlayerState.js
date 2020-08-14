@@ -22,6 +22,8 @@ import {
   GET_APPLICATIONS_ERROR,
   SEND_APPLICATION_SUCCESS,
   SEND_APPLICATION_ERROR,
+  CANCEL_APP_SUCCESS,
+  CANCEL_APP_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -141,12 +143,25 @@ export const PlayerState = (props) => {
     dispatch({ type: IS_LOADING, payload: true });
     try {
       const res = await axiosWithAuth().post(
-        `/alliance/applications/${allianceId}`
+        `/alliance/applications/apply/${allianceId}`
       );
       dispatch({ type: SEND_APPLICATION_SUCCESS, payload: res.data });
     } catch (e) {
       console.log("error", e);
       dispatch({ type: SEND_APPLICATION_ERROR, payload: e.response });
+    }
+  };
+  const cancelApplication = async (allianceId) => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().delete(
+        `/alliance/applications/cancel/${allianceId}`
+      );
+      console.log("res", res);
+      dispatch({ type: CANCEL_APP_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: CANCEL_APP_ERROR, payload: e.response });
     }
   };
   return (
@@ -169,6 +184,7 @@ export const PlayerState = (props) => {
         createAlliance,
         getApplications,
         sendApplication,
+        cancelApplication,
       }}
     >
       {props.children}

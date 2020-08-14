@@ -57,14 +57,14 @@ export default function Alliance() {
                       {applications.includes(data.uuid) ? (
                         <button
                           className={custom.cancel_btn}
-                          onClick={() => applicationSent(data.uuid)}
+                          onClick={() => applicationCancel(data.uuid)}
                         >
                           Cancel
                         </button>
                       ) : (
                         <button
                           className={custom.save_btn}
-                          onClick={() => applicationCancel(data.uuid)}
+                          onClick={() => applicationSent(data.uuid)}
                         >
                           Apply
                         </button>

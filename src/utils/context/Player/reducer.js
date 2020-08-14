@@ -18,6 +18,8 @@ import {
   GET_APPLICATIONS_ERROR,
   SEND_APPLICATION_SUCCESS,
   SEND_APPLICATION_ERROR,
+  CANCEL_APP_SUCCESS,
+  CANCEL_APP_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -153,6 +155,20 @@ const sendApplicationError = (state, action) => {
     is_loading: false,
   };
 };
+const cancelApp = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    applications: action.payload,
+  };
+};
+const cancelAppError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
 // cases
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -194,6 +210,10 @@ export const reducer = (state, action) => {
       return sendApplication(state, action);
     case SEND_APPLICATION_ERROR:
       return sendApplicationError(state, action);
+    case CANCEL_APP_SUCCESS:
+      return cancelApp(state, action);
+    case CANCEL_APP_ERROR:
+      return cancelAppError(state, action);
     default:
       return state;
   }
