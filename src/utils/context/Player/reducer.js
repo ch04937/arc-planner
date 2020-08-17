@@ -20,6 +20,8 @@ import {
   SEND_APPLICATION_ERROR,
   CANCEL_APP_SUCCESS,
   CANCEL_APP_ERROR,
+  CREATE_ALLIANCE_SUCCESS,
+  CREATE_ALLIANCE_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -169,6 +171,22 @@ const cancelAppError = (state, action) => {
     is_loading: false,
   };
 };
+const createAlliance = (state, action) => {
+  console.log("action", action);
+  return {
+    ...state,
+    is_loading: false,
+    userProfile: action.payload.userProfile,
+    alliance: action.payload.alliance,
+  };
+};
+const createAllianceError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
 // cases
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -214,6 +232,10 @@ export const reducer = (state, action) => {
       return cancelApp(state, action);
     case CANCEL_APP_ERROR:
       return cancelAppError(state, action);
+    case CREATE_ALLIANCE_SUCCESS:
+      return createAlliance(state, action);
+    case CREATE_ALLIANCE_ERROR:
+      return createAllianceError(state, action);
     default:
       return state;
   }
