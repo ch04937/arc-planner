@@ -10,24 +10,18 @@ import custom from "../stylesheets/custom-styles.module.scss";
 import styles from "../stylesheets/profile.module.scss";
 
 export default function IsMemberAlliance() {
-  const {
-    isLoading,
-    applications,
-    userProfile,
-    getAlliance,
-    getUserProfile,
-    getApplications,
-  } = useContext(PlayerContext);
+  const { userProfile, getUserProfile } = useContext(PlayerContext);
 
   useEffect(() => {
-    getAlliance();
     getUserProfile();
-    getApplications();
-  }, [applications.length]);
-
+  }, [userProfile.isMember]);
   return (
     <div className={custom.wrapper}>
-      {userProfile.isMember ? <AllianceNavLink /> : <AllianceList />}
+      {userProfile.isMember && userProfile.isMember ? (
+        <AllianceNavLink />
+      ) : (
+        <AllianceList />
+      )}
       <div className={styles.buttons}>
         <Navbar />
       </div>

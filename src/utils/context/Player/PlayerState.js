@@ -14,6 +14,8 @@ import {
   IMG_ERROR,
   GET_ALLIANCE_SUCCESS,
   GET_ALLIANCE_ERROR,
+  GET_ALLIANCE_LIST_SUCCESS,
+  GET_ALLIANCE_LIST_ERROR,
   CREATE_ALLIANCE_SUCCESS,
   CREATE_ALLIANCE_ERROR,
   GET_USER_PROFILE_SUCCESS,
@@ -24,6 +26,8 @@ import {
   SEND_APPLICATION_ERROR,
   CANCEL_APP_SUCCESS,
   CANCEL_APP_ERROR,
+  GET_CURRENT_EVENTS_SUCCESS,
+  GET_CURRENT_EVENTS_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -36,7 +40,11 @@ export const PlayerState = (props) => {
   // create and initial state
   const initialState = {
     isLoading: false,
+    allianceListError: "",
+    eventsError: "",
     alliance: [],
+    allianceList: [],
+    events: [],
     profile: [],
     profilePicture: [],
     userProfile: [],
@@ -113,10 +121,22 @@ export const PlayerState = (props) => {
       const res = await axiosWithAuth().get(`alliance/`);
       dispatch({ type: GET_ALLIANCE_SUCCESS, payload: res.data });
     } catch (e) {
-      console.log("error", e.response.status);
-      e.response.status === 401
+      console.log("e", e);
+      e.response && e.response.status === 401
         ? logOut()
         : dispatch({ type: GET_ALLIANCE_ERROR, payload: e.response });
+    }
+  };
+  const getAllianceList = async () => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().get(`alliance/list`);
+      dispatch({ type: GET_ALLIANCE_LIST_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("e", e);
+      e.response && e.response.status === 401
+        ? logOut()
+        : dispatch({ type: GET_ALLIANCE_LIST_ERROR, payload: e.response });
     }
   };
   const createAlliance = async (data) => {
@@ -133,9 +153,10 @@ export const PlayerState = (props) => {
     dispatch({ type: IS_LOADING, payload: true });
     try {
       const res = await axiosWithAuth().get(`alliance/applications`);
+      console.log("res.data", res.data);
       dispatch({ type: GET_APPLICATIONS_SUCCESS, payload: res.data });
     } catch (e) {
-      console.log("error", e);
+      console.log("error", e.response);
       dispatch({ type: GET_APPLICATIONS_ERROR, payload: e.response });
     }
   };
@@ -164,12 +185,25 @@ export const PlayerState = (props) => {
       dispatch({ type: CANCEL_APP_ERROR, payload: e.response });
     }
   };
+  const getCurrentEvents = async () => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().get(`events/current`);
+      dispatch({ type: GET_CURRENT_EVENTS_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: GET_CURRENT_EVENTS_ERROR, payload: e.response });
+    }
+  };
   return (
     <PlayerContext.Provider
       value={{
-        ark: state.ark,
         isLoading: state.isLoading,
+        allianceListError: state.allianceListError,
+        eventsError: state.eventsError,
         alliance: state.alliance,
+        events: state.events,
+        allianceList: state.allianceList,
         applications: state.applications,
         profile: state.profile,
         profilePicture: state.profilePicture,
@@ -181,10 +215,13 @@ export const PlayerState = (props) => {
         getImg,
         addImg,
         getAlliance,
+        getAllianceList,
         createAlliance,
         getApplications,
         sendApplication,
         cancelApplication,
+        getCurrentEvents,
+        getMembers,
       }}
     >
       {props.children}

@@ -12,7 +12,6 @@ export default function LogIn({ history }) {
   const { isLoading, signIn, signInError } = useContext(AuthContext);
   const [canSeePassword, setCanSeePassword] = useState(false);
   const token = localStorage.getItem("refreshToken");
-  console.log("token", token);
   if (token) {
     history.push("/user");
   }

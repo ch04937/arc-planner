@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import CreateAlliance from "./createAlliance";
 
@@ -10,11 +10,18 @@ import styles from "../../stylesheets/profile.module.scss";
 export default function AllianceList() {
   const {
     isLoading,
-    alliance,
+    allianceList,
+    allianceListError,
+    getAllianceList,
     applications,
     sendApplication,
     cancelApplication,
   } = useContext(PlayerContext);
+
+  useEffect(() => {
+    getAllianceList();
+  }, []);
+
   function applicationSent(e) {
     sendApplication(e);
   }
@@ -32,8 +39,9 @@ export default function AllianceList() {
           {/* <p>search bar</p> */}
           <CreateAlliance />
           <div className={custom.scrollable}>
-            {alliance &&
-              alliance.map((data, idx) => (
+            <div className={custom.errorWrapper}>{allianceListError}</div>
+            {allianceList &&
+              allianceList.map((data, idx) => (
                 <div key={data.uuid} className={custom.row}>
                   <p>{idx + 1}.</p>
                   <p>{data.kingdomNumber}</p>

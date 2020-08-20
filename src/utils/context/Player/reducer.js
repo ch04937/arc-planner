@@ -12,6 +12,8 @@ import {
   GET_IMG_ERROR,
   GET_ALLIANCE_SUCCESS,
   GET_ALLIANCE_ERROR,
+  GET_ALLIANCE_LIST_SUCCESS,
+  GET_ALLIANCE_LIST_ERROR,
   GET_USER_PROFILE_SUCCESS,
   GET_USER_PROFILE_ERROR,
   GET_APPLICATIONS_SUCCESS,
@@ -22,6 +24,8 @@ import {
   CANCEL_APP_ERROR,
   CREATE_ALLIANCE_SUCCESS,
   CREATE_ALLIANCE_ERROR,
+  GET_CURRENT_EVENTS_SUCCESS,
+  GET_CURRENT_EVENTS_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -129,6 +133,20 @@ const getAllianceError = (state, action) => {
     is_loading: false,
   };
 };
+const getAllianceList = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    allianceList: action.payload,
+  };
+};
+const getAllianceListError = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    allianceListError: action.payload.data.message,
+  };
+};
 const getApplication = (state, action) => {
   return {
     ...state,
@@ -172,18 +190,31 @@ const cancelAppError = (state, action) => {
   };
 };
 const createAlliance = (state, action) => {
-  console.log("action", action);
   return {
     ...state,
     is_loading: false,
     userProfile: action.payload.userProfile,
-    alliance: action.payload.alliance,
   };
 };
 const createAllianceError = (state, action) => {
   return {
     ...state,
     error: action.payload,
+    is_loading: false,
+  };
+};
+const getCurrentEvents = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    events: action.payload,
+  };
+};
+const getCurrentEventsError = (state, action) => {
+  console.log("action.payload.data.message", action.payload.data.message);
+  return {
+    ...state,
+    eventsError: action.payload.data.message,
     is_loading: false,
   };
 };
@@ -218,6 +249,10 @@ export const reducer = (state, action) => {
       return getImgError(state, action);
     case GET_ALLIANCE_SUCCESS:
       return getAlliance(state, action);
+    case GET_ALLIANCE_LIST_SUCCESS:
+      return getAllianceList(state, action);
+    case GET_ALLIANCE_LIST_ERROR:
+      return getAllianceListError(state, action);
     case GET_ALLIANCE_ERROR:
       return getAllianceError(state, action);
     case GET_APPLICATIONS_SUCCESS:
@@ -236,6 +271,10 @@ export const reducer = (state, action) => {
       return createAlliance(state, action);
     case CREATE_ALLIANCE_ERROR:
       return createAllianceError(state, action);
+    case GET_CURRENT_EVENTS_SUCCESS:
+      return getCurrentEvents(state, action);
+    case GET_CURRENT_EVENTS_ERROR:
+      return getCurrentEventsError(state, action);
     default:
       return state;
   }

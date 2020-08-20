@@ -7,3 +7,31 @@
   text-align: left;
   padding-left: 2rem;
 }
+.wrapper {
+  text-align: left;
+  padding: 0 2rem;
+}
+.header {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+.info {
+  width: 300px;
+  padding-bottom: 2rem;
+}
+.messageBoard {
+  background: $btns-bg;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.card_wrapper {
+  background: whitesmoke;
+  color: black;
+  border-radius: 4px;
+  padding: 1rem;
+}
+.no_events {
+  text-align: center;
+}

@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Menu } from "semantic-ui-react";
 
 import AllianceContent from "./allianceContent";
 import AllianceSettings from "./settings";
 
 import custom from "../../stylesheets/custom-styles.module.scss";
+import { PlayerContext } from "../../utils/context/Player/PlayerState";
 
 export default function AllianceNavLink() {
-  const [activeItem, setActiveItem] = useState("bio");
+  const { getAlliance, alliance, getApplications, applications } = useContext(
+    PlayerContext
+  );
+  const [activeItem, setActiveItem] = useState("alliance");
 
   function handleItemClick(e, { name }) {
     setActiveItem(name);
   }
-
+  useEffect(() => {
+    getApplications();
+  }, [applications.length]);
   const navLink = {
     alliance: <AllianceContent />,
     settings: <AllianceSettings />,
