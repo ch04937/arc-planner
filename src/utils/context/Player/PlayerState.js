@@ -28,6 +28,8 @@ import {
   CANCEL_APP_ERROR,
   GET_CURRENT_EVENTS_SUCCESS,
   GET_CURRENT_EVENTS_ERROR,
+  GET_MEMBERS_SUCCESS,
+  GET_MEMBERS_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -49,6 +51,7 @@ export const PlayerState = (props) => {
     profilePicture: [],
     userProfile: [],
     applications: [],
+    members: [],
   };
 
   // use reducer on local state or start fresh with initial state
@@ -195,6 +198,16 @@ export const PlayerState = (props) => {
       dispatch({ type: GET_CURRENT_EVENTS_ERROR, payload: e.response });
     }
   };
+  const getMembers = async () => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().get(`/alliance/members`);
+      dispatch({ type: GET_MEMBERS_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error getting members", e);
+      dispatch({ type: GET_MEMBERS_ERROR, payload: e.response });
+    }
+  };
   return (
     <PlayerContext.Provider
       value={{
@@ -203,6 +216,7 @@ export const PlayerState = (props) => {
         eventsError: state.eventsError,
         alliance: state.alliance,
         events: state.events,
+        members: state.members,
         allianceList: state.allianceList,
         applications: state.applications,
         profile: state.profile,

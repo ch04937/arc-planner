@@ -26,6 +26,8 @@ import {
   CREATE_ALLIANCE_ERROR,
   GET_CURRENT_EVENTS_SUCCESS,
   GET_CURRENT_EVENTS_ERROR,
+  GET_MEMBERS_SUCCESS,
+  GET_MEMBERS_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -211,10 +213,23 @@ const getCurrentEvents = (state, action) => {
   };
 };
 const getCurrentEventsError = (state, action) => {
-  console.log("action.payload.data.message", action.payload.data.message);
   return {
     ...state,
     eventsError: action.payload.data.message,
+    is_loading: false,
+  };
+};
+const getMembers = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    members: action.payload,
+  };
+};
+const getMembersError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
     is_loading: false,
   };
 };
@@ -275,6 +290,10 @@ export const reducer = (state, action) => {
       return getCurrentEvents(state, action);
     case GET_CURRENT_EVENTS_ERROR:
       return getCurrentEventsError(state, action);
+    case GET_MEMBERS_SUCCESS:
+      return getMembers(state, action);
+    case GET_MEMBERS_ERROR:
+      return getMembersError(state, action);
     default:
       return state;
   }

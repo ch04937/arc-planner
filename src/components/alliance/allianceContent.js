@@ -12,6 +12,7 @@ export default function AllianceContent() {
     getCurrentEvents,
     events,
     eventsError,
+    members,
   } = useContext(PlayerContext);
 
   useEffect(() => {
@@ -20,6 +21,7 @@ export default function AllianceContent() {
     getCurrentEvents();
     console.log("rendered");
   }, [alliance.allianceId]);
+  console.log("members", members);
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
@@ -45,7 +47,22 @@ export default function AllianceContent() {
         )}
       </div>
       <div>
-        <h3>all Members</h3>
+        <h3>
+          {members &&
+            members.map((data) => (
+              <div className={custom.cards} key={data.uuid}>
+                <div>IMG</div>
+                <div>
+                  <div>{data.inGameName}</div>
+                  <div>
+                    {data.t3inf + data.t3cav + data.t3arch} t3 /
+                    {data.t4inf + data.t4cav + data.t4arch} t4 /
+                    {data.t5inf + data.t5cav + data.t5arch} t5
+                  </div>
+                </div>
+              </div>
+            ))}
+        </h3>
       </div>
     </div>
   );
