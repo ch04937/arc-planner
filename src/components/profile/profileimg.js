@@ -6,9 +6,7 @@ import styles from "../../stylesheets/profile.module.scss";
 import custom from "../../stylesheets/custom-styles.module.scss";
 
 export default function ProfileImg() {
-  const { addImg, profile, profilePicture, updateProfile, getImg } = useContext(
-    PlayerContext
-  );
+  const { addImg, profile, updateProfile } = useContext(PlayerContext);
 
   const [inputChanged, setInputChange] = useState(false);
   const [imgToggle, setImgToggle] = useState(false);
@@ -17,10 +15,6 @@ export default function ProfileImg() {
     city: profile.city,
     castle: profile.city,
   });
-
-  useEffect(() => {
-    getImg();
-  }, []);
 
   const uploadedImage = useRef(null);
   const imageUpLoader = useRef(null);
@@ -60,7 +54,7 @@ export default function ProfileImg() {
     e.preventDefault();
     let formData = new FormData();
     formData.append("avatars", uploadedImage.current.file);
-    addImg(formData, profilePicture.imgId);
+    addImg(formData);
     setImgToggle(false);
   }
 
@@ -78,10 +72,10 @@ export default function ProfileImg() {
 
           <img
             src={`${process.env.REACT_APP_BASE_URL}/${
-              profilePicture.path && profilePicture.path.replace("\\", "/")
+              profile.path && profile.path.replace("\\", "/")
             }`}
             ref={uploadedImage}
-            alt={profilePicture.originalname}
+            alt={profile.originalname}
             onClick={imgClick}
           />
           {imgToggle ? (

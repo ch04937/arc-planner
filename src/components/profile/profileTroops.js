@@ -8,12 +8,8 @@ import styles from "../../stylesheets/profile.module.scss";
 
 export default function ProfileTroops() {
   const { profile, getProfile } = useContext(PlayerContext);
-  const t3 = profile.t3arch + profile.t3inf + profile.t3cav;
-  const t4 = profile.t4arch + profile.t4inf + profile.t4cav;
-  const t5 = profile.t5arch + profile.t5inf + profile.t5cav;
 
   useEffect(() => {
-    console.log("t3% : ", (t3 * 100) / (t3 + t4 + t5));
     getProfile();
   }, []);
   return (
@@ -70,34 +66,6 @@ export default function ProfileTroops() {
         <div className={styles.t_content}>TIER 5 CAVALRY:</div>
         <div className={styles.t_content}>
           <TroopBtns type="t5cav" counts={profile.t5cav} />
-        </div>
-      </div>
-      <div className={styles.bar}>
-        <div
-          style={{
-            width: `${(t3 * 100) / (t3 + t4 + t5)}%` || "10px",
-            background: "#2962ff",
-            borderTopLeftRadius: "4px",
-            borderBottomLeftRadius: "4px",
-          }}
-        >
-          <p>{profile.t3inf + profile.t3cav + profile.t3arch} t3</p>
-        </div>
-        <div
-          style={{
-            width: `${(t4 * 100) / (t3 + t4 + t5)}%` || "10px",
-            background: "#8A2BE2",
-          }}
-        >
-          {profile.t4inf + profile.t4cav + profile.t4arch} t4
-        </div>
-        <div
-          style={{
-            width: `${(t5 * 100) / (t3 + t4 + t5)}%` || "10px",
-            background: "#FFA500",
-          }}
-        >
-          {profile.t5inf + profile.t5cav + profile.t5arch} t5
         </div>
       </div>
     </div>

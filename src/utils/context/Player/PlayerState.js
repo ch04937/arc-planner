@@ -8,8 +8,6 @@ import {
   UPDATE_TROOPS_ERROR,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_ERROR,
-  GET_IMG_SUCCESS,
-  GET_IMG_ERROR,
   IMG_SUCCESS,
   IMG_ERROR,
   GET_ALLIANCE_SUCCESS,
@@ -48,7 +46,6 @@ export const PlayerState = (props) => {
     allianceList: [],
     events: [],
     profile: [],
-    profilePicture: [],
     userProfile: [],
     applications: [],
     members: [],
@@ -99,19 +96,11 @@ export const PlayerState = (props) => {
       dispatch({ type: UPDATE_PROFILE_ERROR, payload: e.response });
     }
   };
-  const getImg = async () => {
+
+  const addImg = async (file) => {
     dispatch({ type: IS_LOADING, payload: true });
     try {
-      const res = await axiosWithAuth().get(`profile/profilePicture`);
-      dispatch({ type: GET_IMG_SUCCESS, payload: res.data });
-    } catch (e) {
-      dispatch({ type: GET_IMG_ERROR, payload: e.response });
-    }
-  };
-  const addImg = async (file, imgId) => {
-    dispatch({ type: IS_LOADING, payload: true });
-    try {
-      const res = await axiosWithAuth().put(`profile/img/${imgId}`, file);
+      const res = await axiosWithAuth().put(`profile/img/`, file);
       dispatch({ type: IMG_SUCCESS, payload: res.data });
     } catch (e) {
       console.log("error", e);
@@ -220,13 +209,11 @@ export const PlayerState = (props) => {
         allianceList: state.allianceList,
         applications: state.applications,
         profile: state.profile,
-        profilePicture: state.profilePicture,
         userProfile: state.userProfile,
         getProfile,
         getUserProfile,
         updateTroops,
         updateProfile,
-        getImg,
         addImg,
         getAlliance,
         getAllianceList,

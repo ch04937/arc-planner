@@ -8,20 +8,23 @@ export default function AllianceContent() {
   const {
     alliance,
     getAlliance,
+    getProfile,
     getMembers,
     getCurrentEvents,
     events,
     eventsError,
     members,
+    profile,
   } = useContext(PlayerContext);
-
+  const t3 = profile.t3arch + profile.t3inf + profile.t3cav;
+  const t4 = profile.t4arch + profile.t4inf + profile.t4cav;
+  const t5 = profile.t5arch + profile.t5inf + profile.t5cav;
   useEffect(() => {
+    getProfile();
     getAlliance();
     getMembers();
     getCurrentEvents();
-    console.log("rendered");
   }, [alliance.allianceId]);
-  console.log("members", members);
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
@@ -46,24 +49,66 @@ export default function AllianceContent() {
           </>
         )}
       </div>
-      <div>
-        <h3>
-          {members &&
-            members.map((data) => (
-              <div className={custom.cards} key={data.uuid}>
-                <div>IMG</div>
-                <div>
-                  <div>{data.inGameName}</div>
-                  <div>
-                    {data.t3inf + data.t3cav + data.t3arch} t3 /
-                    {data.t4inf + data.t4cav + data.t4arch} t4 /
-                    {data.t5inf + data.t5cav + data.t5arch} t5
-                  </div>
+      {members &&
+        members.map((data) => (
+          <div className={styles.cards} key={data.uuid}>
+            <div className={styles.card}>
+              <img
+                src={`${process.env.REACT_APP_BASE_URL}/${
+                  data.path && data.path.replace("\\", "/")
+                }`}
+              />
+              <div>{data.inGameName}</div>
+              <div className={styles.bar}>
+                <div
+                  className={styles.t}
+                  style={
+                    (t3 * 100) / (t3 + t4 + t5)
+                      ? {
+                          width: `${(t3 * 100) / (t3 + t4 + t5)}%`,
+                          background: "#FFA500",
+                        }
+                      : {
+                          display: "none",
+                        }
+                  }
+                >
+                  {t3} t3
+                </div>
+                <div
+                  className={styles.t}
+                  style={
+                    (t4 * 100) / (t3 + t4 + t5)
+                      ? {
+                          width: `${(t4 * 100) / (t3 + t4 + t5)}%`,
+                          background: "#FFA500",
+                        }
+                      : {
+                          display: "none",
+                        }
+                  }
+                >
+                  {t4} t4
+                </div>
+                <div
+                  className={styles.t}
+                  style={
+                    (t5 * 100) / (t3 + t4 + t5)
+                      ? {
+                          width: `${(t5 * 100) / (t3 + t4 + t5)}%`,
+                          background: "#FFA500",
+                        }
+                      : {
+                          display: "none",
+                        }
+                  }
+                >
+                  {t5} t5
                 </div>
               </div>
-            ))}
-        </h3>
-      </div>
+            </div>
+          </div>
+        ))}
     </div>
   );
 }

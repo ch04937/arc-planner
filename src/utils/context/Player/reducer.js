@@ -8,8 +8,6 @@ import {
   UPDATE_PROFILE_ERROR,
   IMG_SUCCESS,
   IMG_ERROR,
-  GET_IMG_SUCCESS,
-  GET_IMG_ERROR,
   GET_ALLIANCE_SUCCESS,
   GET_ALLIANCE_ERROR,
   GET_ALLIANCE_LIST_SUCCESS,
@@ -101,20 +99,6 @@ const addImg = (state, action) => {
   };
 };
 const addImgError = (state, action) => {
-  return {
-    ...state,
-    error: action.payload,
-    is_loading: false,
-  };
-};
-const getImg = (state, action) => {
-  return {
-    ...state,
-    is_loading: false,
-    profilePicture: action.payload,
-  };
-};
-const getImgError = (state, action) => {
   return {
     ...state,
     error: action.payload,
@@ -258,10 +242,6 @@ export const reducer = (state, action) => {
       return addImg(state, action);
     case IMG_ERROR:
       return addImgError(state, action);
-    case GET_IMG_SUCCESS:
-      return getImg(state, action);
-    case GET_IMG_ERROR:
-      return getImgError(state, action);
     case GET_ALLIANCE_SUCCESS:
       return getAlliance(state, action);
     case GET_ALLIANCE_LIST_SUCCESS:

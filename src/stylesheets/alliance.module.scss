@@ -27,11 +27,41 @@
 }
 
 .card_wrapper {
-  background: #00496b;
+  background: $btns-bg;
   color: $txt;
   border-radius: 4px;
   padding: 1rem;
 }
 .no_events {
   text-align: center;
+}
+
+.cards {
+  background: $btns-bg;
+  margin: 2rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  border-radius: 4px;
+  padding: 1rem 2rem;
+  img {
+    width: 60px;
+    border-radius: 100%;
+    border: 2px solid rgb(224, 187, 94);
+  }
+  .card {
+    border-radius: 4px;
+    background: $right-gradiant;
+    padding: 0.5rem;
+    width: 280px;
+  }
+  .bar {
+    width: 100%;
+    display: flex;
+    border-radius: 4px;
+  }
+  .t {
+    overflow: "hidden";
+    text-overflow: "clip";
+  }
 }
