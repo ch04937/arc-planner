@@ -9,6 +9,7 @@ import {
   validatePassword,
   validateUsername,
   validateConfirmPassword,
+  validategovName,
 } from "../utils/validateAuth";
 
 import styles from "../stylesheets/app.module.scss";
@@ -31,6 +32,7 @@ export default function Register({ history }) {
           email: "",
           password: "",
           confirmPassword: "",
+          inGameName: "",
         }}
         onSubmit={(values, actions) => {
           register(values);
@@ -44,6 +46,11 @@ export default function Register({ history }) {
             )}
             <label>Username </label>
             <Field type="text" name="username" validate={validateUsername} />
+            {errors.inGameName && touched.inGameName && (
+              <div className={styles.validate}>{errors.inGameName}</div>
+            )}
+            <label>Govenor Name</label>
+            <Field type="text" name="inGameName" validate={validategovName} />
             {errors.email && touched.email && (
               <div className={styles.validate}>{errors.email}</div>
             )}

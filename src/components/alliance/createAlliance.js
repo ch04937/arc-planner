@@ -18,6 +18,7 @@ export default function CreateAlliance() {
           kingdomNumber: "",
           allianceTag: "",
           allianceName: "",
+          messageBoard: "",
         }}
         onSubmit={(values, actions) => {
           createAlliance(values);
@@ -28,6 +29,7 @@ export default function CreateAlliance() {
           kingdomNumber: yup.number().required("This is a required field"),
           allianceTag: yup.string().required("This is a required field"),
           allianceName: yup.string().required("This is a required field"),
+          messageBoard: yup.string().required("This is a required field"),
         })}
         render={({
           values,
@@ -87,6 +89,17 @@ export default function CreateAlliance() {
                   onChange={handleChange}
                   name="allianceName"
                   placeholder="Alliance Name"
+                />
+                <Form.Input
+                  fluid
+                  label="Message Board "
+                  required
+                  type="text"
+                  value={values.messageBoard}
+                  error={errors.messageBoard !== undefined}
+                  onChange={handleChange}
+                  name="messageBoard"
+                  placeholder="Message"
                 />
               </Form>
             </Modal.Content>

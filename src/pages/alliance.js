@@ -14,7 +14,7 @@ export default function IsMemberAlliance() {
 
   useEffect(() => {
     getUserProfile();
-  }, [userProfile && userProfile.isMember]);
+  }, [userProfile.isMember]);
   return (
     <div className={custom.wrapper}>
       {userProfile.isMember && userProfile.isMember ? (
