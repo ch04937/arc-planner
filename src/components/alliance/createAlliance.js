@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Modal, Form, Message } from "semantic-ui-react";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -9,7 +9,7 @@ import custom from "../../stylesheets/custom-styles.module.scss";
 
 export default function CreateAlliance() {
   const { createAlliance } = useContext(PlayerContext);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <div>

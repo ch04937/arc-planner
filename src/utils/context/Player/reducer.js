@@ -26,6 +26,10 @@ import {
   GET_CURRENT_EVENTS_ERROR,
   GET_MEMBERS_SUCCESS,
   GET_MEMBERS_ERROR,
+  GET_PRIVILEGE_SUCCESS,
+  GET_PRIVILEGE_ERROR,
+  CREATE_EVENTS_SUCCESS,
+  CREATE_EVENTS_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -53,7 +57,7 @@ const getUserProfile = (state, action) => {
   return {
     ...state,
     is_loading: false,
-    userProfile: action.payload,
+    userProfile: { ...action.payload },
   };
 };
 const getUserProfileError = (state, action) => {
@@ -194,6 +198,7 @@ const getCurrentEvents = (state, action) => {
     ...state,
     is_loading: false,
     events: action.payload,
+    eventsError: "",
   };
 };
 const getCurrentEventsError = (state, action) => {
@@ -211,6 +216,34 @@ const getMembers = (state, action) => {
   };
 };
 const getMembersError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
+const getPrivilege = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    privilege: action.payload,
+  };
+};
+const getPrivilegeError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
+const createEvents = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    events: action.payload,
+  };
+};
+const createEventsError = (state, action) => {
   return {
     ...state,
     error: action.payload,
@@ -274,6 +307,14 @@ export const reducer = (state, action) => {
       return getMembers(state, action);
     case GET_MEMBERS_ERROR:
       return getMembersError(state, action);
+    case GET_PRIVILEGE_SUCCESS:
+      return getPrivilege(state, action);
+    case GET_PRIVILEGE_ERROR:
+      return getPrivilegeError(state, action);
+    case CREATE_EVENTS_SUCCESS:
+      return createEvents(state, action);
+    case CREATE_EVENTS_ERROR:
+      return createEventsError(state, action);
     default:
       return state;
   }

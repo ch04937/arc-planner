@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from "react";
 import { PlayerContext } from "../../utils/context/Player/PlayerState";
+import CreateEvent from "./createEvents";
 
 import styles from "../../stylesheets/alliance.module.scss";
-import custom from "../../stylesheets/custom-styles.module.scss";
 
 export default function AllianceContent() {
   const {
@@ -15,6 +15,8 @@ export default function AllianceContent() {
     eventsError,
     members,
     profile,
+    getPrivilege,
+    privilege,
   } = useContext(PlayerContext);
   const t3 = profile.t3arch + profile.t3inf + profile.t3cav;
   const t4 = profile.t4arch + profile.t4inf + profile.t4cav;
@@ -23,6 +25,7 @@ export default function AllianceContent() {
     getProfile();
     getAlliance();
     getMembers();
+    getPrivilege();
     getCurrentEvents();
   }, [alliance.allianceId]);
   return (
@@ -38,14 +41,24 @@ export default function AllianceContent() {
         <div className={styles.messageBoard}>{alliance.messageBoard}</div>
       </div>
       <div className={styles.card_wrapper}>
-        {eventsError ? (
-          <div className={styles.no_events}>{eventsError}</div>
+        {privilege.isLead ? (
+          <>
+            <div className={styles.no_events}>{eventsError}</div>
+            <CreateEvent />
+          </>
         ) : (
           <>
-            <h3> Event Card </h3>
-            <p> Event Name </p>
-            <p> Event Date </p>
-            <p> how many are participating </p>
+            {eventsError ? (
+              <div className={styles.no_events}>{eventsError}</div>
+            ) : (
+              <>
+                {privilege.isLead ? <button>Delete Event</button> : "false"}
+                <h3> Event Card </h3>
+                <p> Event Name </p>
+                <p> Event Date </p>
+                <p> how many are participating </p>
+              </>
+            )}
           </>
         )}
       </div>

@@ -65,8 +65,20 @@
   @include btn();
   width: 35px;
   background: rgb(4, 185, 4);
+  border: none;
   &:hover {
     background: rgb(4, 153, 4);
+  }
+}
+
+.blue_btn {
+  @include btn();
+  background: $left-gradiant;
+  color: $txt;
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  &:hover {
+    background: $right-gradiant;
   }
 }
 
@@ -78,9 +90,6 @@
   &:hover {
     background: $left-gradiant;
   }
-  &:focus {
-    outline: none;
-  }
 }
 .cancel_btn {
   @include btn();
@@ -89,9 +98,6 @@
   border: none;
   &:hover {
     background: darkred;
-  }
-  &:focus {
-    outline: none;
   }
 }
 .apply_btn {

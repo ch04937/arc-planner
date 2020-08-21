@@ -28,6 +28,10 @@ import {
   GET_CURRENT_EVENTS_ERROR,
   GET_MEMBERS_SUCCESS,
   GET_MEMBERS_ERROR,
+  GET_PRIVILEGE_SUCCESS,
+  GET_PRIVILEGE_ERROR,
+  CREATE_EVENTS_SUCCESS,
+  CREATE_EVENTS_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -46,9 +50,10 @@ export const PlayerState = (props) => {
     allianceList: [],
     events: [],
     profile: [],
-    userProfile: [],
+    userProfile: { isMember: false },
     applications: [],
     members: [],
+    privilege: {},
   };
 
   // use reducer on local state or start fresh with initial state
@@ -110,13 +115,22 @@ export const PlayerState = (props) => {
   const getAlliance = async () => {
     dispatch({ type: IS_LOADING, payload: true });
     try {
-      const res = await axiosWithAuth().get(`alliance/`);
+      const res = await axiosWithAuth().get(`/alliance/`);
       dispatch({ type: GET_ALLIANCE_SUCCESS, payload: res.data });
     } catch (e) {
       console.log("e", e);
       e.response && e.response.status === 401
         ? logOut()
         : dispatch({ type: GET_ALLIANCE_ERROR, payload: e.response });
+    }
+  };
+  const getPrivilege = async () => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().get(`/alliance/privilege`);
+      dispatch({ type: GET_PRIVILEGE_SUCCESS, payload: res.data });
+    } catch (e) {
+      dispatch({ type: GET_PRIVILEGE_ERROR, payload: e.response });
     }
   };
   const getAllianceList = async () => {
@@ -145,7 +159,6 @@ export const PlayerState = (props) => {
     dispatch({ type: IS_LOADING, payload: true });
     try {
       const res = await axiosWithAuth().get(`alliance/applications`);
-      console.log("res.data", res.data);
       dispatch({ type: GET_APPLICATIONS_SUCCESS, payload: res.data });
     } catch (e) {
       console.log("error", e.response);
@@ -197,6 +210,16 @@ export const PlayerState = (props) => {
       dispatch({ type: GET_MEMBERS_ERROR, payload: e.response });
     }
   };
+  const createEvents = async (body) => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().post(`/events`, body);
+      dispatch({ type: CREATE_EVENTS_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: CREATE_EVENTS_ERROR, payload: e.response });
+    }
+  };
   return (
     <PlayerContext.Provider
       value={{
@@ -209,8 +232,10 @@ export const PlayerState = (props) => {
         allianceList: state.allianceList,
         applications: state.applications,
         profile: state.profile,
+        privilege: state.privilege,
         userProfile: state.userProfile,
         getProfile,
+        getPrivilege,
         getUserProfile,
         updateTroops,
         updateProfile,
@@ -223,6 +248,7 @@ export const PlayerState = (props) => {
         cancelApplication,
         getCurrentEvents,
         getMembers,
+        createEvents,
       }}
     >
       {props.children}
