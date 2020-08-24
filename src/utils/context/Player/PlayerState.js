@@ -48,6 +48,8 @@ export const PlayerState = (props) => {
     isLoading: false,
     allianceListError: "",
     eventsError: "",
+    eventCreatedMessage: "",
+    eventCreatedMessageError: "",
     alliance: [],
     allianceList: [],
     events: [],
@@ -55,7 +57,7 @@ export const PlayerState = (props) => {
     userProfile: { isMember: false },
     applications: [],
     members: [],
-    privilege: {},
+    permissions: {},
   };
 
   // use reducer on local state or start fresh with initial state
@@ -129,7 +131,7 @@ export const PlayerState = (props) => {
   const getPrivilege = async () => {
     dispatch({ type: IS_LOADING, payload: true });
     try {
-      const res = await axiosWithAuth().get(`/alliance/privilege`);
+      const res = await axiosWithAuth().get(`/alliance/permissions`);
       dispatch({ type: GET_PRIVILEGE_SUCCESS, payload: res.data });
     } catch (e) {
       dispatch({ type: GET_PRIVILEGE_ERROR, payload: e.response });
@@ -195,7 +197,7 @@ export const PlayerState = (props) => {
   const getCurrentEvents = async () => {
     dispatch({ type: IS_LOADING, payload: true });
     try {
-      const res = await axiosWithAuth().get(`events/current`);
+      const res = await axiosWithAuth().get(`event/current`);
       dispatch({ type: GET_CURRENT_EVENTS_SUCCESS, payload: res.data });
     } catch (e) {
       console.log("error", e);
@@ -215,7 +217,7 @@ export const PlayerState = (props) => {
   const createEvents = async (body) => {
     dispatch({ type: IS_LOADING, payload: true });
     try {
-      const res = await axiosWithAuth().post(`/events`, body);
+      const res = await axiosWithAuth().post(`/event`, body);
       dispatch({ type: CREATE_EVENTS_SUCCESS, payload: res.data });
     } catch (e) {
       console.log("error", e);
@@ -226,7 +228,7 @@ export const PlayerState = (props) => {
     dispatch({ type: IS_LOADING, payload: true });
     console.log("eventId", eventId);
     try {
-      const res = await axiosWithAuth().delete(`/events/${eventId}`);
+      const res = await axiosWithAuth().delete(`/event/${eventId}`);
       dispatch({ type: DELETE_EVENT_SUCCESS, payload: res.data });
     } catch (e) {
       console.log("error", e);
@@ -246,7 +248,7 @@ export const PlayerState = (props) => {
         allianceList: state.allianceList,
         applications: state.applications,
         profile: state.profile,
-        privilege: state.privilege,
+        permissions: state.permissions,
         userProfile: state.userProfile,
         getProfile,
         getPrivilege,

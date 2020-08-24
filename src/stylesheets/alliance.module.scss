@@ -28,7 +28,7 @@
 }
 
 .card_wrapper {
-  background: $btns-bg;
+  // background: $btns-bg;
   color: $txt;
   border-radius: 4px;
   padding: 1rem;
@@ -79,9 +79,10 @@
   width: 100%;
   padding: 5px 10px;
   .gov_name {
-    background: $title-bg;
-    color: black;
-    font-size: 15px;
+    background: #b4aea7;
+    color: #3f3b35;
+    font-size: 17px;
+    font-weight: 600;
     padding: 1px 4px;
     border-radius: 4px;
   }
@@ -90,7 +91,7 @@
   border: 1px solid black;
   margin: 1.5rem 1rem;
   border-radius: 4px;
-  background: $right-gradiant;
+  background: $btns-bg;
   padding: 1rem;
   text-align: left;
   .row {
@@ -109,6 +110,10 @@
     }
   }
   &:hover {
-    background: $lightest-blue;
+    background: #005e81;
   }
+}
+
+.switch {
+  text-align: center;
 }

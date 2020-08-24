@@ -228,7 +228,7 @@ const getPrivilege = (state, action) => {
   return {
     ...state,
     is_loading: false,
-    privilege: action.payload,
+    permissions: action.payload,
   };
 };
 const getPrivilegeError = (state, action) => {
@@ -239,16 +239,20 @@ const getPrivilegeError = (state, action) => {
   };
 };
 const createEvents = (state, action) => {
+  console.log("action", action);
   return {
     ...state,
     is_loading: false,
-    events: action.payload,
+    eventCreatedMessageError: "",
+    eventCreatedMessage: action.payload.message,
   };
 };
 const createEventsError = (state, action) => {
+  console.log("action", action);
   return {
     ...state,
-    error: action.payload,
+    eventCreatedMessageError: action.payload.message,
+    eventCreatedMessage: "",
     is_loading: false,
   };
 };

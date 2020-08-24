@@ -7,20 +7,9 @@ import { PlayerContext } from "../../utils/context/Player/PlayerState";
 
 import custom from "../../stylesheets/custom-styles.module.scss";
 
-import SemanticDatepicker from "react-semantic-ui-datepickers";
-import "react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css";
-
-const DatePicker = () => {
-  const [currentRange, setNewRange] = useState([]);
-  const onChange = (event, data) => setNewRange(data.value);
-
-  return <SemanticDatepicker onChange={onChange} type="range" />;
-};
-
 export default function CreateEvent() {
   const { createEvents } = useContext(PlayerContext);
   const [open, setOpen] = useState(false);
-
   return (
     <div>
       <Formik
@@ -32,8 +21,8 @@ export default function CreateEvent() {
         }}
         onSubmit={(values, actions) => {
           createEvents(values);
-          // actions.resetForm();
-          // setOpen(false);
+          actions.resetForm();
+          setOpen(false);
         }}
         validationSchema={yup.object().shape({
           eventName: yup.string().required("This is a required field"),
@@ -41,13 +30,8 @@ export default function CreateEvent() {
           startDate: yup.date().required("This is a required field"),
           endDate: yup.date().required("This is a required field"),
         })}
-        render={({
-          values,
-          errors,
-          handleChange,
-          handleSubmit,
-          isSubmitting,
-        }) => (
+      >
+        {({ values, errors, handleChange, handleSubmit, isSubmitting }) => (
           <Modal
             as={Form}
             onClose={() => setOpen(false)}
@@ -128,7 +112,7 @@ export default function CreateEvent() {
             </Modal.Actions>
           </Modal>
         )}
-      />
+      </Formik>
     </div>
   );
 }
