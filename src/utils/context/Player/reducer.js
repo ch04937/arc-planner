@@ -30,6 +30,8 @@ import {
   GET_PRIVILEGE_ERROR,
   CREATE_EVENTS_SUCCESS,
   CREATE_EVENTS_ERROR,
+  DELETE_EVENT_SUCCESS,
+  DELETE_EVENT_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -250,6 +252,20 @@ const createEventsError = (state, action) => {
     is_loading: false,
   };
 };
+const deleteEvent = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    events: action.payload,
+  };
+};
+const deleteEventError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
 // cases
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -315,6 +331,10 @@ export const reducer = (state, action) => {
       return createEvents(state, action);
     case CREATE_EVENTS_ERROR:
       return createEventsError(state, action);
+    case DELETE_EVENT_SUCCESS:
+      return deleteEvent(state, action);
+    case DELETE_EVENT_ERROR:
+      return deleteEventError(state, action);
     default:
       return state;
   }

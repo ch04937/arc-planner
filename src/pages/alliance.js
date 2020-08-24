@@ -14,11 +14,11 @@ export default function IsMemberAlliance() {
 
   useEffect(() => {
     getUserProfile();
-  }, [userProfile.isMember]);
+  }, []);
 
   return (
     <div className={custom.wrapper}>
-      {userProfile.isMember && userProfile.isMember ? (
+      {userProfile && userProfile.isMember ? (
         <AllianceNavLink />
       ) : (
         <AllianceList />

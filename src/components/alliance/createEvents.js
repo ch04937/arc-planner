@@ -19,7 +19,7 @@ const DatePicker = () => {
 
 export default function CreateEvent() {
   const { createEvents } = useContext(PlayerContext);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <div>
@@ -32,8 +32,8 @@ export default function CreateEvent() {
         }}
         onSubmit={(values, actions) => {
           createEvents(values);
-          actions.resetForm();
-          setOpen(false);
+          // actions.resetForm();
+          // setOpen(false);
         }}
         validationSchema={yup.object().shape({
           eventName: yup.string().required("This is a required field"),

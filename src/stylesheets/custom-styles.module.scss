@@ -41,7 +41,7 @@
 .btn {
   @include btn();
   width: 100px;
-  background: $left-gradiant;
+  background: $lightest-blue;
   color: $btns-bg;
   padding: 10px 0;
   margin: 1rem auto;
@@ -73,7 +73,7 @@
 
 .blue_btn {
   @include btn();
-  background: $left-gradiant;
+  background: $lightest-blue;
   color: $txt;
   padding: 1rem 1.5rem;
   margin-top: 1rem;
@@ -88,7 +88,7 @@
   color: $txt;
   border: none;
   &:hover {
-    background: $left-gradiant;
+    background: $lightest-blue;
   }
 }
 .cancel_btn {
@@ -127,7 +127,7 @@
   text-align: left;
   padding: 0 3rem;
   border-radius: 4px;
-  background: $left-gradiant;
+  background: $lightest-blue;
   margin: 3px 2rem;
   p {
     margin: auto;
@@ -135,7 +135,7 @@
     width: 100%;
   }
   &:hover {
-    background: $hover-gradiant;
+    background: $lightest-blue-hover;
   }
 }
 .scrollable {

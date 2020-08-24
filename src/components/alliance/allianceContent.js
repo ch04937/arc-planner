@@ -3,6 +3,7 @@ import { PlayerContext } from "../../utils/context/Player/PlayerState";
 import CreateEvent from "./createEvents";
 
 import styles from "../../stylesheets/alliance.module.scss";
+import custom from "../../stylesheets/custom-styles.module.scss";
 
 export default function AllianceContent() {
   const {
@@ -17,10 +18,12 @@ export default function AllianceContent() {
     profile,
     getPrivilege,
     privilege,
+    deleteEvent,
   } = useContext(PlayerContext);
   const t3 = profile.t3arch + profile.t3inf + profile.t3cav;
   const t4 = profile.t4arch + profile.t4inf + profile.t4cav;
   const t5 = profile.t5arch + profile.t5inf + profile.t5cav;
+
   useEffect(() => {
     getProfile();
     getAlliance();
@@ -28,6 +31,7 @@ export default function AllianceContent() {
     getPrivilege();
     getCurrentEvents();
   }, [alliance.allianceId]);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
@@ -45,20 +49,31 @@ export default function AllianceContent() {
           <>
             <div className={styles.no_events}>{eventsError}</div>
             <CreateEvent />
+            {events &&
+              events.map((data) => (
+                <div key={data.eventId} className={styles.eventCards}>
+                  <div className={styles.row}>
+                    <h3 className={styles.title}>{data.eventName}</h3>
+                    <p>This event ends in {data.endDate}</p>
+                  </div>
+                  <p>{data.eventDescription}</p>
+                  <p
+                    className={styles.delete}
+                    onClick={() => deleteEvent(data.eventsId)}
+                  >
+                    delete
+                  </p>
+                </div>
+              ))}
           </>
         ) : (
           <>
-            {eventsError ? (
-              <div className={styles.no_events}>{eventsError}</div>
-            ) : (
-              <>
-                {privilege.isLead ? <button>Delete Event</button> : "false"}
-                <h3> Event Card </h3>
-                <p> Event Name </p>
-                <p> Event Date </p>
-                <p> how many are participating </p>
-              </>
-            )}
+            <div className={styles.no_events}>{eventsError}</div>
+            {privilege.isLead ? <button>Delete Event</button> : "false"}
+            <h3> Event Card </h3>
+            <p> Event Name </p>
+            <p> Event Date </p>
+            <p> how many are participating </p>
           </>
         )}
       </div>

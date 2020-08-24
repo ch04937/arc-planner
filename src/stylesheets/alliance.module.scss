@@ -86,3 +86,29 @@
     border-radius: 4px;
   }
 }
+.eventCards {
+  border: 1px solid black;
+  margin: 1.5rem 1rem;
+  border-radius: 4px;
+  background: $right-gradiant;
+  padding: 1rem;
+  text-align: left;
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .delete {
+    cursor: pointer;
+    background: red;
+    width: fit-content;
+    padding: 3px 5px;
+    border-radius: 4px;
+    margin: auto;
+    &:hover {
+      background: darkred;
+    }
+  }
+  &:hover {
+    background: $lightest-blue;
+  }
+}

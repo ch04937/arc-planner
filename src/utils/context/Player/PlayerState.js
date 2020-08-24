@@ -32,6 +32,8 @@ import {
   GET_PRIVILEGE_ERROR,
   CREATE_EVENTS_SUCCESS,
   CREATE_EVENTS_ERROR,
+  DELETE_EVENT_SUCCESS,
+  DELETE_EVENT_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -220,6 +222,18 @@ export const PlayerState = (props) => {
       dispatch({ type: CREATE_EVENTS_ERROR, payload: e.response });
     }
   };
+  const deleteEvent = async (eventId) => {
+    dispatch({ type: IS_LOADING, payload: true });
+    console.log("eventId", eventId);
+    try {
+      const res = await axiosWithAuth().delete(`/events/${eventId}`);
+      dispatch({ type: DELETE_EVENT_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: DELETE_EVENT_ERROR, payload: e.response });
+    }
+  };
+
   return (
     <PlayerContext.Provider
       value={{
@@ -249,6 +263,7 @@ export const PlayerState = (props) => {
         getCurrentEvents,
         getMembers,
         createEvents,
+        deleteEvent,
       }}
     >
       {props.children}
