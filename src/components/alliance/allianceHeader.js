@@ -11,7 +11,7 @@ export default function AllianceHeader() {
         <div className={styles.info}>
           <h1>{`[${alliance.allianceTag}] ${alliance.allianceName}`}</h1>
           <p>{`Alliance Leader: ${
-            alliance.inGameName ? alliance.inGameName : ""
+            alliance.inGameName ? alliance.inGameName : "???"
           }`}</p>
           <p>{`Members: ${alliance.count}`}</p>
         </div>

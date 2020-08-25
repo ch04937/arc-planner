@@ -16,11 +16,14 @@ export default function AllianceList() {
     applications,
     sendApplication,
     cancelApplication,
+    getApplications,
   } = useContext(PlayerContext);
 
   useEffect(() => {
+    getApplications();
+
     getAllianceList();
-  }, []);
+  }, [applications.length]);
 
   function applicationSent(e) {
     sendApplication(e);

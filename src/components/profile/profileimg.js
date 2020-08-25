@@ -35,7 +35,6 @@ export default function ProfileImg() {
     updateProfile(data);
     setInputChange(false);
   }
-  console.log("profile", profile);
   function handleChange(e) {
     setImgToggle(true);
     const [file] = e.target.files;

@@ -34,6 +34,12 @@ import {
   CREATE_EVENTS_ERROR,
   DELETE_EVENT_SUCCESS,
   DELETE_EVENT_ERROR,
+  WILL_PARTICIPATE_SUCCESS,
+  WILL_PARTICIPATE_ERROR,
+  GET_ALL_EVENTS_SUCCESS,
+  GET_ALL_EVENTS_ERROR,
+  GET_EVENT_SUCCESS,
+  GET_EVENT_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -50,9 +56,12 @@ export const PlayerState = (props) => {
     eventsError: "",
     eventCreatedMessage: "",
     eventCreatedMessageError: "",
+    willParticipateMessage: "",
     alliance: [],
     allianceList: [],
     events: [],
+    participants: [],
+    eventsList: [],
     profile: [],
     userProfile: { isMember: false },
     applications: [],
@@ -128,7 +137,7 @@ export const PlayerState = (props) => {
         : dispatch({ type: GET_ALLIANCE_ERROR, payload: e.response });
     }
   };
-  const getPrivilege = async () => {
+  const getPermissions = async () => {
     dispatch({ type: IS_LOADING, payload: true });
     try {
       const res = await axiosWithAuth().get(`/alliance/permissions`);
@@ -235,15 +244,49 @@ export const PlayerState = (props) => {
       dispatch({ type: DELETE_EVENT_ERROR, payload: e.response });
     }
   };
-
+  const willParticipate = async (isParticipating, eventId) => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().put(`/event/${eventId}`, {
+        isParticipating,
+      });
+      dispatch({ type: WILL_PARTICIPATE_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: WILL_PARTICIPATE_ERROR, payload: e.response });
+    }
+  };
+  const getAllEvents = async () => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().get(`/event/all`);
+      dispatch({ type: GET_ALL_EVENTS_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: GET_ALL_EVENTS_ERROR, payload: e.response });
+    }
+  };
+  const getEvent = async (eventId) => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().get(`/event/specific/${eventId}/`);
+      dispatch({ type: GET_EVENT_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: GET_EVENT_ERROR, payload: e.response });
+    }
+  };
   return (
     <PlayerContext.Provider
       value={{
         isLoading: state.isLoading,
         allianceListError: state.allianceListError,
+        willParticipateMessage: state.willParticipateMessage,
         eventsError: state.eventsError,
         alliance: state.alliance,
+        participants: state.participants,
         events: state.events,
+        eventsList: state.eventsList,
         members: state.members,
         allianceList: state.allianceList,
         applications: state.applications,
@@ -251,7 +294,7 @@ export const PlayerState = (props) => {
         permissions: state.permissions,
         userProfile: state.userProfile,
         getProfile,
-        getPrivilege,
+        getPermissions,
         getUserProfile,
         updateTroops,
         updateProfile,
@@ -266,6 +309,9 @@ export const PlayerState = (props) => {
         getMembers,
         createEvents,
         deleteEvent,
+        willParticipate,
+        getAllEvents,
+        getEvent,
       }}
     >
       {props.children}

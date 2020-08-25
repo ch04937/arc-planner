@@ -28,14 +28,15 @@
 }
 
 .card_wrapper {
-  // background: $btns-bg;
   color: $txt;
   border-radius: 4px;
   padding: 1rem;
   text-align: center;
 }
 .no_events {
+  background: $btns-bg;
   text-align: center;
+  padding: 1rem 0;
 }
 
 .cards {
@@ -97,6 +98,7 @@
   .row {
     display: flex;
     justify-content: space-between;
+    color: $txt;
   }
   .delete {
     cursor: pointer;
@@ -114,6 +116,19 @@
   }
 }
 
+.delete_btn {
+  text-align: right;
+}
 .switch {
   text-align: center;
+}
+.event_header {
+  display: flex;
+  flex-direction: row;
+  .title {
+    color: $txt;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
 }

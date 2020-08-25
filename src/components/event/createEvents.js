@@ -37,9 +37,7 @@ export default function CreateEvent() {
             onClose={() => setOpen(false)}
             onOpen={() => setOpen(true)}
             open={open}
-            trigger={
-              <button className={custom.blue_btn}>Create An Event</button>
-            }
+            trigger={<Button color="green">Create An Event</Button>}
           >
             <Modal.Header>Create Event</Modal.Header>
             <Modal.Content>

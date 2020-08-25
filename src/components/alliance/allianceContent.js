@@ -3,6 +3,7 @@ import { PlayerContext } from "../../utils/context/Player/PlayerState";
 
 import AllianceHeader from "./allianceHeader";
 import styles from "../../stylesheets/alliance.module.scss";
+import custom from "../../stylesheets/custom-styles.module.scss";
 import { Button } from "semantic-ui-react";
 
 export default function AllianceContent() {
@@ -12,23 +13,30 @@ export default function AllianceContent() {
     getProfile,
     getMembers,
     getCurrentEvents,
-    getPrivilege,
+    getPermissions,
     eventsError,
     events,
+    willParticipate,
+    willParticipateMessage,
   } = useContext(PlayerContext);
 
   useEffect(() => {
     getProfile();
     getAlliance();
     getMembers();
-    getPrivilege();
+    getPermissions();
     getCurrentEvents();
-  }, [alliance.allianceId]);
+  }, []);
   return (
     <div className={styles.wrapper}>
       <AllianceHeader />
       <div className={styles.card_wrapper}>
-        <div className={styles.no_events}>{eventsError}</div>
+        {eventsError ? (
+          <div className={styles.no_events}>{eventsError}</div>
+        ) : (
+          ""
+        )}
+
         {events &&
           events.map((data) => (
             <div key={data.eventId} className={styles.eventCards}>
@@ -40,11 +48,19 @@ export default function AllianceContent() {
               <div className={styles.switch}>
                 {data.isParticipating === null ? (
                   <Button.Group>
-                    <Button color="red" inverted>
+                    <Button
+                      color="red"
+                      inverted
+                      onClick={() => willParticipate(0, data.eventId)}
+                    >
                       Not Going
                     </Button>
                     <Button.Or />
-                    <Button color="blue" inverted>
+                    <Button
+                      color="blue"
+                      inverted
+                      onClick={() => willParticipate(1, data.eventId)}
+                    >
                       Going
                     </Button>
                   </Button.Group>
@@ -54,13 +70,21 @@ export default function AllianceContent() {
                       Not Going
                     </Button>
                     <Button.Or />
-                    <Button color="blue" inverted>
+                    <Button
+                      color="blue"
+                      inverted
+                      onClick={() => willParticipate(1, data.eventId)}
+                    >
                       Going
                     </Button>
                   </Button.Group>
                 ) : (
                   <Button.Group>
-                    <Button color="red" inverted>
+                    <Button
+                      color="red"
+                      inverted
+                      onClick={() => willParticipate(0, data.eventId)}
+                    >
                       Not Going
                     </Button>
                     <Button.Or />
@@ -69,6 +93,8 @@ export default function AllianceContent() {
                     </Button>
                   </Button.Group>
                 )}
+
+                <div className={custom.message}> {willParticipateMessage}</div>
               </div>
             </div>
           ))}

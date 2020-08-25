@@ -32,6 +32,12 @@ import {
   CREATE_EVENTS_ERROR,
   DELETE_EVENT_SUCCESS,
   DELETE_EVENT_ERROR,
+  WILL_PARTICIPATE_SUCCESS,
+  WILL_PARTICIPATE_ERROR,
+  GET_ALL_EVENTS_SUCCESS,
+  GET_ALL_EVENTS_ERROR,
+  GET_EVENT_SUCCESS,
+  GET_EVENT_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -224,14 +230,14 @@ const getMembersError = (state, action) => {
     is_loading: false,
   };
 };
-const getPrivilege = (state, action) => {
+const getPermissions = (state, action) => {
   return {
     ...state,
     is_loading: false,
     permissions: action.payload,
   };
 };
-const getPrivilegeError = (state, action) => {
+const getPermissionsError = (state, action) => {
   return {
     ...state,
     error: action.payload,
@@ -264,6 +270,48 @@ const deleteEvent = (state, action) => {
   };
 };
 const deleteEventError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
+const willParticipate = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    willParticipateMessage: action.payload.message,
+  };
+};
+const willParticipateError = (state, action) => {
+  return {
+    ...state,
+    willParticipateMessage: action.payload.message,
+    is_loading: false,
+  };
+};
+const getAllEvents = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    eventsList: action.payload,
+  };
+};
+const getAllEventsError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
+const getEvent = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    participants: action.payload,
+  };
+};
+const getEventError = (state, action) => {
   return {
     ...state,
     error: action.payload,
@@ -328,9 +376,9 @@ export const reducer = (state, action) => {
     case GET_MEMBERS_ERROR:
       return getMembersError(state, action);
     case GET_PRIVILEGE_SUCCESS:
-      return getPrivilege(state, action);
+      return getPermissions(state, action);
     case GET_PRIVILEGE_ERROR:
-      return getPrivilegeError(state, action);
+      return getPermissionsError(state, action);
     case CREATE_EVENTS_SUCCESS:
       return createEvents(state, action);
     case CREATE_EVENTS_ERROR:
@@ -339,6 +387,18 @@ export const reducer = (state, action) => {
       return deleteEvent(state, action);
     case DELETE_EVENT_ERROR:
       return deleteEventError(state, action);
+    case WILL_PARTICIPATE_SUCCESS:
+      return willParticipate(state, action);
+    case WILL_PARTICIPATE_ERROR:
+      return willParticipateError(state, action);
+    case GET_ALL_EVENTS_SUCCESS:
+      return getAllEvents(state, action);
+    case GET_ALL_EVENTS_ERROR:
+      return getAllEventsError(state, action);
+    case GET_EVENT_SUCCESS:
+      return getEvent(state, action);
+    case GET_EVENT_ERROR:
+      return getEventError(state, action);
     default:
       return state;
   }
