@@ -5,8 +5,6 @@ import * as yup from "yup";
 
 import { PlayerContext } from "../../utils/context/Player/PlayerState";
 
-import custom from "../../stylesheets/custom-styles.module.scss";
-
 export default function CreateEvent() {
   const { createEvents } = useContext(PlayerContext);
   const [open, setOpen] = useState(false);

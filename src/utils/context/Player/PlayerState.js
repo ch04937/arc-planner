@@ -40,6 +40,8 @@ import {
   GET_ALL_EVENTS_ERROR,
   GET_EVENT_SUCCESS,
   GET_EVENT_ERROR,
+  CREATE_TEAM_SUCCESS,
+  CREATE_TEAM_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -54,8 +56,6 @@ export const PlayerState = (props) => {
     isLoading: false,
     allianceListError: "",
     eventsError: "",
-    eventCreatedMessage: "",
-    eventCreatedMessageError: "",
     willParticipateMessage: "",
     alliance: [],
     allianceList: [],
@@ -67,6 +67,7 @@ export const PlayerState = (props) => {
     applications: [],
     members: [],
     permissions: {},
+    teams: [],
   };
 
   // use reducer on local state or start fresh with initial state
@@ -88,7 +89,6 @@ export const PlayerState = (props) => {
       const res = await axiosWithAuth().get(`/profile`);
       dispatch({ type: GET_PROFILE_SUCCESS, payload: res.data });
     } catch (e) {
-      console.log("e", e.response);
       e.response.status === 401
         ? logOut()
         : dispatch({ type: GET_ALLIANCE_ERROR, payload: e.response });
@@ -174,7 +174,6 @@ export const PlayerState = (props) => {
       const res = await axiosWithAuth().get(`alliance/applications`);
       dispatch({ type: GET_APPLICATIONS_SUCCESS, payload: res.data });
     } catch (e) {
-      console.log("error", e.response);
       dispatch({ type: GET_APPLICATIONS_ERROR, payload: e.response });
     }
   };
@@ -262,7 +261,6 @@ export const PlayerState = (props) => {
       const res = await axiosWithAuth().get(`/event/all`);
       dispatch({ type: GET_ALL_EVENTS_SUCCESS, payload: res.data });
     } catch (e) {
-      console.log("error", e);
       dispatch({ type: GET_ALL_EVENTS_ERROR, payload: e.response });
     }
   };
@@ -276,6 +274,17 @@ export const PlayerState = (props) => {
       dispatch({ type: GET_EVENT_ERROR, payload: e.response });
     }
   };
+  const createTeam = async (body, eventId) => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().post(`/event/team/${eventId}`, body);
+      dispatch({ type: CREATE_TEAM_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: CREATE_TEAM_ERROR, payload: e.response });
+    }
+  };
+
   return (
     <PlayerContext.Provider
       value={{
@@ -293,6 +302,7 @@ export const PlayerState = (props) => {
         profile: state.profile,
         permissions: state.permissions,
         userProfile: state.userProfile,
+        teams: state.teams,
         getProfile,
         getPermissions,
         getUserProfile,
@@ -312,6 +322,7 @@ export const PlayerState = (props) => {
         willParticipate,
         getAllEvents,
         getEvent,
+        createTeam,
       }}
     >
       {props.children}

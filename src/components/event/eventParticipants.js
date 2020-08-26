@@ -1,4 +1,5 @@
 import React from "react";
+import CreateTeam from "./createTeam";
 
 import styles from "../../stylesheets/alliance.module.scss";
 
@@ -8,7 +9,10 @@ export default function EventParticipants({ participants }) {
   const t5 = participants.t5arch + participants.t5inf + participants.t5cav;
   return (
     <div>
-      Participants are as following:
+      <div className={styles.row}>
+        <p>Participants are as following:</p>
+        <CreateTeam />
+      </div>
       {participants &&
         participants.map((data) => (
           <div className={styles.cards} key={data.uuid}>

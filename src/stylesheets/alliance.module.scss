@@ -36,14 +36,16 @@
 .no_events {
   background: $btns-bg;
   text-align: center;
+  border-radius: 4px;
   padding: 1rem 0;
+  margin: 1rem;
 }
 
 .cards {
-  background: $btns-bg;
   margin: 2rem 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   width: 100%;
   border-radius: 4px;
   padding: 1rem 2rem;
@@ -69,11 +71,13 @@
 }
 .card {
   border-radius: 4px;
-  background: $right-gradiant;
+  background: #005e81;
+  border: 1px solid black;
   padding: 0.5rem;
-  width: 280px;
+  width: 229px;
   height: 75px;
   display: flex;
+  box-shadow: -2px 5px #4f4e4e;
 }
 .card_content {
   color: $txt;
@@ -99,20 +103,6 @@
     display: flex;
     justify-content: space-between;
     color: $txt;
-  }
-  .delete {
-    cursor: pointer;
-    background: red;
-    width: fit-content;
-    padding: 3px 5px;
-    border-radius: 4px;
-    margin: auto;
-    &:hover {
-      background: darkred;
-    }
-  }
-  &:hover {
-    background: #005e81;
   }
 }
 

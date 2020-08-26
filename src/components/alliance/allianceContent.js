@@ -31,12 +31,6 @@ export default function AllianceContent() {
     <div className={styles.wrapper}>
       <AllianceHeader />
       <div className={styles.card_wrapper}>
-        {eventsError ? (
-          <div className={styles.no_events}>{eventsError}</div>
-        ) : (
-          ""
-        )}
-
         {events &&
           events.map((data) => (
             <div key={data.eventId} className={styles.eventCards}>
@@ -93,8 +87,7 @@ export default function AllianceContent() {
                     </Button>
                   </Button.Group>
                 )}
-
-                <div className={custom.message}> {willParticipateMessage}</div>
+                <div className={custom.message}>{willParticipateMessage}</div>
               </div>
             </div>
           ))}

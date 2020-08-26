@@ -9,7 +9,6 @@ import styles from "../../stylesheets/profile.module.scss";
 
 export default function AllianceList() {
   const {
-    isLoading,
     allianceList,
     allianceListError,
     getAllianceList,
@@ -21,7 +20,6 @@ export default function AllianceList() {
 
   useEffect(() => {
     getApplications();
-
     getAllianceList();
   }, [applications.length]);
 

@@ -12,6 +12,7 @@ export default function ProfileTroops() {
   useEffect(() => {
     getProfile();
   }, []);
+
   return (
     <div className={styles.t_wrapper}>
       <div className={styles.t_troops}>

@@ -38,6 +38,8 @@ import {
   GET_ALL_EVENTS_ERROR,
   GET_EVENT_SUCCESS,
   GET_EVENT_ERROR,
+  CREATE_TEAM_SUCCESS,
+  CREATE_TEAM_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -155,7 +157,7 @@ const getApplication = (state, action) => {
 const getApplicationError = (state, action) => {
   return {
     ...state,
-    error: action.payload,
+    error: action.payload.message,
     is_loading: false,
   };
 };
@@ -245,20 +247,16 @@ const getPermissionsError = (state, action) => {
   };
 };
 const createEvents = (state, action) => {
-  console.log("action", action);
   return {
     ...state,
     is_loading: false,
-    eventCreatedMessageError: "",
-    eventCreatedMessage: action.payload.message,
+    eventsList: action.payload,
   };
 };
 const createEventsError = (state, action) => {
-  console.log("action", action);
   return {
     ...state,
     eventCreatedMessageError: action.payload.message,
-    eventCreatedMessage: "",
     is_loading: false,
   };
 };
@@ -300,15 +298,17 @@ const getAllEvents = (state, action) => {
 const getAllEventsError = (state, action) => {
   return {
     ...state,
-    error: action.payload,
+    eventsError: action.payload.data.message,
     is_loading: false,
   };
 };
 const getEvent = (state, action) => {
+  console.log("action.payload", action.payload);
   return {
     ...state,
     is_loading: false,
-    participants: action.payload,
+    participants: action.payload.participants,
+    teams: action.payload.teams,
   };
 };
 const getEventError = (state, action) => {
@@ -318,6 +318,21 @@ const getEventError = (state, action) => {
     is_loading: false,
   };
 };
+const createTeam = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    teams: action.payload,
+  };
+};
+const createTeamError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
+
 // cases
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -399,6 +414,10 @@ export const reducer = (state, action) => {
       return getEvent(state, action);
     case GET_EVENT_ERROR:
       return getEventError(state, action);
+    case CREATE_TEAM_SUCCESS:
+      return createTeam(state, action);
+    case CREATE_TEAM_ERROR:
+      return createTeamError(state, action);
     default:
       return state;
   }
