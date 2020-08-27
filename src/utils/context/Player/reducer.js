@@ -193,7 +193,8 @@ const createAlliance = (state, action) => {
   return {
     ...state,
     is_loading: false,
-    userProfile: action.payload.userProfile,
+    alliance: action.payload.alliance,
+    userProfile: action.payload.profile,
   };
 };
 const createAllianceError = (state, action) => {
@@ -250,13 +251,14 @@ const createEvents = (state, action) => {
   return {
     ...state,
     is_loading: false,
+    eventsError: "",
     eventsList: action.payload,
   };
 };
 const createEventsError = (state, action) => {
   return {
     ...state,
-    eventCreatedMessageError: action.payload.message,
+    eventsError: action.payload.message,
     is_loading: false,
   };
 };

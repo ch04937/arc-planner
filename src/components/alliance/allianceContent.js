@@ -87,7 +87,6 @@ export default function AllianceContent() {
                     </Button>
                   </Button.Group>
                 )}
-                <div className={custom.message}>{willParticipateMessage}</div>
               </div>
             </div>
           ))}

@@ -7,6 +7,7 @@ import custom from "../../stylesheets/custom-styles.module.scss";
 
 import { Accordion, Button, Icon } from "semantic-ui-react";
 import EventParticipants from "./eventParticipants";
+import Drag from "./drag";
 
 export default function Events() {
   const {
@@ -59,14 +60,14 @@ export default function Events() {
                 </Accordion.Title>
                 <Accordion.Content active={activeIndex === data.eventId}>
                   <p>{data.eventDescription}</p>
-                  <EventParticipants participants={participants} />
-                  {/* {teams} */}
-                  {teams &&
+                  {/* <EventParticipants participants={participants} /> */}
+                  {/* {teams &&
                     teams.map((data) => (
                       <div key={data.teamId}>
                         <h1>{data.teamName}</h1>
                       </div>
-                    ))}
+                    ))} */}
+                  <Drag teams={teams} participants={participants} />
                 </Accordion.Content>
                 <div className={styles.delete_btn}>
                   <Button color="red" onClick={() => deleteEvent(data.eventId)}>
