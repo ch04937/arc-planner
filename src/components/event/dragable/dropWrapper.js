@@ -2,10 +2,10 @@ import React from "react";
 import { useDrop } from "react-dnd";
 import { ITEM_TYPE } from "./types";
 
-export default function DropWrapper({ onDrop, children, status }) {
+export default function DropWrapper({ onDrop, children, teamId }) {
   const [{ isOver }, drop] = useDrop({
     accept: ITEM_TYPE,
-    drop: (item, monitor) => onDrop(item, monitor, status),
+    drop: (item, monitor) => onDrop(item, monitor, teamId),
     collect: (monitor) => ({ isOver: monitor.isOver() }),
   });
   return (

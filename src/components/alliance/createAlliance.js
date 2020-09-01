@@ -31,13 +31,8 @@ export default function CreateAlliance() {
           allianceName: yup.string().required("This is a required field"),
           messageBoard: yup.string().required("This is a required field"),
         })}
-        render={({
-          values,
-          errors,
-          handleChange,
-          handleSubmit,
-          isSubmitting,
-        }) => (
+      >
+        {({ values, errors, handleChange, handleSubmit, isSubmitting }) => (
           <Modal
             as={Form}
             onClose={() => setOpen(false)}
@@ -119,7 +114,7 @@ export default function CreateAlliance() {
             </Modal.Actions>
           </Modal>
         )}
-      />
+      </Formik>
     </div>
   );
 }

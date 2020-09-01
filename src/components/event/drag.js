@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { PlayerContext } from "../../utils/context/Player/PlayerState";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
+import EventParticipants from "./eventParticipants";
 
 // drag
 import Item from "./dragable/Item";
@@ -7,12 +11,12 @@ import Col from "./dragable/col";
 import { data, statuses } from "./dragable/data";
 import "./dragable/styles.css";
 
-export default function Drag({ teams, participants }) {
+export default function Drag() {
+  const { participants, teams } = useContext(PlayerContext);
   const [items, setItems] = useState(participants);
 
   const onDrop = (item, monitor, status) => {
     const mapping = statuses.find((si) => si.status === status);
-
     setItems((prevState) => {
       const newItems = prevState
         .filter((i) => i.id !== item.id)
@@ -20,7 +24,6 @@ export default function Drag({ teams, participants }) {
       return [...newItems];
     });
   };
-
   const moveItem = (dragIndex, hoverIndex) => {
     const item = items[dragIndex];
     setItems((prevState) => {
@@ -30,13 +33,14 @@ export default function Drag({ teams, participants }) {
     });
   };
   return (
-    <div>
+    <DndProvider backend={HTML5Backend}>
+      <EventParticipants participants={participants} />
       {teams.map((s) => (
-        <div key={s.status} className={"col-wrapper"}>
+        <div key={s.teamId} className={"col-wrapper"}>
           <h2 className={"col-header"}>{s.teamName.toUpperCase()}</h2>
-          <DropWrapper onDrop={onDrop} status={s.status}>
+          <DropWrapper onDrop={onDrop} teamId={s.teamId}>
             <Col>
-              {items
+              {participants
                 .filter((i) => i.teamId === s.teamId)
                 .map((i, idx) => (
                   <Item key={i.id} item={i} index={idx} moveItem={moveItem} />
@@ -45,6 +49,6 @@ export default function Drag({ teams, participants }) {
           </DropWrapper>
         </div>
       ))}
-    </div>
+    </DndProvider>
   );
 }

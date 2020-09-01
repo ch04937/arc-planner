@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import styles from "../../stylesheets/alliance.module.scss";
 import { PlayerContext } from "../../utils/context/Player/PlayerState";
 
 export default function AllianceHeader() {
-  const { alliance } = useContext(PlayerContext);
+  const { alliance, getAlliance } = useContext(PlayerContext);
+  useEffect(() => {
+    getAlliance();
+  }, []);
   return (
     <div>
       <div className={styles.header}>

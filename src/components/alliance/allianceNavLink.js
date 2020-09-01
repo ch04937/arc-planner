@@ -11,7 +11,7 @@ import Members from "../event/members";
 
 export default function AllianceNavLink() {
   const { getPermissions, permissions } = useContext(PlayerContext);
-  const [activeItem, setActiveItem] = useState("events");
+  const [activeItem, setActiveItem] = useState("alliance");
 
   function handleItemClick(e, { name }) {
     setActiveItem(name);

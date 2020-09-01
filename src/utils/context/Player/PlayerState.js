@@ -42,6 +42,10 @@ import {
   GET_EVENT_ERROR,
   CREATE_TEAM_SUCCESS,
   CREATE_TEAM_ERROR,
+  INIT_CHOICE_SUCCESS,
+  INIT_CHOICE_ERROR,
+  PARTICIPATING_EVENTS_SUCCESS,
+  PARTICIPATING_EVENTS_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -68,6 +72,7 @@ export const PlayerState = (props) => {
     members: [],
     permissions: {},
     teams: [],
+    participatingEvents: [],
   };
 
   // use reducer on local state or start fresh with initial state
@@ -89,6 +94,7 @@ export const PlayerState = (props) => {
       const res = await axiosWithAuth().get(`/profile`);
       dispatch({ type: GET_PROFILE_SUCCESS, payload: res.data });
     } catch (e) {
+      console.log("e", e);
       e.response.status === 401
         ? logOut()
         : dispatch({ type: GET_ALLIANCE_ERROR, payload: e.response });
@@ -143,6 +149,7 @@ export const PlayerState = (props) => {
       const res = await axiosWithAuth().get(`/alliance/permissions`);
       dispatch({ type: GET_PRIVILEGE_SUCCESS, payload: res.data });
     } catch (e) {
+      console.log("e", e);
       dispatch({ type: GET_PRIVILEGE_ERROR, payload: e.response });
     }
   };
@@ -174,6 +181,7 @@ export const PlayerState = (props) => {
       const res = await axiosWithAuth().get(`alliance/applications`);
       dispatch({ type: GET_APPLICATIONS_SUCCESS, payload: res.data });
     } catch (e) {
+      console.log("e", e);
       dispatch({ type: GET_APPLICATIONS_ERROR, payload: e.response });
     }
   };
@@ -261,6 +269,7 @@ export const PlayerState = (props) => {
       const res = await axiosWithAuth().get(`/event/all`);
       dispatch({ type: GET_ALL_EVENTS_SUCCESS, payload: res.data });
     } catch (e) {
+      console.log("e", e);
       dispatch({ type: GET_ALL_EVENTS_ERROR, payload: e.response });
     }
   };
@@ -284,7 +293,29 @@ export const PlayerState = (props) => {
       dispatch({ type: CREATE_TEAM_ERROR, payload: e.response });
     }
   };
-
+  const initChoice = async (data, eventId) => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().post(
+        `/event/participation/${eventId}`,
+        { data }
+      );
+      dispatch({ type: INIT_CHOICE_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: INIT_CHOICE_ERROR, payload: e.response });
+    }
+  };
+  const getParticipatingEvents = async () => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().get(`/event/participating`);
+      dispatch({ type: PARTICIPATING_EVENTS_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: PARTICIPATING_EVENTS_ERROR, payload: e.response });
+    }
+  };
   return (
     <PlayerContext.Provider
       value={{
@@ -300,6 +331,7 @@ export const PlayerState = (props) => {
         allianceList: state.allianceList,
         applications: state.applications,
         profile: state.profile,
+        participatingEvents: state.participatingEvents,
         permissions: state.permissions,
         userProfile: state.userProfile,
         teams: state.teams,
@@ -323,6 +355,8 @@ export const PlayerState = (props) => {
         getAllEvents,
         getEvent,
         createTeam,
+        initChoice,
+        getParticipatingEvents,
       }}
     >
       {props.children}

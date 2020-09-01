@@ -6,7 +6,6 @@ import styles from "../../stylesheets/alliance.module.scss";
 import custom from "../../stylesheets/custom-styles.module.scss";
 
 import { Accordion, Button, Icon } from "semantic-ui-react";
-import EventParticipants from "./eventParticipants";
 import Drag from "./drag";
 
 export default function Events() {
@@ -15,9 +14,7 @@ export default function Events() {
     getAllEvents,
     deleteEvent,
     getEvent,
-    participants,
     eventsError,
-    teams,
   } = useContext(PlayerContext);
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -42,7 +39,7 @@ export default function Events() {
         {eventsList &&
           eventsList.map((data) => (
             <div key={data.eventId} className={styles.eventCards}>
-              <Accordion fluid>
+              <Accordion>
                 <Accordion.Title
                   active={activeIndex === data.eventId}
                   index={data.eventId}
@@ -60,14 +57,7 @@ export default function Events() {
                 </Accordion.Title>
                 <Accordion.Content active={activeIndex === data.eventId}>
                   <p>{data.eventDescription}</p>
-                  {/* <EventParticipants participants={participants} /> */}
-                  {/* {teams &&
-                    teams.map((data) => (
-                      <div key={data.teamId}>
-                        <h1>{data.teamName}</h1>
-                      </div>
-                    ))} */}
-                  <Drag teams={teams} participants={participants} />
+                  <Drag />
                 </Accordion.Content>
                 <div className={styles.delete_btn}>
                   <Button color="red" onClick={() => deleteEvent(data.eventId)}>

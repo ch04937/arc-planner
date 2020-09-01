@@ -40,6 +40,10 @@ import {
   GET_EVENT_ERROR,
   CREATE_TEAM_SUCCESS,
   CREATE_TEAM_ERROR,
+  INIT_CHOICE_SUCCESS,
+  INIT_CHOICE_ERROR,
+  PARTICIPATING_EVENTS_SUCCESS,
+  PARTICIPATING_EVENTS_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -283,13 +287,7 @@ const willParticipate = (state, action) => {
     willParticipateMessage: action.payload.message,
   };
 };
-const willParticipateError = (state, action) => {
-  return {
-    ...state,
-    willParticipateMessage: action.payload.message,
-    is_loading: false,
-  };
-};
+
 const getAllEvents = (state, action) => {
   return {
     ...state,
@@ -305,7 +303,6 @@ const getAllEventsError = (state, action) => {
   };
 };
 const getEvent = (state, action) => {
-  console.log("action.payload", action.payload);
   return {
     ...state,
     is_loading: false,
@@ -328,6 +325,34 @@ const createTeam = (state, action) => {
   };
 };
 const createTeamError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
+const initChoice = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    events: action.payload,
+  };
+};
+const initChoiceError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
+const participatingEvents = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    participatingEvents: action.payload,
+  };
+};
+const participatingEventsError = (state, action) => {
   return {
     ...state,
     error: action.payload,
@@ -406,8 +431,6 @@ export const reducer = (state, action) => {
       return deleteEventError(state, action);
     case WILL_PARTICIPATE_SUCCESS:
       return willParticipate(state, action);
-    case WILL_PARTICIPATE_ERROR:
-      return willParticipateError(state, action);
     case GET_ALL_EVENTS_SUCCESS:
       return getAllEvents(state, action);
     case GET_ALL_EVENTS_ERROR:
@@ -420,6 +443,14 @@ export const reducer = (state, action) => {
       return createTeam(state, action);
     case CREATE_TEAM_ERROR:
       return createTeamError(state, action);
+    case INIT_CHOICE_SUCCESS:
+      return initChoice(state, action);
+    case INIT_CHOICE_ERROR:
+      return initChoiceError(state, action);
+    case PARTICIPATING_EVENTS_SUCCESS:
+      return participatingEvents(state, action);
+    case PARTICIPATING_EVENTS_ERROR:
+      return participatingEventsError(state, action);
     default:
       return state;
   }

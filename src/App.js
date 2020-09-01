@@ -1,7 +1,5 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 
 import Header from "./pages/header.js";
 import Footer from "./pages/footer.js";
@@ -29,9 +27,7 @@ function App() {
             <Route path="/login" component={LogIn} />
             <Route path="/register" component={Register} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
-            <DndProvider backend={HTML5Backend}>
-              <PrivateRoute path="/alliance" component={Alliance} />
-            </DndProvider>
+            <PrivateRoute path="/alliance" component={Alliance} />
             <PrivateRoute path="/user" component={Profile} />
           </PlayerState>
         </AuthState>
