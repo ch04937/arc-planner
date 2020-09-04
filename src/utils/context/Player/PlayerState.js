@@ -46,6 +46,8 @@ import {
   INIT_CHOICE_ERROR,
   PARTICIPATING_EVENTS_SUCCESS,
   PARTICIPATING_EVENTS_ERROR,
+  UPDATE_TEAMS_SUCCESS,
+  UPDATE_TEAMS_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -316,6 +318,19 @@ export const PlayerState = (props) => {
       dispatch({ type: PARTICIPATING_EVENTS_ERROR, payload: e.response });
     }
   };
+  const updateTeams = async (old, newest) => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().put(`/event/ondrop/teams`, {
+        old: old,
+        newest: newest,
+      });
+      dispatch({ type: UPDATE_TEAMS_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: UPDATE_TEAMS_ERROR, payload: e.response });
+    }
+  };
   return (
     <PlayerContext.Provider
       value={{
@@ -357,6 +372,7 @@ export const PlayerState = (props) => {
         createTeam,
         initChoice,
         getParticipatingEvents,
+        updateTeams,
       }}
     >
       {props.children}

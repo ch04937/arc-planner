@@ -1,5 +1,4 @@
 import React from "react";
-import CreateTeam from "./createTeam";
 
 import styles from "../../stylesheets/alliance.module.scss";
 
@@ -11,7 +10,6 @@ export default function EventParticipants({ participants }) {
     <div>
       <div className={styles.row}>
         <p>Participants are as following:</p>
-        <CreateTeam />
       </div>
       {participants &&
         participants.map((data) => (

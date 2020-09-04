@@ -1,6 +1,9 @@
 import React, { Fragment, useState, useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { ITEM_TYPE } from "./types";
+import Members from "../members";
+
+import styles from "../../../stylesheets/alliance.module.scss";
 
 export default function Item({ item, index, moveItem }) {
   const ref = useRef(null);
@@ -32,11 +35,77 @@ export default function Item({ item, index, moveItem }) {
 
   drag(drop(ref));
 
+  const t3 = item.t3arch + item.t3inf + item.t3cav;
+  const t4 = item.t4arch + item.t4inf + item.t4cav;
+  const t5 = item.t5arch + item.t5inf + item.t5cav;
+
   return (
     <Fragment>
-      <div ref={ref} style={{ opacity: isDragging ? 0 : 1 }} className={"item"}>
-        <p className={"item-title"}>{item.content}</p>
-        <p className={"item-status"}>{item.icon}</p>
+      <div
+        ref={ref}
+        style={{ opacity: isDragging ? 0 : 1 }}
+        className={styles.cards}
+        key={item.uuid}
+      >
+        <div className={styles.card}>
+          <div>
+            <img
+              src={`${process.env.REACT_APP_BASE_URL}/${
+                item.path && item.path.replace("\\", "/")
+              }`}
+            />
+          </div>
+          <div className={styles.card_content}>
+            <div className={styles.gov_name}>{item.inGameName}</div>
+            <div className={styles.bar}>
+              <div
+                className={styles.t}
+                style={
+                  (t3 * 100) / (t3 + t4 + t5)
+                    ? {
+                        width: `${(t3 * 100) / (t3 + t4 + t5)}%`,
+                        background: "rgb(55 181 254)",
+                      }
+                    : {
+                        display: "none",
+                      }
+                }
+              >
+                {t3} t3
+              </div>
+              <div
+                className={styles.t}
+                style={
+                  (t4 * 100) / (t3 + t4 + t5)
+                    ? {
+                        width: `${(t4 * 100) / (t3 + t4 + t5)}%`,
+                        background: "rgb(127 47 168)",
+                      }
+                    : {
+                        display: "none",
+                      }
+                }
+              >
+                {t4} t4
+              </div>
+              <div
+                className={styles.t}
+                style={
+                  (t5 * 100) / (t3 + t4 + t5)
+                    ? {
+                        width: `${(t5 * 100) / (t3 + t4 + t5)}%`,
+                        background: "#FFA500",
+                      }
+                    : {
+                        display: "none",
+                      }
+                }
+              >
+                {t5} t5
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </Fragment>
   );

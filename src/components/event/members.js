@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import { PlayerContext } from "../../utils/context/Player/PlayerState";
 import styles from "../../stylesheets/alliance.module.scss";
 
-export default function Members() {
+export default function Members({}) {
   const { profile, members } = useContext(PlayerContext);
 
   const t3 = profile.t3arch + profile.t3inf + profile.t3cav;
   const t4 = profile.t4arch + profile.t4inf + profile.t4cav;
   const t5 = profile.t5arch + profile.t5inf + profile.t5cav;
+  console.log("profile", profile);
+  console.log("members", members);
   return (
     <div>
       {members &&

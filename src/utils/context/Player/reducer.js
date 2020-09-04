@@ -44,6 +44,8 @@ import {
   INIT_CHOICE_ERROR,
   PARTICIPATING_EVENTS_SUCCESS,
   PARTICIPATING_EVENTS_ERROR,
+  UPDATE_TEAMS_SUCCESS,
+  UPDATE_TEAMS_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -270,7 +272,7 @@ const deleteEvent = (state, action) => {
   return {
     ...state,
     is_loading: false,
-    events: action.payload,
+    eventsList: action.payload,
   };
 };
 const deleteEventError = (state, action) => {
@@ -359,7 +361,20 @@ const participatingEventsError = (state, action) => {
     is_loading: false,
   };
 };
-
+const updateTeams = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    teams: action.payload,
+  };
+};
+const updateTeamsError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
 // cases
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -451,6 +466,10 @@ export const reducer = (state, action) => {
       return participatingEvents(state, action);
     case PARTICIPATING_EVENTS_ERROR:
       return participatingEventsError(state, action);
+    case UPDATE_TEAMS_SUCCESS:
+      return updateTeams(state, action);
+    case UPDATE_TEAMS_ERROR:
+      return updateTeamsError(state, action);
     default:
       return state;
   }

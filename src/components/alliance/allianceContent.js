@@ -18,7 +18,6 @@ export default function AllianceContent() {
   useEffect(() => {
     getCurrentEvents();
     getParticipatingEvents();
-    console.log("render");
   }, [events.length, participatingEvents.length]);
   return (
     <div className={styles.wrapper}>
