@@ -48,6 +48,10 @@ import {
   PARTICIPATING_EVENTS_ERROR,
   UPDATE_TEAMS_SUCCESS,
   UPDATE_TEAMS_ERROR,
+  ALLIANCE_SETTINGS_SUCCESS,
+  ALLIANCE_SETTINGS_ERROR,
+  DELETE_ALLIANCE_SUCCESS,
+  DELETE_ALLIANCE_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -331,6 +335,27 @@ export const PlayerState = (props) => {
       dispatch({ type: UPDATE_TEAMS_ERROR, payload: e.response });
     }
   };
+  const allianceSettings = async (data) => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().put(`alliance/changes`, data);
+      dispatch({ type: ALLIANCE_SETTINGS_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: ALLIANCE_SETTINGS_ERROR, payload: e.response });
+    }
+  };
+  const deleteAlliance = async () => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().delete(`alliance/delete`);
+      dispatch({ type: DELETE_ALLIANCE_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: DELETE_ALLIANCE_ERROR, payload: e.response });
+    }
+  };
+
   return (
     <PlayerContext.Provider
       value={{
@@ -373,6 +398,8 @@ export const PlayerState = (props) => {
         initChoice,
         getParticipatingEvents,
         updateTeams,
+        allianceSettings,
+        deleteAlliance,
       }}
     >
       {props.children}

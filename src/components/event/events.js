@@ -94,7 +94,7 @@ export default function Events() {
                 <Accordion.Content active={activeIndex === data.eventId}>
                   <div className={styles.row}>
                     <p>{data.eventDescription}</p>
-                    <CreateTeam />
+                    <CreateTeam eventId={data.eventId} />
                   </div>
                   <DndProvider backend={HTML5Backend}>
                     {teams.map((s) => (

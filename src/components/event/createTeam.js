@@ -5,8 +5,8 @@ import * as yup from "yup";
 
 import { PlayerContext } from "../../utils/context/Player/PlayerState";
 
-export default function CreateTeam() {
-  const { createTeam, participants } = useContext(PlayerContext);
+export default function CreateTeam({ eventId }) {
+  const { createTeam } = useContext(PlayerContext);
 
   const [open, setOpen] = useState(false);
   return (
@@ -16,7 +16,7 @@ export default function CreateTeam() {
           teamName: "",
         }}
         onSubmit={(values, actions) => {
-          createTeam(values, participants[0].eventId);
+          createTeam(values, eventId);
           actions.resetForm();
           setOpen(false);
         }}

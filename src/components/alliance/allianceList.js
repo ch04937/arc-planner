@@ -5,7 +5,6 @@ import CreateAlliance from "./createAlliance";
 import { PlayerContext } from "../../utils/context/Player/PlayerState";
 
 import custom from "../../stylesheets/custom-styles.module.scss";
-import styles from "../../stylesheets/profile.module.scss";
 
 export default function AllianceList() {
   const {

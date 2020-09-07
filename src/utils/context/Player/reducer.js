@@ -46,6 +46,10 @@ import {
   PARTICIPATING_EVENTS_ERROR,
   UPDATE_TEAMS_SUCCESS,
   UPDATE_TEAMS_ERROR,
+  ALLIANCE_SETTINGS_SUCCESS,
+  ALLIANCE_SETTINGS_ERROR,
+  DELETE_ALLIANCE_SUCCESS,
+  DELETE_ALLIANCE_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -375,6 +379,34 @@ const updateTeamsError = (state, action) => {
     is_loading: false,
   };
 };
+const allianceSettings = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    alliance: action.payload,
+  };
+};
+const allianceSettingsError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
+const deleteAlliance = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    allianceList: action.payload,
+  };
+};
+const deleteAllianceError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
 // cases
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -470,6 +502,14 @@ export const reducer = (state, action) => {
       return updateTeams(state, action);
     case UPDATE_TEAMS_ERROR:
       return updateTeamsError(state, action);
+    case ALLIANCE_SETTINGS_SUCCESS:
+      return allianceSettings(state, action);
+    case ALLIANCE_SETTINGS_ERROR:
+      return allianceSettingsError(state, action);
+    case DELETE_ALLIANCE_SUCCESS:
+      return deleteAlliance(state, action);
+    case DELETE_ALLIANCE_ERROR:
+      return deleteAllianceError(state, action);
     default:
       return state;
   }

@@ -11,7 +11,7 @@ import Members from "../event/members";
 
 export default function AllianceNavLink() {
   const { getPermissions, permissions } = useContext(PlayerContext);
-  const [activeItem, setActiveItem] = useState("alliance");
+  const [activeItem, setActiveItem] = useState("settings");
 
   function handleItemClick(e, { name }) {
     setActiveItem(name);
@@ -41,18 +41,20 @@ export default function AllianceNavLink() {
                 onClick={handleItemClick}
               />
               {permissions.isLead ? (
-                <>
-                  <Menu.Item
-                    name="events"
-                    active={activeItem === "events"}
-                    onClick={handleItemClick}
-                  />
-                  <Menu.Item
-                    name="settings"
-                    active={activeItem === "settings"}
-                    onClick={handleItemClick}
-                  />
-                </>
+                <Menu.Item
+                  name="events"
+                  active={activeItem === "events"}
+                  onClick={handleItemClick}
+                />
+              ) : (
+                ""
+              )}
+              {permissions.isOwner ? (
+                <Menu.Item
+                  name="settings"
+                  active={activeItem === "settings"}
+                  onClick={handleItemClick}
+                />
               ) : (
                 ""
               )}
