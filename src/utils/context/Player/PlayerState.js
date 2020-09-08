@@ -57,12 +57,15 @@ import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
 
 import { logOut } from "../../localStorage";
+import custom from "../../../stylesheets/custom-styles.module.scss";
+import { Button } from "semantic-ui-react";
 
 export const PlayerContext = createContext();
 
 export const PlayerState = (props) => {
   // create and initial state
   const initialState = {
+    error: "",
     isLoading: false,
     allianceListError: "",
     eventsError: "",
@@ -80,6 +83,10 @@ export const PlayerState = (props) => {
     teams: [],
     participatingEvents: [],
   };
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
 
   // use reducer on local state or start fresh with initial state
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -402,6 +409,14 @@ export const PlayerState = (props) => {
         deleteAlliance,
       }}
     >
+      {state.error && (
+        <div className={custom.global_error}>
+          <p>{state.error}</p>
+          <Button onClick={refreshPage} color="blue">
+            click to reload
+          </Button>
+        </div>
+      )}
       {props.children}
     </PlayerContext.Provider>
   );

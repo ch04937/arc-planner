@@ -151,6 +151,16 @@
   margin: 2rem;
   border-radius: 4px;
 }
+.global_error {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  border-radius: 4px;
+  background-color: #ff7272;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
 .message {
   animation: fade ease 10s;
   animation-iteration-count: 1;

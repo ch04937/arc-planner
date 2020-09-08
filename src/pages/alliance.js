@@ -15,6 +15,7 @@ export default function IsMemberAlliance() {
   useEffect(() => {
     getUserProfile();
   }, []);
+  console.log("userProfile", userProfile);
 
   return (
     <div className={custom.wrapper}>

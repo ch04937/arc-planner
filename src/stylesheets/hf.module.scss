@@ -1,54 +1,42 @@
 @import "./mixins.scss";
 
-.setting {
-	width: 100px;
-	text-align: center;
-	border-radius: 4px;
-	&:hover {
-		background: $btn-active;
-		padding: 7px 0;
-	}
-	.content_wrapper {
-		background: brown;
-		text-align: left;
-		width: 100px;
-		position: absolute;
-		top: 3.5rem;
-		overflow: hidden;
-		.content {
-			padding: 0.5rem 0;
-			&:hover {
-				background: $btn-hover;
-			}
-		}
-	}
-}
 .header {
-	@include flex(space-between, row);
-	align-items: baseline;
-	background-color: brown;
-	padding: 1rem;
-	color: white;
-	overflow: hidden;
-	cursor: pointer;
-	a {
-		color: white;
-		padding: 0.5rem;
-		text-decoration: none;
-	}
-	.nav {
-		display: flex;
-		align-items: baseline;
-		a {
-			border-radius: 4px;
-			&:hover {
-				background: $btn-active;
-			}
-		}
-	}
+  @include flex(space-between, row);
+  align-items: baseline;
+  background-color: brown;
+  padding: 1rem;
+  color: white;
+  overflow: hidden;
+  cursor: pointer;
+  a {
+    color: white;
+    padding: 0.5rem;
+    text-decoration: none;
+  }
+  .nav {
+    display: flex;
+    align-items: baseline;
+    .content {
+      &:hover {
+        border-radius: 4px;
+        background: $btn-active;
+        padding: 7px;
+      }
+    }
+    a {
+      border-radius: 4px;
+      &:hover {
+        background: $btn-active;
+      }
+    }
+  }
 }
-.footer {
-	background-color: brown;
-	color: $txt;
-	height: 3rem;
+.wrapper {
+  background-color: brown;
+  color: $txt;
+  height: 3rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
