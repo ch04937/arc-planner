@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Loader, Icon } from "semantic-ui-react";
 
@@ -57,7 +56,6 @@ export default function LogIn({ history }) {
           </Form>
         )}
       </Formik>
-      <Link to="/register">Dont have an account?</Link>
     </div>
   );
 }
