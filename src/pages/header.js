@@ -17,7 +17,6 @@ export default function Header() {
       </div>
       {checkAuth() ? (
         <div className={styles.nav}>
-          {/* <Link to="/dashboard">Dashboard</Link> */}
           <div className={styles.content}>
             <Link to="/user">Profile</Link>
           </div>
@@ -26,9 +25,7 @@ export default function Header() {
           </div>
         </div>
       ) : (
-        <div>
-          <Link to="/login">Sign In</Link>
-        </div>
+        ""
       )}
     </div>
   );

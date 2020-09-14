@@ -2,8 +2,14 @@
 
 .main {
   display: flex;
-  justify-content: space-around;
-  flex-direction: row;
+  flex-direction: column;
+  .header {
+    text-align: center;
+    margin: 3rem 0;
+  }
+  .content {
+    @include flex(space-around, row);
+  }
 }
 .wrapper {
   @include flex(space-around, column);
@@ -170,6 +176,13 @@
   animation: fade ease 10s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+}
+.card {
+  width: 450px;
+}
+.marketing {
+  text-align: center;
+  margin: 0 6rem;
 }
 
 @keyframes fade {

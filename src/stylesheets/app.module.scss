@@ -21,7 +21,6 @@
   @include flex(center, column);
   text-align: left;
   margin: auto;
-  width: 450px;
   .password {
     @include flex(center, row);
     border: 2px solid black;
