@@ -6,16 +6,16 @@
   .header {
     text-align: center;
     margin: 3rem 0;
+    @media #{$mobile} {
+      img {
+        width: 100%;
+      }
+    }
   }
   .content {
     @include flex(space-around, row);
   }
   @media #{$mobile} {
-    .header {
-      img {
-        width: 100%;
-      }
-    }
     .content {
       @include flex(space-around, column);
       gap: 2rem;
@@ -49,6 +49,9 @@
       width: 100%;
       padding: 1rem 0;
       border-radius: 4px;
+      @media #{$mobile} {
+        @include flex(space-around, column);
+      }
     }
   }
 }
@@ -56,6 +59,9 @@
 .center {
   @include flex(space-around, column);
   text-align: center;
+  @media #{$mobile} {
+    text-align: left;
+  }
 }
 
 .sets {
@@ -133,6 +139,9 @@
 }
 .input {
   @include input();
+  @media #{$mobile} {
+    width: 100px;
+  }
 }
 .inputSave {
   @include input();
@@ -147,6 +156,9 @@
 
 .box {
   width: 45px;
+  @media #{$mobile} {
+    width: 5px;
+  }
 }
 
 .row {

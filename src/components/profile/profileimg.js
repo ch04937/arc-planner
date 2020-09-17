@@ -87,8 +87,8 @@ export default function ProfileImg() {
         </form>
       </div>
       <div className={styles.gov}>
-        <div>
-          <label>GOVERNOR NAME: </label>
+        <div className={styles.field}>
+          <div>GOVERNOR NAME: </div>
           <input
             key={profile.inGameName}
             className={custom.input}
@@ -97,8 +97,8 @@ export default function ProfileImg() {
             onChange={(e) => inputChange(e)}
           />
         </div>
-        <div>
-          <label>CITY HALL: </label>
+        <div className={styles.field}>
+          <div>CITY HALL: </div>
           <input
             key={profile.city}
             className={custom.input}
@@ -107,8 +107,8 @@ export default function ProfileImg() {
             onChange={(e) => inputChange(e)}
           />
         </div>
-        <div>
-          <label>CASTLE: </label>
+        <div className={styles.field}>
+          <div>CASTLE: </div>
           <input
             key={profile.castle}
             className={custom.input}

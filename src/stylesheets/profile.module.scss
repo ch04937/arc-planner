@@ -41,6 +41,18 @@
       }
     }
   }
+  @media #{$mobile} {
+    display: flex;
+    flex-direction: column;
+    padding: 1px 10px;
+    .t_troops {
+      display: flex;
+      flex-direction: column;
+      .t_content {
+        padding-right: 0;
+      }
+    }
+  }
 }
 
 .imgs {
@@ -65,4 +77,12 @@
 .gov {
   color: $txt;
   margin-left: 2rem;
+  @media #{$mobile} {
+    margin: 0;
+    .field {
+      padding: 1px 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
