@@ -10,6 +10,23 @@
   .content {
     @include flex(space-around, row);
   }
+  @media #{$mobile} {
+    .header {
+      img {
+        width: 100%;
+      }
+    }
+    .content {
+      @include flex(space-around, column);
+      gap: 2rem;
+      .card {
+        width: 100%;
+        a {
+          width: 50%;
+        }
+      }
+    }
+  }
 }
 .wrapper {
   @include flex(space-around, column);

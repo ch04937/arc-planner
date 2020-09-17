@@ -21,7 +21,7 @@ export default function Main({ history }) {
   return (
     <div className={styles.main}>
       <div className={styles.header}>
-        <img src="https://lilithimage.lilithcdn.com/roc/en/m/imgs/logo_m1.png?v=201809211119"></img>
+        <img src="https://lilithimage.lilithcdn.com/roc/en/m/imgs/logo_m1.png?v=201809211119" />
       </div>
       <div className={styles.content}>
         <div className={styles.card}>

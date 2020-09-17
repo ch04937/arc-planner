@@ -52,29 +52,20 @@
   overflow: scroll;
   overflow-x: hidden;
   img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     border-radius: 100%;
     border: 2px solid rgb(224, 187, 94);
   }
-  .bar {
-    width: 100%;
-    display: flex;
-    border-radius: 4px;
-  }
-  .t {
-    overflow: "hidden";
-    text-overflow: "clip";
-  }
 }
 .card {
+  display: flex;
+  text-align: left;
   border-radius: 4px;
   background: #005e81;
   border: 1px solid black;
   padding: 0.5rem;
   width: 229px;
-  height: 75px;
-  display: flex;
   box-shadow: -2px 5px #4f4e4e;
 }
 .card_content {

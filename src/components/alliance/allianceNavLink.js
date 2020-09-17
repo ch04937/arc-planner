@@ -11,7 +11,7 @@ import Members from "../event/members";
 
 export default function AllianceNavLink() {
   const { getPermissions, permissions } = useContext(PlayerContext);
-  const [activeItem, setActiveItem] = useState("settings");
+  const [activeItem, setActiveItem] = useState("members");
 
   function handleItemClick(e, { name }) {
     setActiveItem(name);
@@ -34,7 +34,7 @@ export default function AllianceNavLink() {
       <div className={custom.body}>
         <div className={custom.content}>
           <div style={{ paddingLeft: "1rem" }}>
-            <Menu fluid vertical pointing tabular>
+            <Menu fluid vertical pointing tabular secondary>
               <Menu.Item
                 name="alliance"
                 active={activeItem === "alliance"}

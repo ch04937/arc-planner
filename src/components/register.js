@@ -13,15 +13,11 @@ import {
 
 import styles from "../stylesheets/app.module.scss";
 
-export default function Register({ history }) {
+export default function Register() {
   const { isLoading, register } = useContext(AuthContext);
   const [canSeePassword, setCanSeePassword] = useState(false);
   const [canSeeConfirmPassword, setcanSeeConfirmPassword] = useState(false);
-  const token = localStorage.getItem("refreshToken");
 
-  if (token) {
-    history.push("/user");
-  }
   return (
     <div className={styles.wrapper}>
       <h1>Register</h1>

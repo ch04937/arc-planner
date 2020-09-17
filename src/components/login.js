@@ -7,13 +7,9 @@ import { validateUsername, validatePassword } from "../utils/validateAuth";
 
 import styles from "../stylesheets/app.module.scss";
 
-export default function LogIn({ history }) {
+export default function LogIn() {
   const { isLoading, signIn, signInError } = useContext(AuthContext);
   const [canSeePassword, setCanSeePassword] = useState(false);
-  const token = localStorage.getItem("refreshToken");
-  if (token) {
-    history.push("/user");
-  }
 
   return (
     <div className={styles.wrapper}>

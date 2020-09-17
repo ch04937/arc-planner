@@ -21,7 +21,7 @@ function App() {
         <AuthState>
           <PlayerState>
             <Header />
-            <Route path="/" component={Main} />
+            <Route exact path="/" component={Main} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/alliance" component={Alliance} />
             <PrivateRoute path="/user" component={Profile} />
