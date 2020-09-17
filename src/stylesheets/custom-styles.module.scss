@@ -14,9 +14,7 @@
   }
   .content {
     @include flex(space-around, row);
-  }
-  @media #{$mobile} {
-    .content {
+    @media #{$mobile} {
       @include flex(space-around, column);
       gap: 2rem;
       .card {
@@ -51,6 +49,10 @@
       border-radius: 4px;
       @media #{$mobile} {
         @include flex(space-around, column);
+        text-align: left;
+        a {
+          width: fit-content;
+        }
       }
     }
   }

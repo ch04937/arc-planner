@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Menu } from "semantic-ui-react";
+import { Menu, Modal, Icon } from "semantic-ui-react";
 
 import AllianceContent from "./allianceContent";
 import AllianceSettings from "./settings";
@@ -12,8 +12,10 @@ import Members from "../event/members";
 export default function AllianceNavLink() {
   const { getPermissions, permissions } = useContext(PlayerContext);
   const [activeItem, setActiveItem] = useState("members");
+  const [open, setOpen] = useState(false);
 
   function handleItemClick(e, { name }) {
+    setOpen(false);
     setActiveItem(name);
   }
   useEffect(() => {
@@ -26,6 +28,9 @@ export default function AllianceNavLink() {
     members: <Members />,
     settings: <AllianceSettings />,
   };
+  const width = window.innerWidth;
+  // { ? "800px" : window.innerWidth}
+
   return (
     <div>
       <div className={custom.header}>
@@ -33,37 +38,49 @@ export default function AllianceNavLink() {
       </div>
       <div className={custom.body}>
         <div className={custom.content}>
-          <div style={{ paddingLeft: "1rem" }}>
-            <Menu fluid vertical pointing tabular secondary>
-              <Menu.Item
-                name="alliance"
-                active={activeItem === "alliance"}
-                onClick={handleItemClick}
-              />
-              {permissions.isLead ? (
-                <Menu.Item
-                  name="events"
-                  active={activeItem === "events"}
-                  onClick={handleItemClick}
-                />
-              ) : (
-                ""
-              )}
-              {permissions.isOwner ? (
-                <Menu.Item
-                  name="settings"
-                  active={activeItem === "settings"}
-                  onClick={handleItemClick}
-                />
-              ) : (
-                ""
-              )}
-              <Menu.Item
-                name="members"
-                active={activeItem === "members"}
-                onClick={handleItemClick}
-              />
-            </Menu>
+          <div className={custom.menu}>
+            <Modal
+              basic
+              onClose={() => setOpen(false)}
+              onOpen={() => setOpen(true)}
+              open={open}
+              size="small"
+              trigger={<Icon name="bars" size="large" />}
+            >
+              <Modal.Header>Menu</Modal.Header>
+              <Modal.Actions>
+                <Menu text vertical inverted fluid tabular secondary>
+                  <Menu.Item
+                    name="alliance"
+                    active={activeItem === "alliance"}
+                    onClick={handleItemClick}
+                  />
+                  {permissions.isLead ? (
+                    <Menu.Item
+                      name="events"
+                      active={activeItem === "events"}
+                      onClick={handleItemClick}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  {permissions.isOwner ? (
+                    <Menu.Item
+                      name="settings"
+                      active={activeItem === "settings"}
+                      onClick={handleItemClick}
+                    />
+                  ) : (
+                    ""
+                  )}
+                  <Menu.Item
+                    name="members"
+                    active={activeItem === "members"}
+                    onClick={handleItemClick}
+                  />
+                </Menu>
+              </Modal.Actions>
+            </Modal>
           </div>
           <div style={{ width: "100%" }}>{navLink[activeItem]}</div>
         </div>
