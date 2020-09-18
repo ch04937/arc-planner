@@ -1,5 +1,14 @@
 @import "./mixins.scss";
 
+.wrapper {
+  padding: 0 1rem;
+  @media #{$mobile} {
+    text-align: center;
+    input {
+      width: 100%;
+    }
+  }
+}
 .buttons {
   background: $card-bg;
   padding: 0 2rem 1rem 2rem;
@@ -17,72 +26,69 @@
 
 .t_wrapper {
   width: 100%;
+  padding: 0 1rem;
   .t_troops {
-    padding: 0.51rem 1.2rem 0 0;
     width: 100%;
     @include flex(space-between, row);
     .t_content {
       width: 100%;
-      padding-right: 2rem;
-      @include flex(space-between, row);
-      .count {
+      display: flex;
+    }
+    @media #{$mobile} {
+      display: flex;
+      flex-direction: column;
+      .t_troops {
         display: flex;
-        justify-content: space-evenly;
-        .positive {
-          text-align: center;
-          color: #186018;
-          font-weight: bolder;
-        }
-        .negative {
-          text-align: center;
-          color: #f20000;
-          font-weight: bolder;
+        flex-direction: column;
+        .t_content {
+          padding-right: 0;
         }
       }
     }
   }
-  @media #{$mobile} {
+}
+.f_wrapper {
+  @include flex(space-between, row);
+  width: 100%;
+  .positive {
+    text-align: center;
+    color: #186018;
+    font-weight: bolder;
+  }
+  .negative {
+    text-align: center;
+    color: #f20000;
+    font-weight: bolder;
+  }
+  .inputed {
     display: flex;
-    flex-direction: column;
-    padding: 1px 10px;
-    .t_troops {
-      display: flex;
-      flex-direction: column;
-      .t_content {
-        padding-right: 0;
-      }
+    justify-content: baseline;
+  }
+  .file {
+    display: flex;
+    margin: 0.5rem 0;
+  }
+  @media #{$mobile} {
+    @include flex(center, column);
+    input {
+      width: 100%;
     }
   }
 }
 
-.imgs {
-  margin: auto;
-  padding-top: 2rem;
-  display: flex;
-  align-items: flex-end;
-  img {
-    cursor: pointer;
-    width: 10rem;
-    height: 10rem;
-  }
-  .save {
-    color: $txt;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 50%;
-    background-color: $card-bg;
-    padding: 4px;
-  }
+.headshot {
+  cursor: pointer;
+  width: 10rem;
+  height: 10rem;
 }
-.gov {
+.save {
   color: $txt;
-  margin-left: 2rem;
-  @media #{$mobile} {
-    margin: 0;
-    .field {
-      padding: 1px 10px;
-      display: flex;
-      justify-content: space-between;
-    }
-  }
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: $card-bg;
+  padding: 4px;
+}
+.field {
+  text-align: left;
 }

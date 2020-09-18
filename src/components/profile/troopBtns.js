@@ -34,9 +34,9 @@ export default function TroopBtns({ type, counts }) {
     setAddedTroops(0);
   }
   return (
-    <>
-      <div className={styles.t_content}>
-        <div className={styles.count}>
+    <div className={styles.f_wrapper}>
+      <div className={styles.inputed}>
+        <div>
           <input
             className={custom.input}
             key={profile[type]}
@@ -44,26 +44,26 @@ export default function TroopBtns({ type, counts }) {
             defaultValue={counts}
             onChange={(e) => inputChange(e.target.value)}
           />
-          {hasChanged && addedTroops !== 0 ? (
-            <>
-              {isPositive ? (
-                <div className={styles.positive}>+{addedTroops}</div>
-              ) : (
-                <div className={styles.negative}>-{addedTroops}</div>
-              )}
-            </>
-          ) : (
-            <div className={custom.box}></div>
-          )}
         </div>
+        {hasChanged && addedTroops !== 0 ? (
+          <>
+            {isPositive ? (
+              <div className={styles.positive}>+{addedTroops}</div>
+            ) : (
+              <div className={styles.negative}>-{addedTroops}</div>
+            )}
+          </>
+        ) : (
+          <div className={custom.box}></div>
+        )}
       </div>
-      <div
-        onClick={togglePositive}
-        className={isPositive ? custom.green_btn : custom.red_btn}
-      >
-        {isPositive ? "+" : "-"}
-      </div>
-      <div className={custom.sets}>
+      <div className={styles.file}>
+        <div
+          onClick={togglePositive}
+          className={isPositive ? custom.green_btn : custom.red_btn}
+        >
+          {isPositive ? "+" : "-"}
+        </div>
         <div
           className={isPositive ? custom.green_btn : custom.red_btn}
           onClick={() => updateCount(100)}
@@ -90,6 +90,6 @@ export default function TroopBtns({ type, counts }) {
           <div className={custom.box}></div>
         )}
       </div>
-    </>
+    </div>
   );
 }

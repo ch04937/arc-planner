@@ -14,6 +14,8 @@ export default function AllianceNavLink() {
   const [activeItem, setActiveItem] = useState("members");
   const [open, setOpen] = useState(false);
 
+  const item = { margin: "auto", textAlign: "center" };
+
   function handleItemClick(e, { name }) {
     setOpen(false);
     setActiveItem(name);
@@ -28,9 +30,6 @@ export default function AllianceNavLink() {
     members: <Members />,
     settings: <AllianceSettings />,
   };
-  const width = window.innerWidth;
-  // { ? "800px" : window.innerWidth}
-
   return (
     <div>
       <div className={custom.header}>
@@ -47,19 +46,21 @@ export default function AllianceNavLink() {
               size="small"
               trigger={<Icon name="bars" size="large" />}
             >
-              <Modal.Header>Menu</Modal.Header>
+              <Modal.Header style={item}>Menu</Modal.Header>
               <Modal.Actions>
-                <Menu text vertical inverted fluid tabular secondary>
+                <Menu text vertical inverted fluid secondary>
                   <Menu.Item
                     name="alliance"
                     active={activeItem === "alliance"}
                     onClick={handleItemClick}
+                    style={item}
                   />
                   {permissions.isLead ? (
                     <Menu.Item
                       name="events"
                       active={activeItem === "events"}
                       onClick={handleItemClick}
+                      style={item}
                     />
                   ) : (
                     ""
@@ -69,6 +70,7 @@ export default function AllianceNavLink() {
                       name="settings"
                       active={activeItem === "settings"}
                       onClick={handleItemClick}
+                      style={item}
                     />
                   ) : (
                     ""
@@ -77,6 +79,7 @@ export default function AllianceNavLink() {
                     name="members"
                     active={activeItem === "members"}
                     onClick={handleItemClick}
+                    style={item}
                   />
                 </Menu>
               </Modal.Actions>

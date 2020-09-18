@@ -58,67 +58,62 @@ export default function ProfileImg() {
   }
 
   return (
-    <div className={custom.center}>
-      <div className={styles.imgs}>
-        <form encType="multipart/form-data" onSubmit={handleSubmit}>
-          <input
-            type="file"
-            name="avatars"
-            onChange={handleChange}
-            ref={imageUpLoader}
-            style={{ display: "none" }}
-          />
-
-          <img
-            src={`${process.env.REACT_APP_BASE_URL}/${
-              profile.path && profile.path.replace("\\", "/")
-            }`}
-            ref={uploadedImage}
-            alt={profile.originalname}
-            onClick={imgClick}
-          />
-          {imgToggle ? (
-            <>
-              <button type="submit" className={custom.inputSave} />
-            </>
-          ) : (
-            ""
-          )}
-        </form>
+    <div className={styles.wrapper}>
+      <form encType="multipart/form-data" onSubmit={handleSubmit}>
+        <input
+          type="file"
+          name="avatars"
+          onChange={handleChange}
+          ref={imageUpLoader}
+          style={{ display: "none" }}
+        />
+        <img
+          src={`${process.env.REACT_APP_BASE_URL}/${
+            profile.path && profile.path.replace("\\", "/")
+          }`}
+          className={styles.headshot}
+          ref={uploadedImage}
+          alt={profile.originalname}
+          onClick={imgClick}
+        />
+        {imgToggle ? (
+          <>
+            <button type="submit" className={custom.inputSave} />
+          </>
+        ) : (
+          ""
+        )}
+      </form>
+      <div className={styles.field}>
+        <div>GOVERNOR NAME: </div>
+        <input
+          key={profile.inGameName}
+          className={custom.input}
+          defaultValue={profile.inGameName}
+          name="inGameName"
+          onChange={(e) => inputChange(e)}
+        />
       </div>
-      <div className={styles.gov}>
-        <div className={styles.field}>
-          <div>GOVERNOR NAME: </div>
-          <input
-            key={profile.inGameName}
-            className={custom.input}
-            defaultValue={profile.inGameName}
-            name="inGameName"
-            onChange={(e) => inputChange(e)}
-          />
-        </div>
-        <div className={styles.field}>
-          <div>CITY HALL: </div>
-          <input
-            key={profile.city}
-            className={custom.input}
-            defaultValue={profile.city}
-            name="city"
-            onChange={(e) => inputChange(e)}
-          />
-        </div>
-        <div className={styles.field}>
-          <div>CASTLE: </div>
-          <input
-            key={profile.castle}
-            className={custom.input}
-            defaultValue={profile.castle}
-            name="castle"
-            onChange={(e) => inputChange(e)}
-          />
-        </div>
+      <div className={styles.field}>
+        <div>CITY HALL: </div>
+        <input
+          key={profile.city}
+          className={custom.input}
+          defaultValue={profile.city}
+          name="city"
+          onChange={(e) => inputChange(e)}
+        />
       </div>
-
+      <div className={styles.field}>
+        <div>CASTLE: </div>
+        <input
+          key={profile.castle}
+          className={custom.input}
+          defaultValue={profile.castle}
+          name="castle"
+          onChange={(e) => inputChange(e)}
+        />
+      </div>
       {inputChanged ? (
         <div className={custom.btn} onClick={saveData}>
           <p>SAVE</p>

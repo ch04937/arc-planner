@@ -9,7 +9,8 @@ export default function Members() {
     getMembers();
   }, [members.length]);
   return (
-    <div>
+    <div className={styles.m_wrapper}>
+      <h2>Members</h2>
       {members &&
         members.map((data) => (
           <div className={styles.cards} key={data.uuid}>

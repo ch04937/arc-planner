@@ -66,6 +66,7 @@ export default function Events() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.card_wrapper}>
+        <h2>Events</h2>
         <CreateEvent />
         {eventsError ? (
           <div className={styles.no_events}>{eventsError}</div>

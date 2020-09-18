@@ -47,22 +47,14 @@
       width: 100%;
       padding: 1rem 0;
       border-radius: 4px;
+      .menu {
+        padding: 0 10px;
+      }
       @media #{$mobile} {
         @include flex(space-around, column);
         text-align: left;
-        a {
-          width: fit-content;
-        }
       }
     }
-  }
-}
-
-.center {
-  @include flex(space-around, column);
-  text-align: center;
-  @media #{$mobile} {
-    text-align: left;
   }
 }
 
@@ -152,7 +144,6 @@
   border-radius: 50%;
   border: 1px solid black;
   position: relative;
-
   cursor: pointer;
 }
 

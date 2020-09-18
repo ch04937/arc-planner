@@ -3,6 +3,9 @@
 .body {
   width: 100%;
 }
+.m_wrapper {
+  text-align: center;
+}
 .settings {
   text-align: left;
   padding-left: 2rem;
@@ -42,7 +45,7 @@
 }
 
 .cards {
-  margin: 1.5rem 0;
+  margin: 1rem 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -67,18 +70,26 @@
   padding: 0.5rem;
   width: 229px;
   box-shadow: -2px 5px #4f4e4e;
+  @media #{$mobile} {
+    width: auto;
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
 }
 .card_content {
-  color: $txt;
   width: 100%;
   padding: 5px;
   .gov_name {
     background: #b4aea7;
     color: #3f3b35;
-    font-size: 17px;
     font-weight: 600;
     padding: 1px 4px;
     border-radius: 4px;
+  }
+  @media #{$mobile} {
+    width: auto;
   }
 }
 .eventCards {
