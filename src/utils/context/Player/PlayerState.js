@@ -52,6 +52,8 @@ import {
   ALLIANCE_SETTINGS_ERROR,
   DELETE_ALLIANCE_SUCCESS,
   DELETE_ALLIANCE_ERROR,
+  GET_APPS_SUCCESS,
+  GET_APPS_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -82,6 +84,7 @@ export const PlayerState = (props) => {
     permissions: {},
     teams: [],
     participatingEvents: [],
+    listApps: [],
   };
 
   function refreshPage() {
@@ -363,6 +366,17 @@ export const PlayerState = (props) => {
     }
   };
 
+  const getApps = async () => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().get(`alliance/apps`);
+      dispatch({ type: GET_APPS_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: GET_APPS_ERROR, payload: e.response });
+    }
+  };
+
   return (
     <PlayerContext.Provider
       value={{
@@ -382,6 +396,7 @@ export const PlayerState = (props) => {
         permissions: state.permissions,
         userProfile: state.userProfile,
         teams: state.teams,
+        listApps: state.listApps,
         getProfile,
         getPermissions,
         getUserProfile,
@@ -407,6 +422,7 @@ export const PlayerState = (props) => {
         updateTeams,
         allianceSettings,
         deleteAlliance,
+        getApps,
       }}
     >
       {state.error && (

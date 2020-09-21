@@ -1,5 +1,25 @@
 @import "./mixins.scss";
 
+.a_wrapper {
+  padding: 0 1rem;
+  text-align: center;
+  .applicant {
+    display: flex;
+    .img {
+      width: 100%;
+      display: flex;
+      margin: auto;
+      img {
+        margin: 0 5px;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 100%;
+        border: 1px solid black;
+      }
+    }
+  }
+}
+
 .body {
   width: 100%;
 }

@@ -20,6 +20,7 @@ export default function Members() {
                   src={`${process.env.REACT_APP_BASE_URL}/${
                     data.path && data.path.replace("\\", "/")
                   }`}
+                  alt="profile-picture"
                 />
               </div>
               <div className={styles.card_content}>

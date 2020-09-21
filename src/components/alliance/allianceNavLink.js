@@ -8,10 +8,11 @@ import custom from "../../stylesheets/custom-styles.module.scss";
 import { PlayerContext } from "../../utils/context/Player/PlayerState";
 import Events from "../event/events";
 import Members from "../event/members";
+import Applications from "./applications";
 
 export default function AllianceNavLink() {
   const { getPermissions, permissions } = useContext(PlayerContext);
-  const [activeItem, setActiveItem] = useState("members");
+  const [activeItem, setActiveItem] = useState("applications");
   const [open, setOpen] = useState(false);
 
   const item = { margin: "auto", textAlign: "center" };
@@ -29,6 +30,7 @@ export default function AllianceNavLink() {
     events: <Events />,
     members: <Members />,
     settings: <AllianceSettings />,
+    applications: <Applications />,
   };
   return (
     <div>
@@ -46,7 +48,6 @@ export default function AllianceNavLink() {
               size="small"
               trigger={<Icon name="bars" size="large" />}
             >
-              <Modal.Header style={item}>Menu</Modal.Header>
               <Modal.Actions>
                 <Menu text vertical inverted fluid secondary>
                   <Menu.Item
@@ -78,6 +79,12 @@ export default function AllianceNavLink() {
                   <Menu.Item
                     name="members"
                     active={activeItem === "members"}
+                    onClick={handleItemClick}
+                    style={item}
+                  />
+                  <Menu.Item
+                    name="applications"
+                    active={activeItem === "applications"}
                     onClick={handleItemClick}
                     style={item}
                   />

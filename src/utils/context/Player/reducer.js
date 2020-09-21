@@ -50,6 +50,8 @@ import {
   ALLIANCE_SETTINGS_ERROR,
   DELETE_ALLIANCE_SUCCESS,
   DELETE_ALLIANCE_ERROR,
+  GET_APPS_SUCCESS,
+  GET_APPS_ERROR,
 } from "../types";
 // updates the state
 const setIsLoading = (state, action) => {
@@ -407,6 +409,20 @@ const deleteAllianceError = (state, action) => {
     is_loading: false,
   };
 };
+const getApps = (state, action) => {
+  return {
+    ...state,
+    is_loading: false,
+    listApps: action.payload,
+  };
+};
+const getAppsError = (state, action) => {
+  return {
+    ...state,
+    error: action.payload,
+    is_loading: false,
+  };
+};
 // cases
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -510,6 +526,10 @@ export const reducer = (state, action) => {
       return deleteAlliance(state, action);
     case DELETE_ALLIANCE_ERROR:
       return deleteAllianceError(state, action);
+    case GET_APPS_SUCCESS:
+      return getApps(state, action);
+    case GET_APPS_ERROR:
+      return getAppsError(state, action);
     default:
       return state;
   }

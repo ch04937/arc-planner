@@ -39,7 +39,9 @@ export default function AllianceList() {
           {/* <p>search bar</p> */}
           <CreateAlliance />
           <div className={custom.scrollable}>
-            <div className={custom.errorWrapper}>{allianceListError}</div>
+            {allianceListError && (
+              <div className={custom.errorWrapper}>{allianceListError}</div>
+            )}
             {allianceList &&
               allianceList.map((data, idx) => (
                 <div key={data.uuid} className={custom.row}>
