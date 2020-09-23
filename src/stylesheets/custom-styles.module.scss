@@ -44,6 +44,7 @@
     .content {
       @include flex(space-around, row);
       background: $right-gradiant;
+      min-height: 400px;
       width: 100%;
       padding: 1rem 0;
       border-radius: 4px;

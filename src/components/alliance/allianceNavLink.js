@@ -12,7 +12,7 @@ import Applications from "./applications";
 
 export default function AllianceNavLink() {
   const { getPermissions, permissions } = useContext(PlayerContext);
-  const [activeItem, setActiveItem] = useState("applications");
+  const [activeItem, setActiveItem] = useState("members");
   const [open, setOpen] = useState(false);
 
   const item = { margin: "auto", textAlign: "center" };

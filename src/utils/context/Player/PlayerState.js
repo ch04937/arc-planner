@@ -54,6 +54,8 @@ import {
   DELETE_ALLIANCE_ERROR,
   GET_APPS_SUCCESS,
   GET_APPS_ERROR,
+  ACCEPT_APP_SUCCESS,
+  ACCEPT_APP_ERROR,
 } from "../types";
 import { reducer } from "./reducer";
 import { axiosWithAuth } from "../../axiosWithAuth";
@@ -376,6 +378,18 @@ export const PlayerState = (props) => {
       dispatch({ type: GET_APPS_ERROR, payload: e.response });
     }
   };
+  const acceptApp = async (allianceId, profileId) => {
+    dispatch({ type: IS_LOADING, payload: true });
+    try {
+      const res = await axiosWithAuth().put(
+        `alliance/${profileId}/accept/${allianceId}`
+      );
+      dispatch({ type: ACCEPT_APP_SUCCESS, payload: res.data });
+    } catch (e) {
+      console.log("error", e);
+      dispatch({ type: ACCEPT_APP_ERROR, payload: e.response });
+    }
+  };
 
   return (
     <PlayerContext.Provider
@@ -423,6 +437,7 @@ export const PlayerState = (props) => {
         allianceSettings,
         deleteAlliance,
         getApps,
+        acceptApp,
       }}
     >
       {state.error && (

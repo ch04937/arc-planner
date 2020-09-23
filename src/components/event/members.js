@@ -10,11 +10,13 @@ export default function Members() {
   }, [members.length]);
   return (
     <div className={styles.m_wrapper}>
-      <h2>Members</h2>
-      {members &&
-        members.map((data) => (
-          <div className={styles.cards} key={data.uuid}>
-            <div className={styles.card}>
+      <div>
+        <h2>Members</h2>
+      </div>
+      <div className={styles.m_card_wrapper}>
+        {members &&
+          members.map((data) => (
+            <div className={styles.card} key={data.uuid}>
               <div>
                 <img
                   src={`${process.env.REACT_APP_BASE_URL}/${
@@ -36,8 +38,8 @@ export default function Members() {
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+      </div>
     </div>
   );
 }
