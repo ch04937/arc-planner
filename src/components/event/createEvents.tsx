@@ -1,32 +1,32 @@
-import React, { useState, useContext } from "react";
-import { Modal, Button, Form, Message } from "semantic-ui-react";
-import { Formik } from "formik";
-import * as yup from "yup";
+import React, { useState, useContext } from 'react';
+import { Modal, Button, Form, Message } from 'semantic-ui-react';
+import { Formik } from 'formik';
+import * as yup from 'yup';
 
-import { PlayerContext } from "../../utils/context/Player/PlayerState";
+import { PlayerContext } from '../../utils/PlayerContext/PlayerState';
 
 export default function CreateEvent() {
-  const { createEvents } = useContext(PlayerContext);
+  // const { createEvents } = useContext(PlayerContext);
   const [open, setOpen] = useState(false);
   return (
     <div>
       <Formik
         initialValues={{
-          eventName: "",
-          eventDescription: "",
-          startDate: "",
-          endDate: "",
+          eventName: '',
+          eventDescription: '',
+          startDate: '',
+          endDate: '',
         }}
         onSubmit={(values, actions) => {
-          createEvents(values);
+          // createEvents(values);
           actions.resetForm();
           setOpen(false);
         }}
         validationSchema={yup.object().shape({
-          eventName: yup.string().required("This is a required field"),
-          eventDescription: yup.string().required("This is a required field"),
-          startDate: yup.date().required("This is a required field"),
-          endDate: yup.date().required("This is a required field"),
+          eventName: yup.string().required('This is a required field'),
+          eventDescription: yup.string().required('This is a required field'),
+          startDate: yup.date().required('This is a required field'),
+          endDate: yup.date().required('This is a required field'),
         })}
       >
         {({ values, errors, handleChange, handleSubmit, isSubmitting }) => (
@@ -40,10 +40,8 @@ export default function CreateEvent() {
             <Modal.Header>Create Event</Modal.Header>
             <Modal.Content>
               {errors.eventName && <Message error content={errors.eventName} />}
-              {errors.eventDescription && (
-                <Message error content={errors.eventDescription} />
-              )}
-              {errors.eventDate && <Message error content={errors.eventDate} />}
+              {errors.eventDescription && <Message error content={errors.eventDescription} />}
+              {/* {errors.eventDate && <Message error content={errors.eventDate} />} */}
 
               <Form loading={isSubmitting}>
                 <Form.Input
@@ -100,7 +98,7 @@ export default function CreateEvent() {
                 primary
                 type="submit"
                 color="blue"
-                onClick={handleSubmit}
+                // onClick={handleSubmit}
                 loading={isSubmitting}
               >
                 Submit

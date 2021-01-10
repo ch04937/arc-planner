@@ -1,39 +1,34 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Button, Modal, TextArea } from "semantic-ui-react";
+import React, { useContext, useEffect, useState } from 'react';
+import { Button, Modal, TextArea } from 'semantic-ui-react';
 // import { Formik, Form, Field } from "formik";
 
-import styles from "../../stylesheets/settings.module.scss";
-import { PlayerContext } from "../../utils/context/Player/PlayerState";
+import styles from '../../stylesheets/settings.module.scss';
+import { PlayerContext } from '../../utils/PlayerContext/PlayerState';
 
 export default function Settings() {
-  const {
-    alliance,
-    getAlliance,
-    allianceSettings,
-    deleteAlliance,
-  } = useContext(PlayerContext);
+  // const { alliance, getAlliance, allianceSettings, deleteAlliance } = useContext(PlayerContext);
   const [data, setData] = useState({
-    allianceName: "",
-    allianceTag: "",
-    messageBoard: "",
+    allianceName: '',
+    allianceTag: '',
+    messageBoard: '',
   });
   const [hasChanged, setHasChanged] = useState(false);
   const [open, setOpen] = useState(false);
-  useEffect(() => {
-    getAlliance();
-  }, []);
-  function handleChange(e) {
-    setHasChanged(true);
-    setData({ ...data, [e.target.name]: e.target.value });
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-    setHasChanged(true);
-    allianceSettings(data);
-  }
+  // useEffect(() => {
+  //   getAlliance();
+  // }, []);
+  // function handleChange(e) {
+  //   setHasChanged(true);
+  //   setData({ ...data, [e.target.name]: e.target.value });
+  // }
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   setHasChanged(true);
+  //   allianceSettings(data);
+  // }
   return (
     <div className={styles.form}>
-      <label>Alliance Tag:</label>
+      {/* <label>Alliance Tag:</label>
       <input
         type="text"
         name="allianceTag"
@@ -66,9 +61,7 @@ export default function Settings() {
         >
           <Modal.Header>Disband Alliance</Modal.Header>
           <Modal.Content>
-            <div className={styles.row}>
-              Are you sure you want to DISBAND the alliance
-            </div>
+            <div className={styles.row}>Are you sure you want to DISBAND the alliance</div>
           </Modal.Content>
           <Modal.Actions>
             <Button color="red" onClick={() => deleteAlliance()}>
@@ -84,9 +77,9 @@ export default function Settings() {
             Submit
           </Button>
         ) : (
-          ""
-        )}
-      </div>
+          ''
+        )} */}
+      {/* </div> */}
     </div>
   );
 }

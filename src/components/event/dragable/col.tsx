@@ -1,6 +1,11 @@
-import React from "react";
+import React from 'react';
 
-export default function Col({ isOver, children }) {
-  const className = isOver ? "colhighlight-region" : "col";
+type ColProps = {
+  isOver: string;
+  children: string;
+};
+const Col: React.FC<ColProps> = ({ isOver, children }) => {
+  const className = isOver ? 'colhighlight-region' : 'col';
   return <div className={className}>{children}</div>;
-}
+};
+export default Col;

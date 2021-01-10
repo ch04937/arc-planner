@@ -1,21 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from 'react';
 
-import TroopBtns from "./troopBtns";
+import TroopBtns from './troopBtns';
 
-import { PlayerContext } from "../../utils/context/Player/PlayerState";
+import { PlayerContext } from '../../utils/PlayerContext/PlayerState';
 
-import styles from "../../stylesheets/profile.module.scss";
+import styles from '../../stylesheets/profile.module.scss';
 
 export default function ProfileTroops() {
-  const { profile, getProfile } = useContext(PlayerContext);
+  // const { profile, getProfile } = useContext(PlayerContext);
 
-  useEffect(() => {
-    getProfile();
-  }, []);
+  // useEffect(() => {
+  //   getProfile();
+  // }, []);
 
   return (
     <div className={styles.t_wrapper}>
-      <div className={styles.t_troops}>
+      {/* <div className={styles.t_troops}>
         <div className={styles.t_content}>TIER 3 ARCHER:</div>
         <TroopBtns type="t3arch" counts={profile.t3arch} />
       </div>
@@ -50,7 +50,7 @@ export default function ProfileTroops() {
       <div className={styles.t_troops}>
         <div className={styles.t_content}>TIER 5 CAVALRY:</div>
         <TroopBtns type="t5cav" counts={profile.t5cav} />
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -1,35 +1,35 @@
-import React, { useContext, useState } from "react";
-import { Button, Modal, Form, Message } from "semantic-ui-react";
-import { Formik } from "formik";
-import * as yup from "yup";
+import React, { useContext, useState } from 'react';
+import { Button, Modal, Form, Message } from 'semantic-ui-react';
+import { Formik } from 'formik';
+import * as yup from 'yup';
 
-import { PlayerContext } from "../../utils/context/Player/PlayerState";
+import { PlayerContext } from '../../utils/PlayerContext/PlayerState';
 
-import custom from "../../stylesheets/custom-styles.module.scss";
+import custom from '../../stylesheets/custom-styles.module.scss';
 
 export default function CreateAlliance() {
-  const { createAlliance } = useContext(PlayerContext);
+  // const { createAlliance } = useContext(PlayerContext);
   const [open, setOpen] = useState(false);
 
   return (
     <div>
       <Formik
         initialValues={{
-          kingdomNumber: "",
-          allianceTag: "",
-          allianceName: "",
-          messageBoard: "",
+          kingdomNumber: '',
+          allianceTag: '',
+          allianceName: '',
+          messageBoard: '',
         }}
         onSubmit={(values, actions) => {
-          createAlliance(values);
+          // createAlliance(values);
           actions.resetForm();
           setOpen(false);
         }}
         validationSchema={yup.object().shape({
-          kingdomNumber: yup.number().required("This is a required field"),
-          allianceTag: yup.string().required("This is a required field"),
-          allianceName: yup.string().required("This is a required field"),
-          messageBoard: yup.string().required("This is a required field"),
+          kingdomNumber: yup.number().required('This is a required field'),
+          allianceTag: yup.string().required('This is a required field'),
+          allianceName: yup.string().required('This is a required field'),
+          messageBoard: yup.string().required('This is a required field'),
         })}
       >
         {({ values, errors, handleChange, handleSubmit, isSubmitting }) => (
@@ -42,15 +42,9 @@ export default function CreateAlliance() {
           >
             <Modal.Header>Create Alliance</Modal.Header>
             <Modal.Content>
-              {errors.allianceName && (
-                <Message error content={errors.allianceName} />
-              )}
-              {errors.allianceTag && (
-                <Message error content={errors.allianceTag} />
-              )}
-              {errors.kingdomNumber && (
-                <Message error content={errors.kingdomNumber} />
-              )}
+              {errors.allianceName && <Message error content={errors.allianceName} />}
+              {errors.allianceTag && <Message error content={errors.allianceTag} />}
+              {errors.kingdomNumber && <Message error content={errors.kingdomNumber} />}
               <Form loading={isSubmitting}>
                 <Form.Input
                   required
@@ -106,7 +100,7 @@ export default function CreateAlliance() {
                 positive
                 primary
                 type="submit"
-                onClick={handleSubmit}
+                // onClick={handleSubmit}
                 loading={isSubmitting}
               >
                 Submit

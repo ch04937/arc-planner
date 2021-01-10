@@ -1,20 +1,20 @@
-import React from "react";
-import { Formik, Form, Field } from "formik";
-import { Icon } from "semantic-ui-react";
+import React from 'react';
+import { Formik, Form, Field } from 'formik';
+import { Icon } from 'semantic-ui-react';
 
-import { AuthContext } from "../../utils/context/Auth/AuthState";
-import { validateField, validateNumber } from "../../utils/validateAuth";
+// import { AuthContext } from "../../utils/context/Auth/AuthState";
+// import { validateField, validateNumber } from "../../utils/validateAuth";
 
-import form from "../../stylesheets/App.module.scss";
+import form from '../../stylesheets/App.module.scss';
 
 export default function ProfileContent() {
-  const { userProfile } = useContext(AuthContext);
-  function addGovernorName(name) {
-    console.log("name", name);
-  }
+  // const { userProfile } = useContext(AuthContext);
+  // function addGovernorName(name) {
+  //   console.log("name", name);
+  // }
   return (
     <div>
-      <div className={styles.card}>
+      {/* <div className={styles.card}>
         {userProfile && userProfile.governorName ? (
           <>
             <lavel>Governor name:</lavel>
@@ -69,7 +69,7 @@ export default function ProfileContent() {
       <div className={styles.card}>{userProfile && userProfile.email}</div>
       <div className={styles.card}>{userProfile && userProfile.email}</div>
       <div className={styles.card}>{userProfile && userProfile.email}</div>
-      <div className={styles.card}>{userProfile && userProfile.email}</div>
+      <div className={styles.card}>{userProfile && userProfile.email}</div> */}
     </div>
   );
 }

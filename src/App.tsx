@@ -1,36 +1,24 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React from 'react';
+// import { Route, Switch } from 'react-router-dom';
+import Header from './pages/header';
+import Footer from './pages/footer';
+// import Main from './pages/main';
+// import Profile from './pages/profile';
+// import Dashboard from './pages/dashboard';
+// import Alliance from './pages/alliance';
+// import { AuthState } from './utils/context/Auth/AuthState';
+// import { PlayerState } from './utils/context/Player/PlayerState';
+// import { PrivateRoute } from './utils/privateRoute';
+import app from './stylesheets/app.module.scss';
 
-import Header from "./pages/header.js";
-import Footer from "./pages/footer.js";
-import Main from "./pages/main.js";
-import Profile from "./pages/profile";
-import Dashboard from "./pages/dashboard.js";
-import Alliance from "./pages/alliance";
-
-import { AuthState } from "./utils/context/Auth/AuthState.js";
-import { PlayerState } from "./utils/context/Player/PlayerState.js";
-import { PrivateRoute } from "./utils/privateRoute";
-
-import app from "./stylesheets/app.module.scss";
-
-function App() {
+const App = () => {
   return (
     <div className={app.App}>
-      <Switch>
-        <AuthState>
-          <PlayerState>
-            <Header />
-            <Route exact path="/" component={Main} />
-            <PrivateRoute path="/dashboard" component={Dashboard} />
-            <PrivateRoute path="/alliance" component={Alliance} />
-            <PrivateRoute path="/user" component={Profile} />
-          </PlayerState>
-        </AuthState>
-      </Switch>
+      <Header />
+
       <Footer />
     </div>
   );
-}
+};
 
 export default App;

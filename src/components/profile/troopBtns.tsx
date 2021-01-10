@@ -1,41 +1,38 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from 'react';
 
-import { PlayerContext } from "../../utils/context/Player/PlayerState";
+import { PlayerContext } from '../../utils/PlayerContext/PlayerState';
 
-import custom from "../../stylesheets/custom-styles.module.scss";
-import styles from "../../stylesheets/profile.module.scss";
+import custom from '../../stylesheets/custom-styles.module.scss';
+import styles from '../../stylesheets/profile.module.scss';
 
-export default function TroopBtns({ type, counts }) {
+export default function TroopBtns() {
+// { type, counts }
   const [isPositive, setIsPositive] = useState(true);
   const [hasChanged, setHasChanged] = useState(false);
   let [addedTroops, setAddedTroops] = useState(0);
   const [inputTroops, setInputTroops] = useState(0);
 
-  const { profile, updateTroops } = useContext(PlayerContext);
-  function togglePositive() {
-    setIsPositive(!isPositive);
-  }
-  function updateCount(count) {
-    setHasChanged(true);
-    isPositive
-      ? setAddedTroops((addedTroops += count))
-      : setAddedTroops((addedTroops -= count));
-  }
-  function inputChange(count) {
-    setHasChanged(true);
-    setAddedTroops(0);
-    setInputTroops(count);
-  }
-  function saveTroops() {
-    inputTroops === 0
-      ? updateTroops(type, addedTroops + counts)
-      : updateTroops(type, inputTroops);
-    setHasChanged(false);
-    setAddedTroops(0);
-  }
+  // const { profile, updateTroops } = useContext(PlayerContext);
+  // function togglePositive() {
+  //   setIsPositive(!isPositive);
+  // }
+  // function updateCount(count) {
+  //   setHasChanged(true);
+  //   isPositive ? setAddedTroops((addedTroops += count)) : setAddedTroops((addedTroops -= count));
+  // }
+  // function inputChange(count) {
+  //   setHasChanged(true);
+  //   setAddedTroops(0);
+  //   setInputTroops(count);
+  // }
+  // function saveTroops() {
+  //   inputTroops === 0 ? updateTroops(type, addedTroops + counts) : updateTroops(type, inputTroops);
+  //   setHasChanged(false);
+  //   setAddedTroops(0);
+  // }
   return (
     <div className={styles.f_wrapper}>
-      <div className={styles.inputed}>
+      {/* <div className={styles.inputed}>
         <div>
           <input
             className={custom.input}
@@ -58,11 +55,8 @@ export default function TroopBtns({ type, counts }) {
         )}
       </div>
       <div className={styles.file}>
-        <div
-          onClick={togglePositive}
-          className={isPositive ? custom.green_btn : custom.red_btn}
-        >
-          {isPositive ? "+" : "-"}
+        <div onClick={togglePositive} className={isPositive ? custom.green_btn : custom.red_btn}>
+          {isPositive ? '+' : '-'}
         </div>
         <div
           className={isPositive ? custom.green_btn : custom.red_btn}
@@ -89,7 +83,7 @@ export default function TroopBtns({ type, counts }) {
         ) : (
           <div className={custom.box}></div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

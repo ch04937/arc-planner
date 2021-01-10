@@ -1,27 +1,28 @@
-import React, { useState, useContext } from "react";
-import { Modal, Button, Form, Message } from "semantic-ui-react";
-import { Formik } from "formik";
-import * as yup from "yup";
+import React, { useState, useContext } from 'react';
+import { Modal, Button, Form, Message } from 'semantic-ui-react';
+import { Formik } from 'formik';
+import * as yup from 'yup';
 
-import { PlayerContext } from "../../utils/context/Player/PlayerState";
+import { PlayerContext } from '../../utils/PlayerContext/PlayerState';
 
-export default function CreateTeam({ eventId }) {
-  const { createTeam } = useContext(PlayerContext);
+export default function CreateTeam() {
+  // { eventId }
+  // const { createTeam } = useContext(PlayerContext);
 
   const [open, setOpen] = useState(false);
   return (
     <div>
       <Formik
         initialValues={{
-          teamName: "",
+          teamName: '',
         }}
         onSubmit={(values, actions) => {
-          createTeam(values, eventId);
+          // createTeam(values, eventId);
           actions.resetForm();
           setOpen(false);
         }}
         validationSchema={yup.object().shape({
-          teamName: yup.string().required("This is a required field"),
+          teamName: yup.string().required('This is a required field'),
         })}
       >
         {({ values, errors, handleChange, handleSubmit, isSubmitting }) => (
@@ -35,10 +36,8 @@ export default function CreateTeam({ eventId }) {
             <Modal.Header>Create a Team</Modal.Header>
             <Modal.Content>
               {errors.teamName && <Message error content={errors.teamName} />}
-              {errors.eventDescription && (
-                <Message error content={errors.eventDescription} />
-              )}
-              {errors.eventDate && <Message error content={errors.eventDate} />}
+              {/* {errors.eventDescription && <Message error content={errors.eventDescription} />}
+              {errors.eventDate && <Message error content={errors.eventDate} />} */}
 
               <Form loading={isSubmitting}>
                 <Form.Input
@@ -62,7 +61,7 @@ export default function CreateTeam({ eventId }) {
                 primary
                 type="submit"
                 color="blue"
-                onClick={handleSubmit}
+                // onClick={handleSubmit}
                 loading={isSubmitting}
               >
                 Submit

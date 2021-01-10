@@ -1,47 +1,45 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from 'react';
 
-import CreateAlliance from "./createAlliance";
+import CreateAlliance from './createAlliance';
 
-import { PlayerContext } from "../../utils/context/Player/PlayerState";
+// import { PlayerContext } from '../../utils/PlayerContext/PlayerState';
 
-import custom from "../../stylesheets/custom-styles.module.scss";
+import custom from '../../stylesheets/custom-styles.module.scss';
 
 export default function AllianceList() {
-  const {
-    allianceList,
-    allianceListError,
-    getAllianceList,
-    applications,
-    sendApplication,
-    cancelApplication,
-    getApplications,
-  } = useContext(PlayerContext);
+  // const {
+  //   allianceList,
+  //   allianceListError,
+  //   getAllianceList,
+  //   applications,
+  //   sendApplication,
+  //   cancelApplication,
+  //   getApplications,
+  // } = useContext(PlayerContext);
 
-  useEffect(() => {
-    getApplications();
-    getAllianceList();
-  }, [applications.length]);
+  // useEffect(() => {
+  //   getApplications();
+  //   getAllianceList();
+  // }, [applications.length]);
 
-  function applicationSent(e) {
-    sendApplication(e);
-  }
-  function applicationCancel(e) {
-    cancelApplication(e);
-  }
+  // function applicationSent(e) {
+  //   sendApplication(e);
+  // }
+  // function applicationCancel(e) {
+  //   cancelApplication(e);
+  // }
   return (
     <div>
       <div className={custom.header}>
         <h1>Alliance List</h1>
       </div>
       <div className={custom.body}>
-        <div className={custom.content} style={{ flexDirection: "column" }}>
+        <div className={custom.content} style={{ flexDirection: 'column' }}>
           <h4>Your not currently a member of an alliance</h4>
           {/* <p>search bar</p> */}
           <CreateAlliance />
           <div className={custom.scrollable}>
-            {allianceListError && (
-              <div className={custom.errorWrapper}>{allianceListError}</div>
-            )}
+            {/* {allianceListError && <div className={custom.errorWrapper}>{allianceListError}</div>}
             {allianceList &&
               allianceList.map((data, idx) => (
                 <div key={data.uuid} className={custom.row}>
@@ -58,15 +56,12 @@ export default function AllianceList() {
                       Cancel
                     </button>
                   ) : (
-                    <button
-                      className={custom.save_btn}
-                      onClick={() => applicationSent(data.uuid)}
-                    >
+                    <button className={custom.save_btn} onClick={() => applicationSent(data.uuid)}>
                       Apply
                     </button>
                   )}
                 </div>
-              ))}
+              ))} */}
           </div>
         </div>
       </div>

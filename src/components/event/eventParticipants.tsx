@@ -1,17 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import styles from "../../stylesheets/alliance.module.scss";
+import styles from '../../stylesheets/alliance.module.scss';
 
-export default function EventParticipants({ participants }) {
-  const t3 = participants.t3arch + participants.t3inf + participants.t3cav;
-  const t4 = participants.t4arch + participants.t4inf + participants.t4cav;
-  const t5 = participants.t5arch + participants.t5inf + participants.t5cav;
+export default function EventParticipants() {
+// { participants }
+  // const t3 = participants.t3arch + participants.t3inf + participants.t3cav;
+  // const t4 = participants.t4arch + participants.t4inf + participants.t4cav;
+  // const t5 = participants.t5arch + participants.t5inf + participants.t5cav;
   return (
     <div>
       <div className={styles.row}>
         <p>Participants are as following:</p>
       </div>
-      {participants &&
+      {/* {participants &&
         participants.map((data) => (
           <div className={styles.cards} key={data.uuid}>
             <div className={styles.card}>
@@ -69,12 +70,12 @@ export default function EventParticipants({ participants }) {
                     }
                   >
                     {t5} t5
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+                  </div> */}
+      {/* </div> */}
+      {/* // </div> */}
+      {/* // </div> */}
+      {/* // </div> */}
+      {/* // ))} */}
     </div>
   );
 }

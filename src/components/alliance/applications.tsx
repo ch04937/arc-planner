@@ -1,25 +1,21 @@
-import React, { useContext, useEffect } from "react";
-import { PlayerContext } from "../../utils/context/Player/PlayerState";
+import React, { useContext, useEffect } from 'react';
+import { PlayerContext } from '../../utils/PlayerContext/PlayerState';
 
-import styles from "../../stylesheets/alliance.module.scss";
-import { Button } from "semantic-ui-react";
+import styles from '../../stylesheets/alliance.module.scss';
+import { Button } from 'semantic-ui-react';
 
 export default function Applications() {
-  const { getApps, listApps, acceptApp } = useContext(PlayerContext);
-  useEffect(() => {
-    getApps();
-  }, [listApps.length]);
+  // // const { getApps, listApps, acceptApp } = useContext(PlayerContext);
+  // useEffect(() => {
+  //   getApps();
+  // }, [listApps.length]);
   return (
     <div className={styles.a_wrapper}>
       <div>
         <h2>Applications</h2>
       </div>
       <div>
-        {listApps.length === 0 ? (
-          <div className={styles.empty}>No Applications</div>
-        ) : (
-          ""
-        )}
+        {/* {listApps.length === 0 ? <div className={styles.empty}>No Applications</div> : ''}
         {listApps &&
           listApps.map((data, idx) => (
             <div className={styles.applicant} key={data.uuid}>
@@ -27,7 +23,7 @@ export default function Applications() {
                 {idx + 1}.
                 <img
                   src={`${process.env.REACT_APP_BASE_URL}/${
-                    data.path && data.path.replace("\\", "/")
+                    data.path && data.path.replace('\\', '/')
                   }`}
                   alt="profile-picture"
                 />
@@ -52,7 +48,7 @@ export default function Applications() {
                 </Button>
               </div>
             </div>
-          ))}
+          ))} */}
       </div>
     </div>
   );

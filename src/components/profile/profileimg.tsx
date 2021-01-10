@@ -1,75 +1,75 @@
-import React, { useRef, useState, useContext, useEffect } from "react";
+import React, { useRef, useState, useContext, useEffect } from 'react';
 
-import { PlayerContext } from "../../utils/context/Player/PlayerState";
+import { PlayerContext } from '../../utils/PlayerContext/PlayerState';
 
-import styles from "../../stylesheets/profile.module.scss";
-import custom from "../../stylesheets/custom-styles.module.scss";
+import styles from '../../stylesheets/profile.module.scss';
+import custom from '../../stylesheets/custom-styles.module.scss';
 
 export default function ProfileImg() {
-  const { addImg, profile, updateProfile } = useContext(PlayerContext);
+  // const { addImg, profile, updateProfile } = useContext(PlayerContext);
 
-  const [inputChanged, setInputChange] = useState(false);
-  const [imgToggle, setImgToggle] = useState(false);
-  const [data, setData] = useState({
-    inGameName: profile.inGameName,
-    city: profile.city,
-    castle: profile.city,
-  });
+  // const [inputChanged, setInputChange] = useState(false);
+  // const [imgToggle, setImgToggle] = useState(false);
+  // const [data, setData] = useState({
+  //   inGameName: profile.inGameName,
+  //   city: profile.city,
+  //   castle: profile.city,
+  // });
 
-  const uploadedImage = useRef(null);
-  const imageUpLoader = useRef(null);
+  // const uploadedImage = useRef(null);
+  // const imageUpLoader = useRef(null);
 
-  function imgClick() {
-    imageUpLoader.current.click();
-  }
+  // // function imgClick() {
+  // //   imageUpLoader.current.click();
+  // // }
 
-  function inputChange(e) {
-    const { name, value } = e.target;
-    setInputChange(true);
-    setData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  }
-  function saveData() {
-    updateProfile(data);
-    setInputChange(false);
-  }
-  function handleChange(e) {
-    setImgToggle(true);
-    const [file] = e.target.files;
-    if (file) {
-      const reader = new FileReader();
-      const { current } = uploadedImage;
-      current.file = file;
-      reader.onload = (e) => {
-        current.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
+  // function inputChange(e) {
+  //   const { name, value } = e.target;
+  //   setInputChange(true);
+  //   setData((prevState) => ({
+  //     ...prevState,
+  //     [name]: value,
+  //   }));
+  // }
+  // function saveData() {
+  //   // updateProfile(data);
+  //   setInputChange(false);
+  // }
+  // function handleChange(e) {
+  //   setImgToggle(true);
+  //   const [file] = e.target.files;
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     const { current } = uploadedImage;
+  //     current.file = file;
+  //     reader.onload = (e) => {
+  //       current.src = e.target.result;
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    let formData = new FormData();
-    formData.append("avatars", uploadedImage.current.file);
-    addImg(formData);
-    setImgToggle(false);
-  }
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   let formData = new FormData();
+  //   formData.append('avatars', uploadedImage.current.file);
+  //   addImg(formData);
+  //   setImgToggle(false);
+  // }
 
   return (
     <div className={styles.wrapper}>
-      <form encType="multipart/form-data" onSubmit={handleSubmit}>
+      {/* <form encType="multipart/form-data" onSubmit={handleSubmit}>
         <input
           type="file"
           name="avatars"
           onChange={handleChange}
           ref={imageUpLoader}
-          style={{ display: "none" }}
+          style={{ display: 'none' }}
         />
         <img
           src={`${process.env.REACT_APP_BASE_URL}/${
-            profile.path && profile.path.replace("\\", "/")
+            profile.path && profile.path.replace('\\', '/')
           }`}
           className={styles.headshot}
           ref={uploadedImage}
@@ -81,7 +81,7 @@ export default function ProfileImg() {
             <button type="submit" className={custom.inputSave} />
           </>
         ) : (
-          ""
+          ''
         )}
       </form>
       <div className={styles.field}>
@@ -119,8 +119,8 @@ export default function ProfileImg() {
           <p>SAVE</p>
         </div>
       ) : (
-        ""
-      )}
+        ''
+      )} */}
     </div>
   );
 }
