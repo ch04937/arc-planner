@@ -1,0 +1,19 @@
+.header {
+  @include flex(space-between, row);
+  align-items: baseline;
+  padding: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  a {
+    color: $text;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+}
+.footer__copyright {
+  display: flex;
+  align-items: center;
+}

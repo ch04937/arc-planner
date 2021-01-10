@@ -11,5 +11,18 @@ Players guide to the mobile game Rise of Kingdoms
 
 ## Style Guide
 
-Reference in the
-[Bem Style Guide](http://getbem.com/introduction/)
+- Reference in the
+  [Bem Style Guide](http://getbem.com/introduction/)
+- Color Schemes for this project are Classic Double Blue Color Scheme
+
+  - Dark Blue: #12232E
+    - main background
+  - Lighter Blue: #007CC7
+    - secondary background
+  - Lightest Blue: #4DA8DA
+    - compliment secondary background ie.
+  - Shadow of Dark Blue: #203647
+    - compliments main background
+    - buttons-background, hovers
+  - Shadow of Light Blue: #EEFBFB
+    - Text Color

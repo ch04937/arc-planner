@@ -1,19 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../stylesheets/hf.module.scss';
+import ch04937 from '../assests/ch04937.svg';
 
 export default function Header() {
   return (
-    <div className={styles.header}>
+    <header className="header">
       <div>
+        <img src={ch04937} alt="ch04937" />
         <Link to="/">Ark Planner</Link>
       </div>
-      <div className={styles.nav}>
-        <div className={styles.content}>
-          <Link to="/user">Profile</Link>
-        </div>
-        Sign Out
-      </div>
-    </div>
+      <Link to="/user" className="link">
+        Profile
+      </Link>
+    </header>
   );
 }
