@@ -1,11 +1,10 @@
 .link {
   color: $text;
-  background-color: $shadow-blue;
   width: 5rem;
   text-align: center;
   padding: 1rem;
   border-radius: 4px;
   &:hover {
-    background-color: $dark-blue;
+    background-color: $shadow-blue;
   }
 }

@@ -26,6 +26,7 @@
     }
   },
   "rules": {
+    "prettier/prettier": 0,
     "object-curly-spacing": ["warn", "always"],
     "no-unused-vars": [
       "warn",

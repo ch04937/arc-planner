@@ -2,7 +2,7 @@ import React from 'react';
 // import { Route, Switch } from 'react-router-dom';
 import Header from './pages/Header';
 import Footer from './pages/Footer';
-// import Main from './pages/main';
+import MarketingPage from './pages/MarketingPage';
 // import Profile from './pages/profile';
 // import Dashboard from './pages/dashboard';
 // import Alliance from './pages/alliance';
@@ -11,10 +11,11 @@ import Footer from './pages/Footer';
 // import { PrivateRoute } from './utils/privateRoute';
 // import app from './stylesheets/app.module.scss';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <div className="app">
       <Header />
+      <MarketingPage />
       <Footer />
     </div>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ch04937 from '../assests/ch04937.svg';
 
-export default function Header() {
+const Header: React.FC = () => {
   return (
     <header className="header">
       <div>
@@ -14,4 +14,6 @@ export default function Header() {
       </Link>
     </header>
   );
-}
+};
+
+export default Header;
